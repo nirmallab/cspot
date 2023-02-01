@@ -1,0 +1,87 @@
+site_name: GATOR (Scaling Multiplex Imaging Technology)
+
+theme:
+  name: "material"
+  logo: ./assets/favicon.png
+  favicon: ./assets/favicon.png
+  features:
+    - navigation.instant
+  features:
+    - navigation.tabs
+#    - navigation.tabs.sticky
+    - navigation.top
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: white
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+nav:
+    - Getting Started: 'Getting Started.md'
+    - Workflow: 'Workflow.md'
+    - Gator Functions:
+        - Build DL Model:
+            - generateThumbnails: 'Functions/generateThumbnails.md'
+            - cloneFolder: 'Functions/cloneFolder.md'
+            - generateTrainTestSplit: 'Functions/generateTrainTestSplit.md'
+        - Generate DL Score:
+            - generateDLScore: 'Functions/generateDLScore.md'
+        - Run Gator Algorithm:
+            - gatorObject: 'Functions/gatorObject.md'
+            - gator: 'Functions/gator.md'
+            - mergeGatorObject: 'Functions/gator/mergeGatorObject.md'
+        - Phenotype cells:
+            - gatorPhenotype: 'Functions/phenotypeCells/gatorPhenotype.md'
+
+plugins:
+- mkdocstrings:
+    handlers:
+      python:
+        options:
+          show_signature_annotations: no
+          heading_level: 4
+
+extra_css:
+  - stylesheets/extra.css
+
+
+markdown_extensions:
+
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
