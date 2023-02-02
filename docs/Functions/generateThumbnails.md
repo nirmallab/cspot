@@ -2,4 +2,4 @@
 hide:
   - toc        # Hide table of contents
 ---
-::: gator.generateThumbnails
+::: gatorpy.generateThumbnails
