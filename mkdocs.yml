@@ -47,6 +47,7 @@ nav:
             - gatorPhenotype: 'Functions/phenotypeCells/gatorPhenotype.md'
 
 plugins:
+- search
 - mkdocstrings:
     handlers:
       python:
@@ -57,9 +58,6 @@ plugins:
 extra_css:
   - stylesheets/extra.css
 
-- search:
-    prebuild_index: true
-- autorefs
 
 markdown_extensions:
 
