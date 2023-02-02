@@ -94,3 +94,10 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+
+extra:
+  copyright: Copyright &copy; 2023 | Nirmal Lab
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ajitjohnson_n
+      name: Twitter
