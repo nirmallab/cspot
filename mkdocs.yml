@@ -24,6 +24,7 @@ theme:
         name: Switch to light mode
 
 nav:
+    - Home: 'index.md'
     - Getting Started: 'Getting Started.md'
     - Workflow: 'Workflow.md'
     - Gator Functions:
