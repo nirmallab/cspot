@@ -1,17 +1,4 @@
-# Welcome to MkDocs
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+🐊 GATOR: A scalable framework for automated processing of highly multiplexed tissue images  
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Multiplexed imaging has advanced spatial biology and revealed critical cell communication networks in tissue development and diseases. However, the scalable application of multiplexed imaging technology remains a significant challenge due to the need for human-in-the-loop processes. We developed a computational framework called GATOR that combines deep learning and statistical approaches to pre-process and phenotype single cells without visual intervention. Gator can learn features of intercellular protein expression patterns and process highly artifactual images with high accuracy. An end-end python implementation of Gator is provided to facilitate the large-scale application of spatial biology in clinical and research settings.

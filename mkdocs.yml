@@ -6,7 +6,7 @@ repo_url: https://github.com/nirmalLab/gatorpy/
 edit_uri: https://github.com/nirmalLab/gatorpy/edit/main/docs
 
 theme:
-  name: readthedocs
+  name: material
   logo: ./assets/favicon.png
   favicon: ./assets/favicon.png
   features:
