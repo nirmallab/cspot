@@ -1,6 +1,7 @@
 site_name: GATOR (Scaling Multiplex Imaging Technology)
 site_description: A scalable framework for automated processing of highly multiplexed tissue images
 site_author: Ajit Johnson Nirmal
+docs_dir: docs/
 
 repo_url: https://github.com/nirmalLab/gatorpy/
 edit_uri: https://github.com/nirmalLab/gatorpy/edit/main/docs
