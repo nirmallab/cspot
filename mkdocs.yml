@@ -57,6 +57,9 @@ plugins:
 extra_css:
   - stylesheets/extra.css
 
+- search:
+    prebuild_index: true
+- autorefs
 
 markdown_extensions:
 
