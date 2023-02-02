@@ -6,7 +6,7 @@ repo_url: https://github.com/nirmalLab/gatorpy/
 edit_uri: https://github.com/nirmalLab/gatorpy/edit/main/docs
 
 theme:
-  name: "material"
+  name: material
   logo: ./assets/favicon.png
   favicon: ./assets/favicon.png
   features:
@@ -27,6 +27,25 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+
+
+nav:
+    - Home: 'index.md'
+    - Getting Started: 'Getting Started.md'
+    - Workflow: 'Workflow.md'
+    - Gator Functions:
+        - Build DL Model:
+            - generateThumbnails: 'Functions/generateThumbnails.md'
+            - cloneFolder: 'Functions/cloneFolder.md'
+            - generateTrainTestSplit: 'Functions/generateTrainTestSplit.md'
+        - Generate DL Score:
+            - generateDLScore: 'Functions/generateDLScore.md'
+        - Run Gator Algorithm:
+            - gatorObject: 'Functions/gatorObject.md'
+            - gator: 'Functions/gator.md'
+            - mergeGatorObject: 'Functions/gator/mergeGatorObject.md'
+        - Phenotype cells:
+            - gatorPhenotype: 'Functions/phenotypeCells/gatorPhenotype.md'
 
 
 plugins:
