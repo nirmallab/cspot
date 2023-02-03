@@ -20,7 +20,6 @@ import sys, math
 import glob
 import pathlib
 tf.disable_v2_behavior()
-# sys.path.insert(0, 'C:\\Users\\Public\\Documents\\ImageScience')
 from toolbox.imtools import *
 from toolbox.ftools import *
 from toolbox.PartitionOfImage import PI2D
@@ -253,26 +252,26 @@ class UNet2D:
 		nClasses = UNet2D.hp['nClasses']
 
 
-		trainingFiles = glob.glob(str(trainPath) + '\\' + '*_img.tif')
-		trainingMasks = glob.glob(str(trainPath) + '\\' +'*_mask.tif')
-		artTrainFiles = glob.glob(str(artTrainPath)  + '\\' +'*_img.tif')
-		artTrainMasks = glob.glob(str(artTrainPath) + '\\' +'*_mask.tif')
+		trainingFiles = glob.glob(str(trainPath) + '/' + '*_img.tif')
+		trainingMasks = glob.glob(str(trainPath) + '/' +'*_mask.tif')
+		artTrainFiles = glob.glob(str(artTrainPath)  + '/' +'*_img.tif')
+		artTrainMasks = glob.glob(str(artTrainPath) + '/' +'*_mask.tif')
 		trainingFiles = trainingFiles + artTrainFiles
 		trainingMasks = trainingMasks + artTrainMasks
 		nTrain = len(trainingFiles)
 		nSteps = round(nTrain / batchSize) * nSteps  #convert epochs to steps
 		print('Training for ' + str(nSteps) + ' steps')
 
-		validFiles = glob.glob(str(validPath) + '\\' + '*_img.tif')
-		validMasks = glob.glob(str(validPath) + '\\' + '*_mask.tif')
-		artValidFiles = glob.glob(str(artValidPath) + '\\' + '*_img.tif')
-		artValidMasks = glob.glob(str(artValidPath) + '\\' + '*_mask.tif')
+		validFiles = glob.glob(str(validPath) + '/' + '*_img.tif')
+		validMasks = glob.glob(str(validPath) + '/' + '*_mask.tif')
+		artValidFiles = glob.glob(str(artValidPath) + '/' + '*_img.tif')
+		artValidMasks = glob.glob(str(artValidPath) + '/' + '*_mask.tif')
 		validFiles = validFiles + artValidFiles
 		validMasks = validMasks + artValidMasks
 		nValid = len(validFiles)
 
-		testFiles = glob.glob(str(testPath) + '\\' + '*_img.tif')
-		testMasks = glob.glob(str(testPath) +'\\' + '*_mask.tif')
+		testFiles = glob.glob(str(testPath) + '/' + '*_img.tif')
+		testMasks = glob.glob(str(testPath) +'/' + '*_mask.tif')
 		nTest = len(testFiles)
 
 		nArtTrain = len(artTrainFiles)

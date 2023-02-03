@@ -5,22 +5,22 @@ import os, argparse, pathlib
 from UNet import *
 
 # Function
-def gatorTrain (TrainingDataPath, 
-			 outputDir,
-			 artefactPath=None, 
-			 modelName=None, 
-			 imSize=64,
-			 nChannels=1,
-			 nClasses=2,
-			 nExtraConvs=0,
-			 nLayers=3,
-			 featMapsFact=2,
-			 downSampFact=2,
-			 ks=3,
-			 nOut0=16,
-			 stdDev0=0.03,
-			 batchSize=16,
-			 epochs=100):
+def gatorTrain ( TrainingDataPath, 
+    			 outputDir,
+    			 artefactPath=None, 
+    			 modelName=None, 
+    			 imSize=64,
+    			 nChannels=1,
+    			 nClasses=2,
+    			 nExtraConvs=0,
+    			 nLayers=3,
+    			 featMapsFact=2,
+    			 downSampFact=2,
+    			 ks=3,
+    			 nOut0=16,
+    			 stdDev0=0.03,
+    			 batchSize=16,
+    			 epochs=100):
 	"""
     
 Parameters:
@@ -112,9 +112,9 @@ Example:
 
 
 	# Paths for saving data
-	logPath = pathlib.Path(outputDir + '/GATOR/DLTrain/tempTFLogs_' + finalName)
-	modelPath = pathlib.Path(outputDir + '/GATOR/DLmodels' + finalName)
-	pmPath = pathlib.Path(outputDir + '/GATOR/DLTrain/TFprobMaps' + finalName)
+	logPath = pathlib.Path(outputDir + '/GATOR/gatorTrain/tempTFLogs_' + finalName)
+	modelPath = pathlib.Path(outputDir + '/GATOR/gatorModels' + finalName)
+	pmPath = pathlib.Path(outputDir + '/GATOR/gatorTrain/TFprobMaps' + finalName)
 	
 	# set up the model
 	UNet2D.setup(   imSize=imSize,
@@ -163,22 +163,22 @@ if __name__ == '__main__':
 	parser.add_argument('--batchSize', type=int, help='Batch size for training.', default=16)
 	parser.add_argument('--epochs', type=int, help='Number of training epochs.', default=100)
 	args = parser.parse_args()
-	DLTrain(TrainingDataPath=args.TrainingDataPath,
-			artefactPath=args.artefactPath,
-			outputDir=args.outputDir,
-			modelName=args.modelName,
-			imSize=args.imSize,
-			nChannels=args.nChannels,
-			nClasses=args.nClasses,
-			nExtraConvs=args.nExtraConvs,
-			nLayers=args.nLayers,
-			featMapsFact=args.featMapsFact,
-			downSampFact=args.downSampFact,
-			ks=args.ks,
-			nOut0=args.nOut0,
-			stdDev0=args.stdDev0,
-			batchSize=args.batchSize,
-			epochs=args.epochs)
+	gatorTrain( TrainingDataPath=args.TrainingDataPath,
+    			artefactPath=args.artefactPath,
+    			outputDir=args.outputDir,
+    			modelName=args.modelName,
+    			imSize=args.imSize,
+    			nChannels=args.nChannels,
+    			nClasses=args.nClasses,
+    			nExtraConvs=args.nExtraConvs,
+    			nLayers=args.nLayers,
+    			featMapsFact=args.featMapsFact,
+    			downSampFact=args.downSampFact,
+    			ks=args.ks,
+    			nOut0=args.nOut0,
+    			stdDev0=args.stdDev0,
+    			batchSize=args.batchSize,
+    			epochs=args.epochs)
 			
 
 			
