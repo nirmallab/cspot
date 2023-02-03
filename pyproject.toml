@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gatorpy"
-version = "0.1.0"
+version = "0.1.1"
 description = "GATOR: A scalable framework for automated processing of highly multiplexed tissue images"
 authors = ["Ajit Johnson Nirmal <ajitjohnson.n@gmail.com>"]
 readme = "README.md"
@@ -14,7 +14,7 @@ classifiers = [
               "Programming Language :: Python"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.12"
 numpy = "^1.23.2"
 pandas = "^1.4.4"
 tifffile = "^2022.8.12"
@@ -26,6 +26,7 @@ anndata = "^0.8.0"
 scikit-learn = "^1.2.1"
 argparse = "^1.4.0"
 scikit-image = "^0.19.3"
+tensorflow = "^2.11.0"
 
 
 [build-system]

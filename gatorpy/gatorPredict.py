@@ -6,9 +6,9 @@ import pathlib
 
 from UNet import *
 
-
 # Function
-def gatorPredict(imagePath, 
+def gatorPredict(imagePath,
+                 gatorModelPath,
                  outputDir, 
                  markerChannelMapPath, 
                  markerColumnName='marker', 
@@ -18,6 +18,8 @@ def gatorPredict(imagePath,
     
     """
      --imagePath (str): The path to the .tif file that needs to be processed. This argument is required.
+     
+     --gatorModelPath (str): The path to the `gatorModel` folder. This argument is required.
     
      --outputDir (str): The path to the output directory where the processed images will be saved.
      
@@ -88,7 +90,7 @@ def gatorPredict(imagePath,
 
 
     probPath = pathlib.Path(outputDir + '/GATOR/gatorPredict/')
-    modelPath = pathlib.Path(outputDir + '/GATOR/gatorModels/')
+    modelPath = pathlib.Path(gatorModelPath)
 
     if not os.path.exists(probPath):
         os.makedirs(probPath,exist_ok=True)
@@ -158,53 +160,58 @@ def gatorPredict(imagePath,
         UNet2D.singleImageInferenceCleanup()
 
 
+# =============================================================================
+#     logPath = ''
+#     scriptPath = os.path.dirname(os.path.realpath(__file__))
+# 
+#     pmPath = ''
+# 
+#     if os.system('nvidia-smi') == 0:
+#         if args.GPU == -1:
+#             print("automatically choosing GPU")
+#             GPU = GPUselect.pick_gpu_lowest_memory()
+#         else:
+#             GPU = args.GPU
+#         print('Using GPU ' + str(GPU))
+# 
+#     else:
+#         if sys.platform == 'win32':  # only 1 gpu on windows
+#             if args.GPU == -1:
+#                 GPU = 0
+#                 print('using default GPU')
+#             else:
+#                 GPU = args.GPU
+#             print('Using GPU ' + str(GPU))
+#         else:
+#             GPU = 0
+#             print('Using CPU')
+#     os.environ['CUDA_VISIBLE_DEVICES'] = '%d' % GPU
+# =============================================================================
+
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--imagePath", help="path to the .tif file")
-    parser.add_argument("--markerChannelPath", help="path to the marker panel list")
-    parser.add_argument("--markerColumnName", type=str, help="marker colulmn name in the marker panel list", default = 'marker')
-    parser.add_argument("--channelColumnName", type=str, help="channel column name in the marker panel list", default = 'channel')
-    parser.add_argument("--modelColumnName", type=str, help="model column name in the marker panel list", default = 'gatormodel')
-    parser.add_argument('--outputDir', type=str, help='Path to output directory.')
-    parser.add_argument("--scalingFactor", help="factor by which to increase/decrease image size by", type=float,
-                        default=1)
-    parser.add_argument("--GPU", help="explicitly select GPU", type=int, default=-1)
+    parser = argparse.ArgumentParser(description='Gator Predict function')
+    parser.add_argument('--imagePath', type=str, required=True, help='The path to the .tif file that needs to be processed.')
+    parser.add_argument('--gatorModelPath', type=str, required=True, help='The path to the `gatorModel` folder.')
+    parser.add_argument('--outputDir', type=str, help='The path to the output directory where the processed images will be saved.')
+    parser.add_argument('--markerChannelMapPath', type=str, required=True, help='The path to the marker panel list, which contains information about the markers used in the image.')
+    parser.add_argument('--markerColumnName', type=str, default='marker', help='The name of the column in the marker panel list that contains the marker names. The default value is `marker`.')
+    parser.add_argument('--channelColumnName', type=str, default='channel', help='The name of the column in the marker panel list that contains the channel names. The default value is `channel`.')
+    parser.add_argument('--modelColumnName', type=str, default='gatormodel', help='The name of the column in the marker panel list that contains the model names. The default value is `gatormodel`.')
+    parser.add_argument('--GPU', type=int, default=0, help='An optional argument to explicitly select the GPU to use. The default value is 0, meaning that the GPU will be selected automatically.')
+
     args = parser.parse_args()
+    gatorPredict(imagePath=args.imagePath, 
+                 gatorModelPath=args.gatorModelPath, 
+                 outputDir=args.outputDir, 
+                 markerChannelMapPath=args.markerChannelMapPath, 
+                 markerColumnName=args.markerColumnName, 
+                 channelColumnName=args.channelColumnName, 
+                 modelColumnName=args.modelColumnName, 
+                 GPU=args.GPU)
 
 
 
-    logPath = ''
-    scriptPath = os.path.dirname(os.path.realpath(__file__))
-
-    pmPath = ''
-
-    if os.system('nvidia-smi') == 0:
-        if args.GPU == -1:
-            print("automatically choosing GPU")
-            GPU = GPUselect.pick_gpu_lowest_memory()
-        else:
-            GPU = args.GPU
-        print('Using GPU ' + str(GPU))
-
-    else:
-        if sys.platform == 'win32':  # only 1 gpu on windows
-            if args.GPU == -1:
-                GPU = 0
-                print('using default GPU')
-            else:
-                GPU = args.GPU
-            print('Using GPU ' + str(GPU))
-        else:
-            GPU = 0
-            print('Using CPU')
-    os.environ['CUDA_VISIBLE_DEVICES'] = '%d' % GPU
 
 
-    gatorPredict(imagePath = args.imagePath,
-              markerChannelMapPath=args.markerChannelPath,
-              outputDir=args.outputDir,
-              markerColumnName=args.markerColumnName,
-              channelColumnName=args.channelColumnName,
-              modelColumnName=args.modelColumnName,
-              GPU=args.GPU)
+

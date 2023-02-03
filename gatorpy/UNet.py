@@ -19,14 +19,16 @@ import tifffile
 import sys, math
 import glob
 import pathlib
+
 tf.disable_v2_behavior()
 from toolbox.imtools import *
 from toolbox.ftools import *
 from toolbox.PartitionOfImage import PI2D
 from toolbox import GPUselect
 
-def concat3(lst):
-	return tf.concat(lst, 3)
+
+def concat3 (lst):
+    return tf.concat(lst, 3)
 
 
 class UNet2D:
@@ -153,6 +155,8 @@ class UNet2D:
 		# --------------------------------------------------
 		# upsampling layer
 		# --------------------------------------------------
+        
+
 
 		def up_samp_layer(data, index):
 			with tf.variable_scope('lu%d' % index):
