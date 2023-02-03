@@ -202,9 +202,9 @@ if __name__ == '__main__':
 
 
     gatorPredict(imagePath = args.imagePath,
-              markerChannelMapPath = args.markerChannelPath,
-              outputDir = args.outputDir,
-              markerColumnName = 'marker',
-              channelColumnName = 'channel',
-              modelColumnName = 'gatormodel',
-              GPU = GPU)
+              markerChannelMapPath=args.markerChannelPath,
+              outputDir=args.outputDir,
+              markerColumnName=args.markerColumnName,
+              channelColumnName=args.channelColumnName,
+              modelColumnName=args.modelColumnName,
+              GPU=args.GPU)

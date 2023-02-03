@@ -112,9 +112,9 @@ Example:
 
 
 	# Paths for saving data
-	logPath = pathlib.Path(outputDir + '/GATOR/gatorTrain/tempTFLogs_' + finalName)
-	modelPath = pathlib.Path(outputDir + '/GATOR/gatorModels' + finalName)
-	pmPath = pathlib.Path(outputDir + '/GATOR/gatorTrain/TFprobMaps' + finalName)
+	logPath = pathlib.Path(outputDir + '/GATOR/gatorTrain/' + finalName + '/tempTFLogs/' )
+	modelPath = pathlib.Path(outputDir + '/GATOR/gatorModel/' + finalName)
+	pmPath = pathlib.Path(outputDir + '/GATOR/gatorTrain/' + finalName + '/TFprobMaps/')
 	
 	# set up the model
 	UNet2D.setup(   imSize=imSize,
