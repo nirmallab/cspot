@@ -72,11 +72,10 @@ Returns:
         be stored else it will be returned to memory. The results are stored in 
         `anndata.obs` with a `p_` appended to the markers names. So if you would 
         like to vizulaize `CD3`, the column that you are looking for is `p_CD3`.
-
+        
 Example:
-        
-        ```python
-        
+
+    	```python    
         # set the working directory & set paths to the example data
         cwd = '/Users/aj/Desktop/gatorExampleData'
         # Module specific paths
@@ -87,12 +86,10 @@ Example:
                         gatorOutput='gatorOutput',
                         gatorScore='gatorScore', 
                         midpoint=0.5,
-                        outputDir=cwd + '/GATOR/gatorOutput/')
+                        outputDir=None)
         
         # Same function if the user wants to run it via Command Line Interface
-        python addPredictions.py --gatorObjectUsers/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad
-        
-        ````
+        python addPredictions.py --gatorObjectUsers/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad    	
 
     """
     
