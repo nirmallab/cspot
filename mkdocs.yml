@@ -51,6 +51,11 @@ nav:
             - gatorPhenotype: 'Functions/gatorPhenotype.md'
         - Helper Functions:
             - addPredictions: 'Functions/addPredictions.md'
+    - Tutorials:
+        - Build Gator Model: 'Tutorials/BuildModel.md'
+        - Apply Gator Model: 'Tutorials/ApplyModel.md'
+        - Run Gator Algorithm: 'Tutorials/RunGator.md'
+        - Phenotype cells: 'Tutorials/CellPhenotyping.md'
 
 
 plugins:
