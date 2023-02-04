@@ -50,7 +50,7 @@ nav:
         - Phenotype cells:
             - gatorPhenotype: 'Functions/gatorPhenotype.md'
         - Helper Functions:
-            - gatorPhenotype: 'Functions/addPredictions.md'
+            - addPredictions: 'Functions/addPredictions.md'
 
 
 plugins:
