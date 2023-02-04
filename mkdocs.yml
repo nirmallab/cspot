@@ -42,7 +42,7 @@ nav:
             - gatorTrain: 'Functions/gatorTrain.md'
         - Apply Gator Model:
             - gatorPredict: 'Functions/gatorPredict.md'
-            - generateDLScore: 'Functions/generateDLScore.md'
+            - generateDLScore: 'Functions/generateGatorScore.md'
         - Run Gator Algorithm:
             - gatorObject: 'Functions/gatorObject.md'
             - gator: 'Functions/gator.md'
