@@ -27,58 +27,56 @@ def gatorTrain ( trainingDataPath,
 	"""
     
 Parameters:
-
-	trainingDataPath : TYPE
-		The file path leading to the directory that holds the training data for each marker.
+    trainingDataPath (str):  
+        The file path leading to the directory that holds the training data for each marker.
 		
-	artefactPath (str): 
-		Path to the directory where the artefacts data is loaded from.
+    artefactPath (str):  
+        Path to the directory where the artefacts data is loaded from.
 
-	outputDir (str): 
-		PatPath to output directory.
+    outputDir (str):  
+        PatPath to output directory.
 	
-   modelName (str, optional): 
-	   Name of the model to be used. If None, the folder name will be used.
+    modelName (str, optional):  
+        Name of the model to be used. If None, the folder name will be used.
    
-   imSize (int, optional): 
-	   Image size (assumed to be square).
+    imSize (int, optional):  
+        Image size (assumed to be square).
    
-   nChannels (int, optional): 
-	   Number of channels in the input image.
+    nChannels (int, optional):  
+        Number of channels in the input image.
    
-   nClasses (int, optional): 
-	   Number of classes in the classification problem. 
+    nClasses (int, optional):  
+        Number of classes in the classification problem. 
    
-   nExtraConvs (int, optional): 
-	   Number of extra convolutional layers to add to the model. 
+    nExtraConvs (int, optional):  
+        Number of extra convolutional layers to add to the model. 
    
-   nLayers (int, optional): 
-	   Total number of layers in the model. 
+    nLayers (int, optional):  
+        Total number of layers in the model. 
    
-   featMapsFact (int, optional): 
-	   Factor to multiply the number of feature maps by in each layer.
+    featMapsFact (int, optional):  
+        Factor to multiply the number of feature maps by in each layer.
    
-   downSampFact (int, optional): 
-	   Factor to down-sample the feature maps by in each layer.
+    downSampFact (int, optional):  
+        Factor to down-sample the feature maps by in each layer.
    
-   ks (int, optional): 
-	   Kernel size for the convolutional layers.
+    ks (int, optional):  
+        Kernel size for the convolutional layers.
    
-   nOut0 (int, optional): 
-	   Number of filters in the first layer.
+    nOut0 (int, optional):  
+        Number of filters in the first layer.
    
-   stdDev0 (float, optional): 
-	   Standard deviation for the initializer for the first layer.
+    stdDev0 (float, optional):  
+        Standard deviation for the initializer for the first layer.
    
-   batchSize (int, optional): 
-	   Batch size for training.
+    batchSize (int, optional):  
+        Batch size for training.
    
-   epochs (int, optional): 
-	   Number of training epochs.
+    epochs (int, optional):  
+        Number of training epochs.
 
 Returns:
-
-	Deep learning model (images and model).
+    Deep learning model (images and model):  
 
 Example:
 

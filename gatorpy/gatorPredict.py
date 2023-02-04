@@ -31,44 +31,42 @@ def gatorPredict(imagePath,
     
     """
 Parameters:
+    imagePath (str):  
+        The path to the .tif file that needs to be processed. 
+     
+    gatorModelPath (str):  
+        The path to the `gatorModel` folder. 
     
-     --imagePath (str): 
-         The path to the .tif file that needs to be processed. This argument is required.
+    outputDir (str):  
+        The path to the output directory where the processed images will be saved.
      
-     --gatorModelPath (str): 
-         The path to the `gatorModel` folder. This argument is required.
-    
-     --outputDir (str): 
-         The path to the output directory where the processed images will be saved.
+    markerChannelPath (str, optional):  
+        The path to the marker panel list, which contains information about the markers used in the image. This argument is required.
      
-     --markerChannelPath (str, optional): 
-         The path to the marker panel list, which contains information about the markers used in the image. This argument is required.
+    markerColumnName (str, optional):  
+        The name of the column in the marker panel list that contains the marker names. The default value is 'marker'.
      
-     --markerColumnName (str, optional): 
-         The name of the column in the marker panel list that contains the marker names. The default value is 'marker'.
+    channelColumnName (str, optional):  
+        The name of the column in the marker panel list that contains the channel names. The default value is 'channel'.
      
-     --channelColumnName (str, optional): 
-         The name of the column in the marker panel list that contains the channel names. The default value is 'channel'.
-     
-     --modelColumnName (str, optional): 
-         The name of the column in the marker panel list that contains the model names. The default value is 'gatormodel'.
+    modelColumnName (str, optional):  
+        The name of the column in the marker panel list that contains the model names. The default value is 'gatormodel'.
          
-     --scalingFactor (int, optional): 
-         A factor by which the image size will be increased/decreased. The default value is 1, meaning no change in size.
+    scalingFactor (int, optional):  
+        A factor by which the image size will be increased/decreased. The default value is 1, meaning no change in size.
      
-     --GPU (int, optional): 
-         An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
+    GPU (int, optional):  
+        An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
 
 Returns:
-
-	Predicted Probability Masks (images):  
+    Predicted Probability Masks (images):  
 
 Example:
 
 	```python
 	
+    
 	```
-	
      
      """
     
