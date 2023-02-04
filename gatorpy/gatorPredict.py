@@ -51,9 +51,6 @@ Parameters:
      
     modelColumnName (str, optional):  
         The name of the column in the marker panel list that contains the model names. The default value is 'gatormodel'.
-         
-    scalingFactor (int, optional):  
-        A factor by which the image size will be increased/decreased. The default value is 1, meaning no change in size.
      
     GPU (int, optional):  
         An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
