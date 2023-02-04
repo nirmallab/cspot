@@ -75,24 +75,24 @@ Returns:
 
 Example:
 
-    ```python
-    
-    # set the working directory & set paths to the example data
-    cwd = '/Users/aj/Desktop/gatorExampleData'
-    # Module specific paths
-    gatorObject = cwd + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad'
-    
-    adata = ga.addPredictions (gatorObject, 
-                    method='gatorOutput',
-                    gatorOutput='gatorOutput',
-                    gatorScore='gatorScore', 
-                    midpoint=0.5,
-                    outputDir=cwd + '/GATOR/gatorOutput/')
-    
-    # Same function if the user wants to run it via Command Line Interface
-    python addPredictions.py --gatorObjectUsers/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad
-    
-    ````
+        ```python
+        
+        # set the working directory & set paths to the example data
+        cwd = '/Users/aj/Desktop/gatorExampleData'
+        # Module specific paths
+        gatorObject = cwd + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad'
+        
+        adata = ga.addPredictions (gatorObject, 
+                        method='gatorOutput',
+                        gatorOutput='gatorOutput',
+                        gatorScore='gatorScore', 
+                        midpoint=0.5,
+                        outputDir=cwd + '/GATOR/gatorOutput/')
+        
+        # Same function if the user wants to run it via Command Line Interface
+        python addPredictions.py --gatorObjectUsers/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad
+        
+        ````
 
     """
     
