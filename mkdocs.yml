@@ -35,12 +35,12 @@ nav:
     - Getting Started: 'Getting Started.md'
     - Workflow: 'Workflow.md'
     - Gator Functions:
-        - Build DL Model:
+        - Build Gator Model:
             - generateThumbnails: 'Functions/generateThumbnails.md'
             - cloneFolder: 'Functions/cloneFolder.md'
             - generateTrainTestSplit: 'Functions/generateTrainTestSplit.md'
             - gatorTrain: 'Functions/gatorTrain.md'
-        - Apply DL Model:
+        - Apply Gator Model:
             - gatorPredict: 'Functions/gatorPredict.md'
             - generateDLScore: 'Functions/generateDLScore.md'
         - Run Gator Algorithm:
