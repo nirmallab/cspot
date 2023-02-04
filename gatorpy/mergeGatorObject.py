@@ -28,7 +28,7 @@ import numpy as np
 def mergeGatorObject (gatorObjects,
                       fileName='mergedGatorObject',
                       layers=['preProcessed'],
-                      uns= ['gatorOutput','DLScore'],
+                      uns= ['gatorOutput','gatorScore'],
                       outputDir=None):
     """
 Parameters:
@@ -61,18 +61,18 @@ Example:
         
         # set the working directory & set paths to the example data
         cwd = '/Users/aj/Desktop/gatorExampleData'
-        gatorObjects = [cwd + '/GATOR/gatorOutput/exampleProbabiltyMap.ome.h5ad',
-                        cwd + '/GATOR/gatorOutput/exampleProbabiltyMap.ome.h5ad']
+        gatorObjects = [cwd + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad',
+                        cwd + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad']
         
         # For this tutorial, supply the same gatorObject twice for merging, but multiple gatorObjects can be merged in ideal conditions.
         adata = ga.mergeGatorObject ( gatorObjects=gatorObjects,
                                       fileName='mergedGatorObject',
                                       layers=['preProcessed'],
-                                      uns= ['gatorOutput','DLScore'],
+                                      uns= ['gatorOutput','gatorScore'],
                                       outputDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python mergeGatorObject.py --gatorObjects /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleProbabiltyMap.ome.h5ad /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleProbabiltyMap.ome.h5ad --outputDir /Users/aj/Desktop/gatorExampleData
+        python mergeGatorObject.py --gatorObjects /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad --outputDir /Users/aj/Desktop/gatorExampleData
         
         
         ```
@@ -210,7 +210,7 @@ if __name__ == '__main__':
     parser.add_argument('--gatorObjects', type=str, nargs='+', help='A collection of Gator Objects to combine into one object')
     parser.add_argument('--fileName', type=str, default='mergedGatorObject', help='Designate a Name for the resulting combined Gator object')
     parser.add_argument('--layers', type=str, nargs='+', default=['preProcessed'], help='The layers section within the Gator Objects to be merged together')
-    parser.add_argument('--uns', type=str, nargs='+', default=['gatorOutput','DLScore'], help='The uns section within the Gator Objects to be merged together')
+    parser.add_argument('--uns', type=str, nargs='+', default=['gatorOutput','gatorScore'], help='The uns section within the Gator Objects to be merged together')
     parser.add_argument('--outputDir', type=str, default=None, help='Provide the path to the output directory')
     args = parser.parse_args()
     mergeGatorObject(gatorObjects=args.gatorObjects,

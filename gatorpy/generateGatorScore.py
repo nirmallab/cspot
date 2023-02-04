@@ -5,7 +5,7 @@
 
 """
 !!! abstract "Short Description"
-    The `generateDLScore` function calculates DLScores for each cell by using 
+    The `generateGatorScore` function calculates `Gator Score` for each cell by using 
     both the generated probability masks and pre-computed segmentation masks as inputs
 
 
@@ -24,8 +24,8 @@ import os
 import argparse
 
 # Function
-def generateDLScore (probabilityMaskPath,
-                     segmentationMask,
+def generateGatorScore (probabilityMaskPath,
+                     segmentationMaskPath,
                      feature='median',
                      markerNames=None,
                      outputDir=None):
@@ -35,11 +35,11 @@ Parameters:
     probabilityMaskPath (str):
         Supply the path of the probability map image produced by `dlModelPredict`.
 
-    segmentationMask (str):
+    segmentationMaskPath (str):
         Supply the path of the pre-computed segmentation mask.
 
     feature (str, optional):
-        Calculates the `mean` or `median` DLScore for each cell.
+        Calculates the `mean` or `median` Gator Score for each cell.
 
     markerNames (list, optional):
         The program searches for marker names in the meta data (description section)
@@ -49,11 +49,11 @@ Parameters:
 
     outputDir (str, optional):
         Provide the path to the output directory. The result will be located at
-        `outputDir/GATOR/DLScore/`.
+        `outputDir/GATOR/gatorScore/`.
 
 Returns:
     CSV (dataframe):
-        The `.csv` file containing the `DLScore` is stored in the provided outputDir.
+        The `.csv` file containing the `gatorScore` is stored in the provided outputDir.
 
 Example:
 
@@ -63,17 +63,16 @@ Example:
         cwd = '/Users/aj/Desktop/gatorExampleData'
         
         # function specific paths
-        probabilityMaskPath = cwd + '/GATOR/dlPredict/exampleProbabiltyMap.ome.tif'
+        probabilityMaskPath = cwd + '/GATOR/gatorPredict/exampleImage_gatorPredict.ome.tif'
         segmentationPath = cwd + '/segmentation/exampleSegmentationMask.tif'
         
-        ga.generateDLScore  (probabilityMaskPath=probabilityMaskPath,
-                     segmentationMask=segmentationPath,
+        ga.generateGatorScore (probabilityMaskPath=probabilityMaskPath,
+                     segmentationMaskPath=segmentationPath,
                      feature='median',
-                     markerNames=['ECAD', 'CD45', 'CD4', 'CD3D', 'CD8A', 'CD45R', 'Ki67'],
                      outputDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python generateDLScore.py --probabilityMaskPath /Users/aj/Desktop/gatorExampleData/dlPredict/exampleProbabiltyMap.ome.tif --segmentationMask /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif --markerNames ECAD CD45 CD4 CD3D CD8A CD45R Ki67 --outputDir /Users/aj/Desktop/gatorExampleData/
+        python generateGatorScore.py --probabilityMaskPath /Users/aj/Desktop/gatorExampleData/dlPredict/exampleProbabiltyMap.ome.tif --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif --markerNames ECAD CD45 CD4 CD3D CD8A CD45R Ki67 --outputDir /Users/aj/Desktop/gatorExampleData/
         
         ```
 
@@ -81,13 +80,13 @@ Example:
 
 
     #probabilityMask = '/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/dlPredict/6_GatorOutput.ome.tif'
-    #segmentationMask = '/Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif'
+    #segmentationMaskPath = '/Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif'
     #outputDir = '/Users/aj/Desktop/gatorExampleData'
     #markerNames = ['ECAD', 'CD45', 'CD4', 'CD3D', 'CD8A', 'CD45_2', 'KI67']
-    #probQuant (probabilityMask, segmentationMask,  feature='median', markerNames=markerNames, outputDir=outputDir)
+    #probQuant (probabilityMask, segmentationMaskPath,  feature='median', markerNames=markerNames, outputDir=outputDir)
 
     # read the seg mask
-    segM = tifffile.imread(pathlib.Path(segmentationMask))
+    segM = tifffile.imread(pathlib.Path(segmentationMaskPath))
     probM = tifffile.imread(pathlib.Path(probabilityMaskPath))
 
     #probs = []
@@ -155,7 +154,7 @@ Example:
         outputDir = os.getcwd()
 
     # final path to save results
-    finalPath = pathlib.Path(outputDir + '/GATOR/DLScore/')
+    finalPath = pathlib.Path(outputDir + '/GATOR/gatorScore/')
     if not os.path.exists(finalPath):
         os.makedirs(finalPath)
 
@@ -166,15 +165,15 @@ Example:
 
 # Make the Function CLI compatable
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Calculate DLScore for a probability map and segmentation mask.')
+    parser = argparse.ArgumentParser(description='Calculate gatorScore for a probability map and segmentation mask.')
     parser.add_argument('--probabilityMaskPath', type=str, help='Path of the probability map image produced by dlModelPredict.')
-    parser.add_argument('--segmentationMask', type=str, help='Path of the pre-computed segmentation mask.')
-    parser.add_argument('--feature', type=str, default='median', help='Calculates the mean or median DLScore for each cell.')
+    parser.add_argument('--segmentationMaskPath', type=str, help='Path of the pre-computed segmentation mask.')
+    parser.add_argument('--feature', type=str, default='median', help='Calculates the mean or median gatorScore for each cell.')
     parser.add_argument('--markerNames', nargs='+', help='List of marker names for each channel/layer in the probabilityMaskPath.')
     parser.add_argument('--outputDir', type=str, help='Path to the output directory.')
     args = parser.parse_args()
-    generateDLScore(probabilityMaskPath=args.probabilityMaskPath,
-                    segmentationMask=args.segmentationMask,
+    generateGatorScore(probabilityMaskPath=args.probabilityMaskPath,
+                    segmentationMaskPath=args.segmentationMaskPath,
                     feature=args.feature,
                     markerNames=args.markerNames,
                     outputDir=args.outputDir)

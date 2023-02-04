@@ -34,7 +34,7 @@ import argparse
 
 
 def gator (gatorObject,
-           DLScore='DLScore',
+           gatorScore='gatorScore',
            minAbundance=0.002,
            percentiles=[1, 20, 80, 99],
            dropMarkers = None,
@@ -55,8 +55,8 @@ Parameters:
         Pass the `gatorObject` loaded into memory or a path to the `gatorObject` 
         file (.h5ad).
 
-    DLScore (str, optional):
-        Include the label used for saving the `DLScore` within the Gator object.
+    gatorScore (str, optional):
+        Include the label used for saving the `gatorScore` within the Gator object.
 
     minAbundance (float, optional):
         Specify the minimum percentage of cells that should express a specific
@@ -83,9 +83,9 @@ Parameters:
 
     stringentThreshold (float, optional):
         The Gaussian Mixture Model (GMM) is utilized to distinguish positive and 
-        negative cells by utilizing DLScores. The stringentThreshold can be utilized 
+        negative cells by utilizing gatorScores. The stringentThreshold can be utilized 
         to further refine the classification of positive and negative cells. 
-        By setting it to True, cells with DLScore below the mean of the negative 
+        By setting it to True, cells with gatorScore below the mean of the negative 
         distribution and above the mean of the positive distribution will be 
         labeled as true negative and positive, respectively.
         
@@ -131,11 +131,11 @@ Example:
         
         # set the working directory & set paths to the example data
         cwd = '/Users/aj/Desktop/gatorExampleData'
-        gatorObject = cwd + '/GATOR/gatorObject/exampleProbabiltyMap.ome.h5ad'
+        gatorObject = cwd + '/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad'
         
         # Run the function
         adata = ga.gator ( gatorObject=gatorObject,
-                    DLScore='DLScore',
+                    gatorScore='gatorScore',
                     minAbundance=0.002,
                     percentiles=[1, 20, 80, 99],
                     dropMarkers = None,
@@ -151,7 +151,7 @@ Example:
                     outputDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python gator.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleProbabiltyMap.ome.h5ad --outputDir /Users/aj/Desktop/gatorExampleData
+        python gator.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad --outputDir /Users/aj/Desktop/gatorExampleData
                 
         
         ```
@@ -159,7 +159,7 @@ Example:
     """
 
     #gatorObject = "/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/gatorObject/1_6_GatorOutput.h5ad"
-    #DLScore='DLScore'; minAbundance=0.002; percentiles=[1, 20, 80, 99]; dropMarkers = None;leakData=False;rescaleMethod='sigmoid';silent = False
+    #gatorScore='gatorScore'; minAbundance=0.002; percentiles=[1, 20, 80, 99]; dropMarkers = None;leakData=False;rescaleMethod='sigmoid';silent = False
     #scaleData=False; log=True; x_coordinate='X_centroid'; y_coordinate='Y_centroid'; imageid='imageid'; random_state=0; label='gatorOutput'
     #gatorObject = '/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/gatorPredict/2_28_GatorOutput.h5ad'
     #gatorObject = '/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/gatorPredict/4_113_GatorOutput.h5ad'
@@ -173,16 +173,16 @@ Example:
     else:
         adata = gatorObject.copy()
 
-    # break the function if DLScore is not detectable
+    # break the function if gatorScore is not detectable
     def check_key_exists(dictionary, key):
         try:
             # Check if the key exists in the dictionary
             value = dictionary[key]
         except KeyError:
             # Return an error if the key does not exist
-            return "Error: " + str(DLScore) + " does not exist, please check!"
+            return "Error: " + str(gatorScore) + " does not exist, please check!"
     # Test
-    check_key_exists(dictionary=adata.uns, key=DLScore)
+    check_key_exists(dictionary=adata.uns, key=gatorScore)
 
 
     ###########################################################################
@@ -385,7 +385,7 @@ Example:
     # step-1 : Identify markers that have failed in this dataset
     ###########################################################################
 
-    failed_markers = get_columns_with_low_values (df=adata.uns[DLScore],minAbundance=minAbundance)
+    failed_markers = get_columns_with_low_values (df=adata.uns[gatorScore],minAbundance=minAbundance)
     # to store in adata
     failed_markers_dict = {adata.obs[imageid].unique()[0] : failed_markers}
 
@@ -415,7 +415,7 @@ Example:
     pre_processed_data = pre_processed_data.drop(columns=failedMarkersinData)
 
     # isolate the unet probabilities
-    probQuant_data = adata.uns[DLScore]
+    probQuant_data = adata.uns[gatorScore]
 
     # list of markers to process: (combined should match data)
     expression_unet_common = list(set(pre_processed_data.columns).intersection(set(probQuant_data.columns)))
@@ -828,7 +828,7 @@ Example:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run Gator')
     parser.add_argument('--gatorObject', type=str, help='Single or combined Gator object')
-    parser.add_argument('--DLScore', type=str, default='DLScore', help='Include the label used for saving the `DLScore` within the Gator object')
+    parser.add_argument('--gatorScore', type=str, default='gatorScore', help='Include the label used for saving the `gatorScore` within the Gator object')
     parser.add_argument('--minAbundance', type=float, default=0.002, help='Specify the minimum percentage of cells that should express a specific marker in order to determine if the marker is considered a failure')
     parser.add_argument('--percentiles', type=list, default=[1, 20, 80, 99], help='Specify the interval of percentile levels of the expression utilized to intialize the GMM')
     parser.add_argument('--dropMarkers', type=list, default=None, help='Specify a list of markers to be removed from the analysis')
@@ -844,7 +844,7 @@ if __name__ == '__main__':
     parser.add_argument('--outputDir', type=str, default=None, help='Provide the path to the output directory')
     args = parser.parse_args()
     gator(gatorObject=args.gatorObject,
-          DLScore=args.DLScore,
+          gatorScore=args.gatorScore,
           minAbundance=args.minAbundance,
           percentiles=args.percentiles,
           dropMarkers=args.dropMarkers,

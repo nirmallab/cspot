@@ -6,7 +6,7 @@
 """
 !!! abstract "Short Description"
     The `gatorObject` function creates a gator object using the anndata 
-    framework by inputting DLScores and a pre-calculated single-cell spatial table. 
+    framework by inputting gatorScore and a pre-calculated single-cell spatial table. 
     This centralizes all information into one file, streamlining the data analysis 
     process and reducing the risk of losing data.
 
@@ -23,7 +23,7 @@ import argparse
 
 # function
 def gatorObject (spatialTablePath,
-                 DLScorePath,
+                 gatorScorePath,
                  CellId='CellID',
                  uniqueCellId=True,
                  split='X_centroid',
@@ -37,8 +37,8 @@ Parameters:
     spatialTablePath (list):
         Provide a list of paths to the single-cell spatial feature tables, ensuring each image has a unique path specified.
 
-    DLScorePath (list):
-        Supply a list of paths to the DL score tables created using generateDLScore,
+    gatorScorePath (list):
+        Supply a list of paths to the DL score tables created using generateGatorScore,
         ensuring they correspond to the image paths specified.
 
     CellId (str, optional):
@@ -89,13 +89,13 @@ Example:
         
         # Module specific paths
         spatialTablePath = cwd + '/quantification/exampleSpatialTable.csv'
-        DLScorePath = cwd + '/GATOR/DLScore/exampleProbabiltyMap.ome.csv'
+        gatorScorePath = cwd + '/GATOR/gatorScore/exampleImage_gatorPredict.ome.csv'
         
         # please note that there are a number of defaults in the below function that assumes certain structure within the spatialTable.
         # Please confirm it is similar with user data or modifiy the parameters accordingly
         # check out the documentation for further details
         adata = ga.gatorObject (spatialTablePath=spatialTablePath,
-                        DLScorePath=DLScorePath,
+                        gatorScorePath=gatorScorePath,
                         CellId='CellID',
                         uniqueCellId=True,
                         split='X_centroid',
@@ -106,7 +106,7 @@ Example:
                         outputDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python gatorObject.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv --DLScorePath /Users/aj/Desktop/gatorExampleData/GATOR/DLScore/exampleProbabiltyMap.ome.csv --outputDir /Users/aj/Desktop/gatorExampleData
+        python gatorObject.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv --gatorScorePath /Users/aj/Desktop/gatorExampleData/GATOR/gatorScore/exampleProbabiltyMap.ome.csv --outputDir /Users/aj/Desktop/gatorExampleData
         
         ```
 
@@ -122,10 +122,10 @@ Example:
     if isinstance(spatialTablePath, str):
         spatialTablePath = [spatialTablePath]
     spatialTablePath = [pathlib.Path(p) for p in spatialTablePath]
-    # DLScorePath list or string
-    if isinstance(DLScorePath, str):
-        DLScorePath = [DLScorePath]
-    DLScorePath = [pathlib.Path(p) for p in DLScorePath]
+    # gatorScorePath list or string
+    if isinstance(gatorScorePath, str):
+        gatorScorePath = [gatorScorePath]
+    gatorScorePath = [pathlib.Path(p) for p in gatorScorePath]
 
     # Import spatialTablePath
     def load_process_data (image):
@@ -150,7 +150,7 @@ Example:
         # Return data
         return d
 
-    # Import DLScorePath
+    # Import gatorScorePath
     def load_process_probTable (image):
         d = pd.read_csv(image, index_col=0)
         # Return data
@@ -164,10 +164,10 @@ Example:
         all_spatialTable[i].columns = all_spatialTable[0].columns
     entire_spatialTable = pd.concat(all_spatialTable, axis=0, sort=False)
 
-    # Apply function to all DLScorePath and create a master dataframe
+    # Apply function to all gatorScorePath and create a master dataframe
     r_load_process_probTable = lambda x: load_process_probTable(image=x) # Create lamda function
-    all_probTable = list(map(r_load_process_probTable, list(DLScorePath))) # Apply function
-    # Merge all the DLScorePath into a single large dataframe
+    all_probTable = list(map(r_load_process_probTable, list(gatorScorePath))) # Apply function
+    # Merge all the gatorScorePath into a single large dataframe
     for i in range(len(all_probTable)):
         all_probTable[i].columns = all_probTable[0].columns
     entire_probTable = pd.concat(all_probTable, axis=0, sort=False)
@@ -206,7 +206,7 @@ Example:
     adata = ad.AnnData(entire_spatialTable, dtype=np.float64)
     adata.obs = meta
     adata.uns['all_markers'] = markers
-    adata.uns['DLScore'] = entire_probTable
+    adata.uns['gatorScore'] = entire_probTable
 
     # Add log data
     if log is True:
@@ -221,7 +221,7 @@ Example:
         if len(spatialTablePath) > 1:
             imid = 'gatorObject'
         else:
-            imid = DLScorePath[0].stem
+            imid = gatorScorePath[0].stem
         adata.write(finalPath / f'{imid}.h5ad')
     else:
         # Return data
@@ -231,7 +231,7 @@ Example:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Create a GatorObject from single-cell spatial feature tables.')
     parser.add_argument('--spatialTablePath', type=str, nargs='+', help='Provide a list of paths to the single-cell spatial feature tables.')
-    parser.add_argument('--DLScorePath', type=str, nargs='+', help='Supply a list of paths to the DL score tables created using generateDLScore.')
+    parser.add_argument('--gatorScorePath', type=str, nargs='+', help='Supply a list of paths to the DL score tables created using generateGatorScore.')
     parser.add_argument('--CellId', type=str, default='CellID', help='Specify the column name that holds the cell ID.')
     parser.add_argument('--uniqueCellId', type=bool, default=True, help='The function generates a unique name for each cell by combining the CellId and imageid.')
     parser.add_argument('--split', type=str, default='X_centroid', help='Provide the column name that marks the split between expression data and meta data.')
@@ -242,7 +242,7 @@ if __name__ == '__main__':
     parser.add_argument('--outputDir', type=str, default=None, help='Provide the path to the output directory.')
     args = parser.parse_args()
     gatorObject(spatialTablePath=args.spatialTablePath,
-                DLScorePath=args.DLScorePath,
+                gatorScorePath=args.gatorScorePath,
                 CellId=args.CellId,
                 uniqueCellId=args.uniqueCellId,
                 split=args.split,

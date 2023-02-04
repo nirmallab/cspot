@@ -128,7 +128,7 @@ Example:
         # set the working directory & set paths to the example data
         cwd = '/Users/aj/Desktop/gatorExampleData'
         # Module specific paths
-        gatorObject = cwd + '/GATOR/gatorObject/exampleProbabiltyMap.ome.h5ad'
+        gatorObject = cwd + '/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad'
         
         # load the phenotyping workflow
         phenotype = cwd + '/phenotype_workflow.csv'
@@ -145,7 +145,7 @@ Example:
                             outputDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python gatorPhenotype.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleProbabiltyMap.ome.h5ad --phenotype /Users/aj/Desktop/gatorExampleData/phenotype_workflow.csv --outputDir /Users/aj/Desktop/gatorExampleData
+        python gatorPhenotype.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad --phenotype /Users/aj/Desktop/gatorExampleData/phenotype_workflow.csv --outputDir /Users/aj/Desktop/gatorExampleData
 
         
         ```
