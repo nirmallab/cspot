@@ -46,9 +46,11 @@ nav:
         - Run Gator Algorithm:
             - gatorObject: 'Functions/gatorObject.md'
             - gator: 'Functions/gator.md'
-            - mergeGatorObject: 'Functions/gator/mergeGatorObject.md'
+            - mergeGatorObject: 'Functions/mergeGatorObject.md'
         - Phenotype cells:
-            - gatorPhenotype: 'Functions/phenotypeCells/gatorPhenotype.md'
+            - gatorPhenotype: 'Functions/gatorPhenotype.md'
+        - Helper Functions:
+            - gatorPhenotype: 'Functions/addPredictions.md'
 
 
 plugins:
