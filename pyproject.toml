@@ -7,6 +7,10 @@ readme = "README.md"
 
 keywords = ["image analysis","multiplex imaging","single cell analysis"]
 
+homepage = "https://pypi.org/project/gatorpy/"
+documentation = "https://nirmallab.github.io/gatorpy/"
+repository = "https://github.com/nirmallab/gatorpy"
+
 classifiers = [
               "Development Status :: 4 - Beta",
               "Natural Language :: English",
