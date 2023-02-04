@@ -19,7 +19,7 @@ pip install gatorpy
 pip install notebook
 ```
 
-#### Download the exemplar dataset and executable notebooks from HERE
+#### Download the [exemplar dataset](https://github.com/nirmalLab/gatorpy/tree/main/docs/Tutorials/gatorExampleData) and [executable notebook](https://github.com/nirmalLab/gatorpy/blob/main/docs/Tutorials/notebooks/BuildModel.ipynb)
 
 
 ```python
