@@ -1,0 +1,29 @@
+name: nbtomd
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install jupyter
+      - run: pip install nbconvert
+      - run: jupyter nbconvert --to markdown docs/Tutorials/notebooks/*.ipynb
+      - run: mv docs/Tutorials/notebooks/*.md ../
