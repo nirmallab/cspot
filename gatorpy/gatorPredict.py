@@ -75,30 +75,28 @@ Returns:
 
 Example:
 
-	```python
-    
-    # set the working directory & set paths to the example data
-    cwd = '/Users/aj/Desktop/gatorExampleData'
-    imagePath = cwd + '/image/exampleImage.tif'
-    gatorModelPath = cwd + '/GATOR/gatorModel/'
-    outputDir = cwd
-    markerChannelMapPath = cwd + '/markers.csv'
-    
-    # Run the function
-    ga.gatorPredict( imagePath=imagePath,
-                     gatorModelPath=gatorModelPath,
-                     outputDir=outputDir, 
-                     markerChannelMapPath=markerChannelMapPath, 
-                     markerColumnName='marker', 
-                     channelColumnName='channel', 
-                     modelColumnName='gatormodel', 
-                     GPU=-1)
-    
-    # Same function if the user wants to run it via Command Line Interface
-    python gatorPredict.py --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ --outputDir /Users/aj/Desktop/gatorExampleData --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv
-	
-    
-	```
+    	```python    
+        # set the working directory & set paths to the example data
+        cwd = '/Users/aj/Desktop/gatorExampleData'
+        imagePath = cwd + '/image/exampleImage.tif'
+        gatorModelPath = cwd + '/GATOR/gatorModel/'
+        outputDir = cwd
+        markerChannelMapPath = cwd + '/markers.csv'
+        
+        # Run the function
+        ga.gatorPredict( imagePath=imagePath,
+                         gatorModelPath=gatorModelPath,
+                         outputDir=outputDir, 
+                         markerChannelMapPath=markerChannelMapPath, 
+                         markerColumnName='marker', 
+                         channelColumnName='channel', 
+                         modelColumnName='gatormodel', 
+                         GPU=-1)
+        
+        # Same function if the user wants to run it via Command Line Interface
+        python gatorPredict.py --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ --outputDir /Users/aj/Desktop/gatorExampleData --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv
+    	
+    	```
      
      """
     
