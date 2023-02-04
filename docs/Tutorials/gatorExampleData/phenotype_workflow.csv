@@ -1,0 +1,7 @@
+﻿,,ECAD,CD45,CD4,CD3D,CD8A,KI67
+all,Immune,,anypos,anypos,anypos,anypos,
+all,ECAD+,pos,,,,,
+ECAD+,KI67+ ECAD+,,,,,,pos
+Immune,CD4+ T,,,allpos,allpos,,
+Immune,CD8+ T,,,,allpos,allpos,
+Immune,Non T CD4+ cells,,,pos,neg,,
