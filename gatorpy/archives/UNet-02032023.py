@@ -1,52 +1,42 @@
-
-
-# Libs
 import numpy as np
+#from scipy import misc
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import logging
 logging.getLogger('tensorflow').setLevel(logging.FATAL)
+
 import tensorflow.compat.v1 as tf
+#from tensorflow import keras
+#from tensorflow.keras import layers
 import shutil
+#import scipy.io as sio
+#import fnmatch, glob
+#import skimage.exposure as sk
 import skimage.io
-import glob
-from skimage import io as skio
-import pkgutil
-
-tf.disable_v2_behavior()
-
-# from other .py scripts
-if pkgutil.find_loader("UNet") is not None:
-    from toolbox.imtools import *
-    from toolbox.ftools import *
-    from toolbox.PartitionOfImage import PI2D
-    from toolbox.GPUselect import pick_gpu_lowest_memory
-else:
-    from .toolbox.imtools import tifread, normalize, im2double, imwrite
-    from .toolbox.ftools import pathjoin, saveData, loadData
-    from .toolbox.PartitionOfImage import PI2D
-    from .toolbox.GPUselect import pick_gpu_lowest_memory
-
-#import pathlib
-#from scipy import misc
 #from skimage.transform import rotate
 #import argparse
 #import tifffile
 #import sys, math
-#import scipy.io as sio
-#import fnmatch, glob
-#import skimage.exposure as sk
-#from tensorflow import keras
-#from tensorflow.keras import layers
+import glob
+#import pathlib
+
+
+
+
+from skimage import io as skio
+
+
+tf.disable_v2_behavior()
 #from toolbox.imtools import *
 #from toolbox.ftools import *
 #from toolbox.PartitionOfImage import PI2D
 #from toolbox import GPUselect
-#from .toolbox.imtools import tifread, tifwrite, imshow, imshowlist, imread, imwrite, im2double, size, imresizeDouble, imresize3Double, imresizeUInt8, imresize3UInt8, normalize, snormalize, cat, imerode, imdilate, imerode3, imdilate3, sphericalStructuralElement, medfilt, maxfilt, minfilt, ptlfilt, imgaussfilt, imlogfilt, imgradmag, localstats, localstats3, imderivatives, imderivatives3, imfeatures, imfeatures3, stack2list, thrsegment
-#from .toolbox.ftools import fileparts, listfiles, listsubdirs, pathjoin, saveData, loadData, createFolderIfNonExistent, moveFile, copyFile, removeFile
+from .toolbox.imtools import tifread, tifwrite, imshow, imshowlist, imread, imwrite, im2double, size, imresizeDouble, imresize3Double, imresizeUInt8, imresize3UInt8, normalize, snormalize, cat, imerode, imdilate, imerode3, imdilate3, sphericalStructuralElement, medfilt, maxfilt, minfilt, ptlfilt, imgaussfilt, imlogfilt, imgradmag, localstats, localstats3, imderivatives, imderivatives3, imfeatures, imfeatures3, stack2list, thrsegment
+from .toolbox.ftools import fileparts, listfiles, listsubdirs, pathjoin, saveData, loadData, createFolderIfNonExistent, moveFile, copyFile, removeFile
+from .toolbox.PartitionOfImage import PI2D
+from .toolbox.GPUselect import pick_gpu_lowest_memory
 
 
-# Functions 
 def concat3 (lst):
     return tf.concat(lst, 3)
 

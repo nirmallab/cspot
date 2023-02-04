@@ -1,12 +1,14 @@
 
 
 # Libs
-import os, argparse, pathlib
-from UNet import *
-#from .UNet import UNet2D
+import argparse, pathlib
+if __name__ == '__main__':
+    from UNet import *
+else:
+    from .UNet import UNet2D
 
 # Function
-def gatorTrain ( TrainingDataPath, 
+def gatorTrain ( trainingDataPath, 
     			 outputDir,
     			 artefactPath=None, 
     			 modelName=None, 
@@ -26,7 +28,7 @@ def gatorTrain ( TrainingDataPath,
     
 Parameters:
 
-	TrainingDataPath : TYPE
+	trainingDataPath : TYPE
 		The file path leading to the directory that holds the training data for each marker.
 		
 	artefactPath (str): 
@@ -89,12 +91,12 @@ Example:
 	"""
 
 	# convert to path
-	TrainingDataPath = pathlib.Path(TrainingDataPath)
+	trainingDataPath = pathlib.Path(trainingDataPath)
 	
 	
 	# resolve model name
 	if modelName is None:
-		finalName = TrainingDataPath.stem
+		finalName = trainingDataPath.stem
 	else:
 		finalName = modelName
 		
@@ -107,9 +109,9 @@ Example:
 		artefactPath=''; artefactTrainPath=''; artefactValidPath=''
 
 	# paths for loading data
-	trainPath = pathlib.Path(TrainingDataPath / 'training')
-	validPath = pathlib.Path(TrainingDataPath / 'validation')
-	testPath = pathlib.Path(TrainingDataPath / 'test')
+	trainPath = pathlib.Path(trainingDataPath / 'training')
+	validPath = pathlib.Path(trainingDataPath / 'validation')
+	testPath = pathlib.Path(trainingDataPath / 'test')
 
 
 	# Paths for saving data
@@ -147,7 +149,7 @@ Example:
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Train a deep learning model using data for each marker, stored in separate directories.')
-	parser.add_argument('--TrainingDataPath', type=str, help='The file path leading to the directory that holds the training data for each marker.')
+	parser.add_argument('--trainingDataPath', type=str, help='The file path leading to the directory that holds the training data for each marker.')
 	parser.add_argument('--outputDir', type=str, help='Path to output directory.')
 	parser.add_argument('--artefactPath', type=str, help='Path to the directory where the artefacts data is loaded from.', default=None)
 	parser.add_argument('--modelName', type=str, help='Name of the model to be used. If None, the folder name will be used.', default=None)
@@ -164,7 +166,7 @@ if __name__ == '__main__':
 	parser.add_argument('--batchSize', type=int, help='Batch size for training.', default=16)
 	parser.add_argument('--epochs', type=int, help='Number of training epochs.', default=100)
 	args = parser.parse_args()
-	gatorTrain( TrainingDataPath=args.TrainingDataPath,
+	gatorTrain( trainingDataPath=args.trainingDataPath,
     			artefactPath=args.artefactPath,
     			outputDir=args.outputDir,
     			modelName=args.modelName,

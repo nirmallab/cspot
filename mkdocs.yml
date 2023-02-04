@@ -39,7 +39,9 @@ nav:
             - generateThumbnails: 'Functions/generateThumbnails.md'
             - cloneFolder: 'Functions/cloneFolder.md'
             - generateTrainTestSplit: 'Functions/generateTrainTestSplit.md'
+            - gatorTrain: 'Functions/gatorTrain.md'
         - Apply DL Model:
+            - gatorPredict: 'Functions/gatorPredict.md'
             - generateDLScore: 'Functions/generateDLScore.md'
         - Run Gator Algorithm:
             - gatorObject: 'Functions/gatorObject.md'

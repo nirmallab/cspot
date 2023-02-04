@@ -8,4 +8,3 @@ from .gator import gator
 from .gatorPhenotype import gatorPhenotype
 from .gatorTrain import gatorTrain
 from .gatorPredict import gatorPredict
-from .UNet import *

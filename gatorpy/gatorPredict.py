@@ -4,7 +4,20 @@ import os, argparse
 import pandas as pd
 import pathlib
 
-from UNet import *
+# tools libs
+from skimage import io as skio
+import tensorflow.compat.v1 as tf
+import tifffile
+import numpy as np
+from skimage.transform import resize
+
+# from other .py scripts
+if __name__ == '__main__':
+    from toolbox.imtools import im2double
+    from UNet import *
+else:
+    from .toolbox.imtools import im2double
+    from .UNet import UNet2D
 
 # Function
 def gatorPredict(imagePath,
@@ -14,26 +27,48 @@ def gatorPredict(imagePath,
                  markerColumnName='marker', 
                  channelColumnName='channel', 
                  modelColumnName='gatormodel', 
-                 GPU = 0):
+                 GPU=0):
     
     """
-     --imagePath (str): The path to the .tif file that needs to be processed. This argument is required.
-     
-     --gatorModelPath (str): The path to the `gatorModel` folder. This argument is required.
+Parameters:
     
-     --outputDir (str): The path to the output directory where the processed images will be saved.
+     --imagePath (str): 
+         The path to the .tif file that needs to be processed. This argument is required.
      
-     --markerChannelPath (str, optional): The path to the marker panel list, which contains information about the markers used in the image. This argument is required.
+     --gatorModelPath (str): 
+         The path to the `gatorModel` folder. This argument is required.
+    
+     --outputDir (str): 
+         The path to the output directory where the processed images will be saved.
      
-     --markerColumnName (str, optional): The name of the column in the marker panel list that contains the marker names. The default value is 'marker'.
+     --markerChannelPath (str, optional): 
+         The path to the marker panel list, which contains information about the markers used in the image. This argument is required.
      
-     --channelColumnName (str, optional): The name of the column in the marker panel list that contains the channel names. The default value is 'channel'.
+     --markerColumnName (str, optional): 
+         The name of the column in the marker panel list that contains the marker names. The default value is 'marker'.
      
-     --modelColumnName (str, optional): The name of the column in the marker panel list that contains the model names. The default value is 'gatormodel'.
+     --channelColumnName (str, optional): 
+         The name of the column in the marker panel list that contains the channel names. The default value is 'channel'.
+     
+     --modelColumnName (str, optional): 
+         The name of the column in the marker panel list that contains the model names. The default value is 'gatormodel'.
          
-     --scalingFactor (int, optional): A factor by which the image size will be increased/decreased. The default value is 1, meaning no change in size.
+     --scalingFactor (int, optional): 
+         A factor by which the image size will be increased/decreased. The default value is 1, meaning no change in size.
      
-     --GPU (int, optional): An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
+     --GPU (int, optional): 
+         An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
+
+Returns:
+
+	Predicted Probability Masks (images):  
+
+Example:
+
+	```python
+	
+	```
+	
      
      """
     
