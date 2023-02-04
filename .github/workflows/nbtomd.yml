@@ -14,6 +14,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env: 
+      CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
+      CI_COMMIT_AUTHOR: Continuous Integration
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -27,3 +30,12 @@ jobs:
       - run: pip install nbconvert
       - run: jupyter nbconvert --to markdown docs/Tutorials/notebooks/*.ipynb
       - run: mv docs/Tutorials/notebooks/*.md ../
+
+      - name: GIT Commit 
+        # Only run on main branch push (e.g. after pull request merge).
+        if: github.event_name == 'push'
+        run: |
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "ajitjohnson@users.noreply.github.com"
+          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+          git push
