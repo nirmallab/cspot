@@ -74,7 +74,9 @@ Returns:
         like to vizulaize `CD3`, the column that you are looking for is `p_CD3`.
 
 Example:
+        
         ```python
+        
         # set the working directory & set paths to the example data
         cwd = '/Users/aj/Desktop/gatorExampleData'
         # Module specific paths
