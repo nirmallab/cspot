@@ -92,7 +92,8 @@ Parameters:
         Number of training epochs.
 
 Returns:
-    Deep learning model (images and model):  
+    
+    Model (images and model):  
         The result will be located at `outputDir/GATOR/gatorModel/`.
     
 
