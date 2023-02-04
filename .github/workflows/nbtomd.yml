@@ -29,7 +29,8 @@ jobs:
       - run: pip install jupyter
       - run: pip install nbconvert
       - run: jupyter nbconvert --to markdown docs/Tutorials/notebooks/*.ipynb
-      - run: mv docs/Tutorials/notebooks/*.md ../
+      - run: mv docs/Tutorials/notebooks/*.md docs/Tutorials/
+      - run: ls docs/Tutorials/
 
       - name: GIT Commit 
         # Only run on main branch push (e.g. after pull request merge).
