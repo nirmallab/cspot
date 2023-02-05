@@ -5,4 +5,4 @@ hide:
 ---
 
 #### Cheatsheet for Gator Workflow
-![workflow diagram](/assets/Workflow.png)
+![workflow diagram](https://github.com/nirmalLab/gatorpy/blob/main/docs/assets/Workflow.png)
