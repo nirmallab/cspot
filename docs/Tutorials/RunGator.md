@@ -2,7 +2,7 @@
 ## Run the final `gator` algorithm
 #### Please keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `Gator` and will not yeild any meaningful results.
 
-#### Download the exemplar dataset and executable notebooks from HERE
+#### Download the [exemplar dataset](https://github.com/nirmalLab/gatorpy/tree/main/docs/Tutorials/gatorExampleData) and [executable notebook](https://github.com/nirmalLab/gatorpy/blob/main/docs/Tutorials/notebooks/RunGator.ipynb)
 #### Make sure you have completed `Build Model and Apply Model` Tutorial before you try to execute this Jupyter Notebook!
 
 
