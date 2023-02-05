@@ -5,4 +5,4 @@ hide:
 ---
 
 #### Cheatsheet for Gator Workflow
-![alt text](/docs/assets/Workflow.png)
+![workflow diagram](/assets/Workflow.png)
