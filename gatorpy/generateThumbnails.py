@@ -497,7 +497,7 @@ if __name__ == '__main__':
     parser.add_argument("--windowSize", type=int, default=64, help="Size of the Thumbnails.")
     parser.add_argument("--restrictDensity", type=bool, default=True, help="This parameter is utilized to regulate the number of positive cells observed in a given field of view. In the case of markers that do not exhibit a distinct spatial pattern, such as immune cells, it is recommended to train the model using sparse cells in the field of view.")
     parser.add_argument("--restrictDensityNumber", type=int, default=None, help="This parameter is employed in conjunction with `restrictDensity`. By default, the program attempts to automatically identify less dense regions when restrictDensity is set to `True` using a GMM approach. However, `restrictDensityNumber` can be utilized to exert greater control over the process, allowing the user to limit the number of positive cells they wish to observe within the field of view. This parameter requires integers.")
-    parser.add_argument("--restrictDensity", type=bool, default=True, help="This parameter is utilized to regulate the number of positive cells observed in a given field of view. In the case of markers that do not exhibit a distinct spatial pattern, such as immune cells, it is recommended to train the model using sparse cells in the field of view.")    
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")    
     parser.add_argument("--projectDir", type=str, default=None, help="Path to output directory. The result will be located at `projectDir/GATOR/Thumbnails/`.")
     args = parser.parse_args()
     generateThumbnails(spatialTablePath=args.spatialTablePath,
@@ -517,4 +517,5 @@ if __name__ == '__main__':
                         windowSize=args.windowSize,
                         restrictDensity=args.restrictDensity,
                         restrictDensityNumber=args.restrictDensityNumber,
+                        verbose=args.verbose,
                         projectDir=args.projectDir)

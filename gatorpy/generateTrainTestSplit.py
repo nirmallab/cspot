@@ -27,7 +27,10 @@ import tifffile
 import argparse
 
 # Function
-def generateTrainTestSplit (thumbnailFolder, outputDir, file_extension=None,
+def generateTrainTestSplit (thumbnailFolder, 
+                            projectDir, 
+                            file_extension=None,
+                            verbose=True,
                             TruePos='TruePos', NegToPos='NegToPos',
                             TrueNeg='TrueNeg', PosToNeg='PosToNeg'):
     """
@@ -36,12 +39,15 @@ Parameters:
         List of folders that contains the human sorted Thumbnails that is to be used
         for generating training data and split them train test and validation cohorts.
 
-    outputDir (str):
+    projectDir (str):
         Path to output directory.
 
     file_extension (str, optional):
         If there are non-image files in the thumbnailFolder, the user can specify
         a file extension to only select those files for processing. The default is None.
+
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console. 
 
     TruePos (str, optional):
         Name of the folder that holds the Thumbnails classified as True Positive.
@@ -74,18 +80,19 @@ Example:
         # Folder where the raw Thumbnails are stored
         thumbnailFolder = [cwd + '/GATOR/Thumbnails/CD3D',
                            cwd + '/GATOR/Thumbnails/ECAD']
-        outputDir = cwd
+        projectDir = cwd
         
         # The function accepts the four pre-defined folders. If you had renamed them, please change it using the parameter below.
         # If you had deleted any of the folders and are not using them, replace the folder name with `None` in the parameter.
         ga.generateTrainTestSplit ( thumbnailFolder, 
-                                    outputDir, 
+                                    projectDir, 
                                     file_extension=None,
+                                    verbose=True,
                                     TruePos='TruePos', NegToPos='NegToPos',
                                     TrueNeg='TrueNeg', PosToNeg='PosToNeg')
         
         # Same function if the user wants to run it via Command Line Interface
-        python generateTrainTestSplit.py --thumbnailFolder /Users/aj/Desktop/gatorExampleData/GATOR/Thumbnails/CD3D /Users/aj/Desktop/gatorExampleData/GATOR/Thumbnails/ECAD --outputDir /Users/aj/Desktop/gatorExampleData/
+        python generateTrainTestSplit.py --thumbnailFolder /Users/aj/Desktop/gatorExampleData/GATOR/Thumbnails/CD3D /Users/aj/Desktop/gatorExampleData/GATOR/Thumbnails/ECAD --projectDir /Users/aj/Desktop/gatorExampleData/
         
         ```
 
@@ -93,7 +100,7 @@ Example:
 
     # Function takes in path to two folders, processes the images in those folders,
     # and saves them into a different folder that contains Train, Validation and Test samples
-    #TruePos='TruePos'; NegToPos='NegToPos'; TrueNeg='TrueNeg'; PosToNeg='PosToNeg'
+    #TruePos='TruePos'; NegToPos='NegToPos'; TrueNeg='TrueNeg'; PosToNeg='PosToNeg'; verbose=True
 
     # convert the folder into a list
     if isinstance (thumbnailFolder, str):
@@ -101,21 +108,21 @@ Example:
 
     # convert all path names to pathlib
     thumbnailFolder = [pathlib.Path(p) for p in thumbnailFolder]
-    outputDir = pathlib.Path(outputDir)
+    projectDir = pathlib.Path(projectDir)
 
     # find all markers passed
     all_markers = [i.stem for i in thumbnailFolder]
 
     # create directories to save
     for i in all_markers:
-        if not (outputDir / 'GATOR/TrainingData/' / f"{i}" /  'training').exists ():
-            (outputDir / 'GATOR/TrainingData/' / f"{i}" /  'training').mkdir(parents=True, exist_ok=True)
+        if not (projectDir / 'GATOR/TrainingData/' / f"{i}" /  'training').exists ():
+            (projectDir / 'GATOR/TrainingData/' / f"{i}" /  'training').mkdir(parents=True, exist_ok=True)
 
-        if not (outputDir / 'GATOR/TrainingData/' / f"{i}" /  'validation').exists ():
-            (outputDir / 'GATOR/TrainingData/' / f"{i}" /  'validation').mkdir(parents=True, exist_ok=True)
+        if not (projectDir / 'GATOR/TrainingData/' / f"{i}" /  'validation').exists ():
+            (projectDir / 'GATOR/TrainingData/' / f"{i}" /  'validation').mkdir(parents=True, exist_ok=True)
 
-        if not (outputDir / 'GATOR/TrainingData/' / f"{i}" /  'test').exists ():
-            (outputDir / 'GATOR/TrainingData/' / f"{i}" /  'test').mkdir(parents=True, exist_ok=True)
+        if not (projectDir / 'GATOR/TrainingData/' / f"{i}" /  'test').exists ():
+            (projectDir / 'GATOR/TrainingData/' / f"{i}" /  'test').mkdir(parents=True, exist_ok=True)
 
     # standard format
     if file_extension is None:
@@ -139,7 +146,8 @@ Example:
 
     # identify the files within all the 4 folders
     def findFiles (folderIndex):
-        print ('Processing: ' + str(thumbnailFolder[folderIndex].stem))
+        if verbose is True:
+            print ('Processing: ' + str(thumbnailFolder[folderIndex].stem))
         marker_name = str(thumbnailFolder[folderIndex].stem)
 
         baseFolder = thumbnailFolder[folderIndex]
@@ -177,20 +185,20 @@ Example:
             for i, j in zip( train_pos_name, train_pos):
                 m, im = pos_filter (j)
                 # save image
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{i}_img.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{i}_img.tif"
                 tifffile.imwrite(fPath,im)
                 # associated mask
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{i}_mask.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{i}_mask.tif"
                 tifffile.imwrite(fPath, m)
 
         if len (train_neg_name) > 0:
             for k, l in zip( train_neg_name, train_neg):
                 m, im = neg_filter (l)
                 # save image
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{k}_img.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{k}_img.tif"
                 tifffile.imwrite(fPath, im)
                 # associated mask
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{k}_mask.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'training' / f"{k}_mask.tif"
                 tifffile.imwrite(fPath, m)
 
 
@@ -202,20 +210,20 @@ Example:
             for i, j in zip( train_pos_name, val_pos):
                 m, im = pos_filter (j)
                 # save image
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{i}_img.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{i}_img.tif"
                 tifffile.imwrite(fPath, im)
                 # associated mask
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{i}_mask.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{i}_mask.tif"
                 tifffile.imwrite(fPath, m)
 
         if len (train_neg_name) > 0:
             for k, l in zip( train_neg_name, val_neg):
                 m, im = neg_filter (l)
                 # save image
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{k}_img.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{k}_img.tif"
                 tifffile.imwrite(fPath, im)
                 # associated mask
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{k}_mask.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'validation' / f"{k}_mask.tif"
                 tifffile.imwrite(fPath, m)
 
 
@@ -227,20 +235,20 @@ Example:
             for i, j in zip( train_pos_name, test_pos):
                 m, im = pos_filter (j)
                 # save image
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{i}_img.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{i}_img.tif"
                 tifffile.imwrite(fPath, im)
                 # associated mask
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{i}_mask.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{i}_mask.tif"
                 tifffile.imwrite(fPath, m)
 
         if len (train_neg_name) > 0:
             for k, l in zip( train_neg_name, test_neg):
                 m, im = neg_filter (l)
                 # save image
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{k}_img.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{k}_img.tif"
                 tifffile.imwrite(fPath, im)
                 # associated mask
-                fPath = outputDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{k}_mask.tif"
+                fPath = projectDir / 'GATOR/TrainingData/' / f"{marker_name}" / 'test' / f"{k}_mask.tif"
                 tifffile.imwrite(fPath, m)
 
     # apply function to all folders
@@ -248,22 +256,26 @@ Example:
     process_folders = list(map(r_findFiles, list(range(len(thumbnailFolder)))))
 
     # Print
-    print('Mission Accomplished')
+    if verbose is True:
+        print('Training data has been generated, head over to "' + str(projectDir) + '/GATOR/TrainingData" to view results')
+
 
 # Make the Function CLI compatable
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate train, test, and validation cohorts from human sorted thumbnails.')
     parser.add_argument('--thumbnailFolder', type=str, nargs='+', help='List of folders that contains the human sorted Thumbnails that is to be used for generating training data and split them train test and validation cohorts.')
-    parser.add_argument('--outputDir', type=str, help='Path to output directory.')
+    parser.add_argument('--projectDir', type=str, help='Path to output directory.')
     parser.add_argument('--file_extension', type=str, default=None, help='If there are non-image files in the thumbnailFolder, the user can specify a file extension to only select those files for processing.')
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")    
     parser.add_argument('--TruePos', type=str, default='TruePos', help='Name of the folder that holds the Thumbnails classified as True Positive.')
     parser.add_argument('--NegToPos', type=str, default='NegToPos', help='Name of the folder that holds the Thumbnails classified as True Negative.')
     parser.add_argument('--TrueNeg', type=str, default='TrueNeg', help='Name of the folder that holds the Thumbnails that were moved from `True Positive` to `True Negative`.')
     parser.add_argument('--PosToNeg', type=str, default='PosToNeg', help='Name of the folder that holds the Thumbnails that were moved from `True Negative` to `True Positive`.')
     args = parser.parse_args()
     generateTrainTestSplit(thumbnailFolder=args.thumbnailFolder,
-                           outputDir=args.outputDir,
+                           projectDir=args.projectDir,
                            file_extension=args.file_extension,
+                           verbose=args.verbose,
                            TruePos=args.TruePos,
                            NegToPos=args.NegToPos, 
                            TrueNeg=args.TrueNeg,

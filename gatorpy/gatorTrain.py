@@ -5,7 +5,7 @@
     The function trains a deep learning model for each marker in the provided 
     training data. To train the `gatorModel`, simply direct the function to the 
     `TrainingData` folder. To train only specific models, specify the folder names 
-    using the `trainMarkers` parameter. The `outputDir` remains constant and the 
+    using the `trainMarkers` parameter. The `projectDir` remains constant and the 
     program will automatically create subfolders to save the trained models.
   
 
@@ -23,7 +23,7 @@ else:
 
 # Function
 def gatorTrain(trainingDataPath,
-               outputDir,
+               projectDir,
                trainMarkers=None,
                artefactPath=None,
                imSize=64,
@@ -44,8 +44,8 @@ Parameters:
     trainingDataPath (str):
         The file path leading to the directory that holds the training data.
     
-    outputDir (str):
-        Path to output directory. The result will be located at `outputDir/GATOR/gatorModel/`.
+    projectDir (str):
+        Path to output directory. The result will be located at `projectDir/GATOR/gatorModel/`.
     
     trainMarkers (list):
         Generate models for a specified list of markers. By default, models are c
@@ -94,7 +94,7 @@ Parameters:
 Returns:
     
     Model (images and model):  
-        The result will be located at `outputDir/GATOR/gatorModel/`.
+        The result will be located at `projectDir/GATOR/gatorModel/`.
     
 
 Example:
@@ -104,11 +104,11 @@ Example:
     # set the working directory & set paths to the example data
     cwd = '/Users/aj/Desktop/gatorExampleData'
     trainingDataPath = cwd + '/GATOR/TrainingData'
-    outputDir = cwd
+    projectDir = cwd
     
     # Run the Function
     ga.gatorTrain(trainingDataPath=trainingDataPath,
-                   outputDir=outputDir,
+                   projectDir=projectDir,
                    trainMarkers=None,
                    artefactPath=None,
                    imSize=64,
@@ -125,7 +125,7 @@ Example:
                    epochs=1)
     
     # Same function if the user wants to run it via Command Line Interface
-    python gatorTrain.py --trainingDataPath /Users/aj/Desktop/gatorExampleData/GATOR/TrainingData --outputDir /Users/aj/Desktop/gatorExampleData/
+    python gatorTrain.py --trainingDataPath /Users/aj/Desktop/gatorExampleData/GATOR/TrainingData --projectDir /Users/aj/Desktop/gatorExampleData/ --epochs 1
     
     ```
 
@@ -155,7 +155,7 @@ Example:
     # Need to run the training for each marker
 
     def gatorTrainInternal(trainingDataPath,
-                           outputDir,
+                           projectDir,
                            artefactPath,
                            imSize,
                            nChannels,
@@ -179,9 +179,9 @@ Example:
 
         # Paths for saving data
         logPath = pathlib.Path(
-            outputDir + '/GATOR/gatorTrain/' + finalName + '/tempTFLogs/')
-        modelPath = pathlib.Path(outputDir + '/GATOR/gatorModel/' + finalName)
-        pmPath = pathlib.Path(outputDir + '/GATOR/gatorTrain/' +
+            projectDir + '/GATOR/gatorTrain/' + finalName + '/tempTFLogs/')
+        modelPath = pathlib.Path(projectDir + '/GATOR/gatorModel/' + finalName)
+        pmPath = pathlib.Path(projectDir + '/GATOR/gatorTrain/' +
                               finalName + '/TFprobMaps/')
 
         # set up the model
@@ -213,7 +213,7 @@ Example:
 
     # Run the function on all markers
     def r_gatorTrainInternal(x): return gatorTrainInternal(trainingDataPath=x,
-                                                           outputDir=outputDir,
+                                                           projectDir=projectDir,
                                                            artefactPath=artefactPath,
                                                            imSize=imSize,
                                                            nChannels=nChannels,
@@ -237,7 +237,7 @@ if __name__ == '__main__':
         description='Train a deep learning model using data for each marker, stored in separate directories.')
     parser.add_argument('--trainingDataPath', type=str,
                         help='The file path leading to the directory that holds the training data for each marker.')
-    parser.add_argument('--outputDir', type=str,
+    parser.add_argument('--projectDir', type=str,
                         help='Path to output directory.')
     parser.add_argument("--trainMarkers", type=str, nargs="*", default=None,
                         help="Generate models for a specified list of markers.")
@@ -269,7 +269,7 @@ if __name__ == '__main__':
                         help='Number of training epochs.', default=100)
     args = parser.parse_args()
     gatorTrain(trainingDataPath=args.trainingDataPath,
-               outputDir=args.outputDir,
+               projectDir=args.projectDir,
                trainMarkers=args.trainMarkers,
                artefactPath=args.artefactPath,
                imSize=args.imSize,

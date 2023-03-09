@@ -22,9 +22,13 @@ import shutil
 import argparse
 
 # function
-def cloneFolder (copyFolder, applyFolder,
-                 TruePos='TruePos', TrueNeg='TrueNeg',
-                 PosToNeg='PosToNeg', NegToPos='NegToPos'):
+def cloneFolder (copyFolder, 
+                 applyFolder,
+                 TruePos='TruePos', 
+                 TrueNeg='TrueNeg',
+                 PosToNeg='PosToNeg', 
+                 NegToPos='NegToPos',
+                 verbose=True):
     """
 Parameters:
 
@@ -49,6 +53,9 @@ Parameters:
         Name of the folder that holds the Thumbnails that were moved from `True Negative`
         to `True Positive`.
 
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
+
 Returns:
     The file structure of the source Folder is replicated in the destination Folder.
 
@@ -71,7 +78,8 @@ Example:
         ga.cloneFolder (copyFolder, 
                         applyFolder, 
                         TruePos='TruePos', TrueNeg='TrueNeg', 
-                        PosToNeg='PosToNeg', NegToPos='NegToPos')
+                        PosToNeg='PosToNeg', NegToPos='NegToPos',
+                        verbose=True)
         
                 
         # Same function if the user wants to run it via Command Line Interface
@@ -131,7 +139,8 @@ Example:
 
     # function
     def processFolder (folderIndex):
-        print ('Processing: ' + str(all_folders[folderIndex].stem))
+        if verbose is True:
+            print ('Processing: ' + str(all_folders[folderIndex].stem))
 
         # create a list of all file names in the applyFolder
         pos_files = next(walk(pos_real_location[folderIndex]), (None, None, []))[2]
@@ -183,10 +192,12 @@ if __name__ == '__main__':
     parser.add_argument('--TrueNeg', dest='TrueNeg', type=str, default='TrueNeg', help='Name of the folder that holds the Thumbnails classified as True Negative')
     parser.add_argument('--PosToNeg', dest='PosToNeg', type=str, default='PosToNeg', help='Name of the folder that holds the Thumbnails that were moved from True Positive to True Negative')
     parser.add_argument('--NegToPos', dest='NegToPos', type=str, default='NegToPos', help='Name of the folder that holds the Thumbnails that were moved from True Negative to True Positive')
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")   
     args = parser.parse_args()
     cloneFolder(copyFolder=args.copyFolder,
                 applyFolder=args.applyFolder,
                 TruePos=args.TruePos,
                 TrueNeg=args.TrueNeg,
                 PosToNeg=args.PosToNeg,
-                NegToPos=args.NegToPos)
+                NegToPos=args.NegToPos,
+                verbose=args.verbose)

@@ -36,7 +36,7 @@ else:
 # Function
 def gatorPredict (imagePath,
                  gatorModelPath,
-                 outputDir, 
+                 projectDir, 
                  markerChannelMapPath, 
                  markerColumnName='marker', 
                  channelColumnName='channel', 
@@ -51,7 +51,7 @@ Parameters:
     gatorModelPath (str):  
         The path to the `gatorModel` folder. 
     
-    outputDir (str):  
+    projectDir (str):  
         The path to the output directory where the processed images (`probabilityMasks`) will be saved.
      
     markerChannelPath (str, optional):  
@@ -71,7 +71,7 @@ Parameters:
 
 Returns:
     Predicted Probability Masks (images):  
-        The result will be located at `outputDir/GATOR/gatorPredict/`.
+        The result will be located at `projectDir/GATOR/gatorPredict/`.
 
 Example:
 
@@ -80,13 +80,13 @@ Example:
         cwd = '/Users/aj/Desktop/gatorExampleData'
         imagePath = cwd + '/image/exampleImage.tif'
         gatorModelPath = cwd + '/GATOR/gatorModel/'
-        outputDir = cwd
+        projectDir = cwd
         markerChannelMapPath = cwd + '/markers.csv'
         
         # Run the function
         ga.gatorPredict( imagePath=imagePath,
                          gatorModelPath=gatorModelPath,
-                         outputDir=outputDir, 
+                         projectDir=projectDir, 
                          markerChannelMapPath=markerChannelMapPath, 
                          markerColumnName='marker', 
                          channelColumnName='channel', 
@@ -94,7 +94,7 @@ Example:
                          GPU=-1)
         
         # Same function if the user wants to run it via Command Line Interface
-        python gatorPredict.py --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ --outputDir /Users/aj/Desktop/gatorExampleData --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv
+        python gatorPredict.py --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ --projectDir /Users/aj/Desktop/gatorExampleData --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv
     	
     	```
      
@@ -152,7 +152,7 @@ Example:
     I = skio.imread(imagePath, img_num=0, plugin='tifffile')
 
 
-    probPath = pathlib.Path(outputDir + '/GATOR/gatorPredict/')
+    probPath = pathlib.Path(projectDir + '/GATOR/gatorPredict/')
     modelPath = pathlib.Path(gatorModelPath)
 
     if not os.path.exists(probPath):
@@ -164,7 +164,7 @@ Example:
     def data(runMenu, 
              imagePath, 
              modelPath, 
-             outputDir, 
+             projectDir, 
              dsFactor=1, 
              GPU=0):
         
@@ -256,7 +256,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Gator Predict function')
     parser.add_argument('--imagePath', type=str, required=True, help='The path to the .tif file that needs to be processed.')
     parser.add_argument('--gatorModelPath', type=str, required=True, help='The path to the `gatorModel` folder.')
-    parser.add_argument('--outputDir', type=str, help='The path to the output directory where the processed images will be saved.')
+    parser.add_argument('--projectDir', type=str, help='The path to the output directory where the processed images will be saved.')
     parser.add_argument('--markerChannelMapPath', type=str, required=True, help='The path to the marker panel list, which contains information about the markers used in the image.')
     parser.add_argument('--markerColumnName', type=str, default='marker', help='The name of the column in the marker panel list that contains the marker names. The default value is `marker`.')
     parser.add_argument('--channelColumnName', type=str, default='channel', help='The name of the column in the marker panel list that contains the channel names. The default value is `channel`.')
@@ -266,7 +266,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     gatorPredict(imagePath=args.imagePath, 
                  gatorModelPath=args.gatorModelPath, 
-                 outputDir=args.outputDir, 
+                 projectDir=args.projectDir, 
                  markerChannelMapPath=args.markerChannelMapPath, 
                  markerColumnName=args.markerColumnName, 
                  channelColumnName=args.channelColumnName, 
