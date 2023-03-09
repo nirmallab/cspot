@@ -138,12 +138,13 @@ Example:
 
     # build a division vector
     # this is to make sure the low probs are not amplified; chosing 154 as it is 0.6P
-    div_val = []
-    for i in quantTable.columns:
-        div_val.append(255 if quantTable[i].max() < 154 else  quantTable[i].max())
+    #div_val = []
+    #for i in quantTable.columns:
+    #    div_val.append(255 if quantTable[i].max() < 154 else  quantTable[i].max())
 
     # conver to prob
-    quantTable = quantTable / div_val
+    #quantTable = quantTable / div_val
+    quantTable = quantTable / 255
 
     # identify markers that failed
     #sns.distplot(quantTable['ECAD'])

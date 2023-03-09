@@ -1,10 +1,9 @@
-
 ---
 hide:
-  - toc        # Hide table of contents
+  - toc        
   - navigation
 ---
 
-🐊 GATOR: A scalable framework for automated processing of highly multiplexed tissue images  
+## GATOR: A scalable framework for automated processing of highly multiplexed tissue images  
 
 Multiplexed imaging has advanced spatial biology and revealed critical cell communication networks in tissue development and diseases. However, the scalable application of multiplexed imaging technology remains a significant challenge due to the need for human-in-the-loop processes. We developed a computational framework called GATOR that combines deep learning and statistical approaches to pre-process and phenotype single cells without visual intervention. An end-end python implementation of Gator is provided to facilitate the large-scale application of spatial biology in clinical and research settings. 

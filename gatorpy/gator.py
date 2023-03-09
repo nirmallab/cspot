@@ -197,6 +197,39 @@ Example:
             if num_rows_with_high_values / len(df) < minAbundance:
                 columns_to_keep.append(column)
         return columns_to_keep
+    
+    # count the number of pos and neg elements in a list
+    def count_pos_neg(lst):
+        arr = np.array(lst)
+        result = {'pos': np.sum(arr == 'pos'), 'neg': np.sum(arr == 'neg')}
+        result['pos'] = result['pos'] if result['pos'] > 0 else 0
+        result['neg'] = result['neg'] if result['neg'] > 0 else 0
+        return result
+    
+    # alternative to find if markers failed
+    def simpleGMM_failedMarkers (df, n_components, minAbundance, random_state):
+        # prepare data
+        columns_to_keep = []
+        for column in df.columns:
+            #print(str(column))
+            colValue = df[[column]].values  
+            colValue[0] = 0; colValue[1] = 1;   # force the model to converge from 0-1
+            gmm = GaussianMixture(n_components=n_components,  random_state=random_state)
+            gmm.fit(colValue)
+            predictions = gmm.predict(colValue)
+            # Get the mean of each Gaussian component
+            means = gmm.means_.flatten()
+            # Sort the mean values in ascending order
+            sorted_means = np.sort(means)
+            # Assign 'pos' to rows with higher mean distribution and 'neg' to rows with lower mean distribution
+            labels = np.where(predictions == np.argmax(means), 'pos', 'neg')
+            # count pos and neg
+            counts = count_pos_neg(labels)
+            # find if the postive cells is less than the user defined min abundance
+            if counts['pos'] / len(df)  < minAbundance:
+                columns_to_keep.append(column)
+        return columns_to_keep
+
 
     # preprocess data (step-4)
     def pre_process (data, log=log):
@@ -384,8 +417,15 @@ Example:
     ###########################################################################
     # step-1 : Identify markers that have failed in this dataset
     ###########################################################################
-
-    failed_markers = get_columns_with_low_values (df=adata.uns[gatorScore],minAbundance=minAbundance)
+    # 0ld thresholding method
+    #failed_markers = get_columns_with_low_values (df=adata.uns[gatorScore],minAbundance=minAbundance)
+    
+    # New GMM method
+    failed_markers = simpleGMM_failedMarkers (df=adata.uns[gatorScore], 
+                                              n_components=2, 
+                                              minAbundance=minAbundance, 
+                                              random_state=random_state)
+    
     # to store in adata
     failed_markers_dict = {adata.obs[imageid].unique()[0] : failed_markers}
 
@@ -806,6 +846,7 @@ Example:
     # add the pre-processed data as a layer
     bdata.layers["preProcessed"] = pre_processed_data
     bdata.uns = adata.uns
+    bdata.uns['failedMarkers'] = failed_markers_dict
 
     # save the prediction results in anndata object
     bdata.uns[str(label)] = prediction_results

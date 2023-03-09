@@ -28,7 +28,7 @@ import numpy as np
 def mergeGatorObject (gatorObjects,
                       fileName='mergedGatorObject',
                       layers=['preProcessed'],
-                      uns= ['gatorOutput','gatorScore'],
+                      uns= ['gatorOutput','gatorScore','failedMarkers'],
                       outputDir=None):
     """
 Parameters:
@@ -160,6 +160,9 @@ Example:
         for i in range(num_lists):
             # retrieve the dataframe from the current list
             df = processX_result[i][key]
+            # resolve dict independently
+            if isinstance(df, dict):
+                df = pd.DataFrame.from_dict(df, orient='index', columns=df[list(df.keys())[0]]).applymap(lambda x: 1)   
             # add the dataframe to the df_list
             df_list.append(df)
         # concatenate the dataframes in the df_list
