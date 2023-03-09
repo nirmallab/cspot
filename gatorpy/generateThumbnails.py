@@ -27,6 +27,7 @@ import dask.array as da
 import argparse
 from sklearn.mixture import GaussianMixture
 from collections import defaultdict
+from sklearn.neighbors import BallTree
 #import zarr
 
 # Function
@@ -45,7 +46,10 @@ def generateThumbnails (spatialTablePath,
                         y_coordinate='Y_centroid',
                         percentiles=[2, 12, 88, 98], 
                         windowSize=64,
-                        outputDir=None):
+                        restrictDensity=True,
+                        restrictDensityNumber=None,
+                        verbose=True,
+                        projectDir=None):
     """
 Parameters:
 
@@ -109,9 +113,27 @@ Parameters:
     windowSize (int, optional):
         Size of the Thumbnails.
 
-    outputDir (string, optional):
+    restrictDensity (bool, optional):
+        This parameter is utilized to regulate the number of positive cells 
+        observed in a given field of view. In the case of markers that do not 
+        exhibit a distinct spatial pattern, such as immune cells, it is 
+        recommended to train the model using sparse cells in the field of view.
+
+    restrictDensityNumber (int, optional):
+        This parameter is employed in conjunction with `restrictDensity`. 
+        By default, the program attempts to automatically identify less dense 
+        regions when restrictDensity is set to `True` using a GMM approach. 
+        However, `restrictDensityNumber` can be utilized to exert greater 
+        control over the process, allowing the user to limit the number of 
+        positive cells they wish to observe within the field of view. 
+        This parameter requires integers.
+
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
+        
+    projectDir (string, optional):
         Path to output directory. The result will be located at
-        `outputDir/GATOR/Thumbnails/`.
+        `projectDir/GATOR/Thumbnails/`.
 
 Returns:
     Thumbnails (image):
@@ -144,21 +166,24 @@ Example:
                         y_coordinate='Y_centroid',
                         percentiles=[2, 12, 88, 98], 
                         windowSize=64,
-                        outputDir=cwd)
+                        restrictDensity=True,
+                        restrictDensityNumber=None,
+                        verbose=True,
+                        projectDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python generateThumbnails.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv --markers ECAD CD3D --maxThumbnails 100 --outputDir /Users/aj/Desktop/gatorExampleData/
+        python generateThumbnails.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv --markers ECAD CD3D --maxThumbnails 100 --projectDir /Users/aj/Desktop/gatorExampleData/
         
         ```
     """
 
-    # transformation=True; maxThumbnails=100; x_coordinate='X_centroid'; y_coordinate='Y_centroid'; percentiles=[2, 12, 88, 98]; windowSize=64; random_state=0; localNorm=True; globalNorm=False; markerColumnName='marker'; channelColumnName='channel'
+    # transformation=True; maxThumbnails=100; x_coordinate='X_centroid'; y_coordinate='Y_centroid'; percentiles=[2, 12, 88, 98]; windowSize=64; random_state=0; localNorm=True; globalNorm=False; markerColumnName='marker'; channelColumnName='channel';projectDir=cwd; restrictDensity=True;restrictDensityNumber=None;verbose=True;
     # markers = ['CD3D', 'CD8A']
-    # marker = 'KI67';
+    # marker = 'CD3D';
     # imagePath = '/Users/aj/Desktop/gatorExampleData/image/exampleImage.tif'
     # spatialTablePath = '/Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv'
     # markerChannelMapPath = '/Users/aj/Desktop/gatorExampleData/markers.csv'
-    # outputDir = '/Users/aj/Desktop/gatorExampleData/'
+    # projectDir = '/Users/aj/Desktop/gatorExampleData/'
     
     # read the markers.csv
     maper = pd.read_csv(pathlib.Path(markerChannelMapPath))
@@ -207,15 +232,15 @@ Example:
     marker_map = dict(zip(markers,markerChannels))
 
     # create folders if it does not exist
-    if outputDir is None:
-        outputDir = os.getcwd()
+    if projectDir is None:
+        projectDir = os.getcwd()
 
     # TruePos folders
     for i in markers:
-        pos_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/' + str(i) + '/TruePos')
-        neg_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/' + str(i) + '/TrueNeg')
-        pos2neg_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/' + str(i) + '/PosToNeg')
-        neg2pos_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/' + str(i) + '/NegToPos')
+        pos_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/' + str(i) + '/TruePos')
+        neg_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/' + str(i) + '/TrueNeg')
+        pos2neg_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/' + str(i) + '/PosToNeg')
+        neg2pos_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/' + str(i) + '/NegToPos')
         if not os.path.exists(pos_path):
             os.makedirs(pos_path)
         if not os.path.exists(neg_path):
@@ -225,10 +250,10 @@ Example:
         if not os.path.exists(neg2pos_path):
             os.makedirs(neg2pos_path)
         if localNorm is True:
-            local_pos_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/TruePos')
-            local_neg_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/TrueNeg')
-            local_pos2neg_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/PosToNeg')
-            local_neg2pos_path = pathlib.Path(outputDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/NegToPos')
+            local_pos_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/TruePos')
+            local_neg_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/TrueNeg')
+            local_pos2neg_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/PosToNeg')
+            local_neg2pos_path = pathlib.Path(projectDir + '/GATOR/Thumbnails/localNorm/' + str(i) + '/NegToPos')
             if not os.path.exists(local_pos_path):
                 os.makedirs(local_pos_path)
             if not os.path.exists(local_neg_path):
@@ -292,7 +317,6 @@ Example:
         marker_data = np.arcsinh(marker_data)
         #marker_data = np.log1p(marker_data)
         
-
     # combine data
     combined_data = pd.concat([marker_data, location], axis=1)
 
@@ -319,9 +343,9 @@ Example:
             fullN = ((crop/maxpercentile)*255).clip(0, 255).astype('uint8')
         # save the cropped image
         if imgType == 'pos':
-            path = pathlib.Path(outputDir + '/GATOR/Thumbnails/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
+            path = pathlib.Path(projectDir + '/GATOR/Thumbnails/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
         elif imgType == 'neg':
-            path = pathlib.Path(outputDir + '/GATOR/Thumbnails/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')
+            path = pathlib.Path(projectDir + '/GATOR/Thumbnails/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')
         # write file
         tifffile.imwrite(path,fullN)
         # local normalization if requested
@@ -329,15 +353,16 @@ Example:
             localN = ((crop/(np.percentile(crop.compute(), 99.99)))*255).clip(0, 255).astype('uint8')
             # save image
             if imgType == 'pos':
-                Lpath = pathlib.Path(outputDir + '/GATOR/Thumbnails/localNorm/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
+                Lpath = pathlib.Path(projectDir + '/GATOR/Thumbnails/localNorm/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
             elif imgType == 'neg':
-                Lpath = pathlib.Path(outputDir + '/GATOR/Thumbnails/localNorm/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')
+                Lpath = pathlib.Path(projectDir + '/GATOR/Thumbnails/localNorm/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')
             # write file
             tifffile.imwrite(Lpath,localN)
 
     # identify the cells of interest
     def processMarker (marker):
-        print('Processing Marker: ' + str(marker))
+        if verbose is True:
+            print('Processing Marker: ' + str(marker))
 
         moi = combined_data[marker].values
 
@@ -372,6 +397,29 @@ Example:
         # identify the location of pos and neg cells
         neg_location_i = location.iloc[neg]
         pos_location_i = location.iloc[pos]
+    
+        # divide the pos cells into two bins based on the number of neighbours
+        # assumption is that we will find cells that are dense and sparse
+        if restrictDensity is True:
+            # identify postive cells that are densly packed if user requests
+            kdt = BallTree(pos_location_i[[x_coordinate,y_coordinate]], metric='euclidean') 
+            ind = kdt.query_radius(pos_location_i[[x_coordinate,y_coordinate]], r=windowSize+5, return_distance=False)
+            for i in range(0, len(ind)): ind[i] = np.delete(ind[i], np.argwhere(ind[i] == i))#remove self
+            neigh_length = [len(subarray) for subarray in ind]
+            if restrictDensityNumber is None:
+                # GMM for auto detection
+                X = np.array(neigh_length).reshape(-1, 1)
+                gmm_neigh = GaussianMixture(n_components=2)
+                gmm_neigh.fit(X)
+                means = gmm_neigh.means_
+                index = np.argmin(means)
+                labels_neigh = gmm_neigh.predict(X)
+                lower_mean_indices = np.where(labels_neigh == index)[0]
+                # subset the postive cells based on the index
+                pos_location_i = pos_location_i.iloc[lower_mean_indices]
+            else:
+                lower_mean_indices = [i for i, x in enumerate(neigh_length) if x < restrictDensityNumber]
+                pos_location_i = pos_location_i.iloc[lower_mean_indices]
 
         # Find corner
         # Negative cells
@@ -426,7 +474,8 @@ Example:
     final = list(map(r_processMarker, markers))
 
     # Finish Job
-    print('Mission Accomplished')
+    if verbose is True:
+        print('Thumbnails have been generated, head over to "' + str(projectDir) + '/GATOR/Thumbnails" to view results')
 
 # Make the Function CLI compatable
 if __name__ == '__main__':
@@ -446,7 +495,10 @@ if __name__ == '__main__':
     parser.add_argument("--y_coordinate", type=str, default='Y_centroid', help="The column name in `single-cell spatial table` that records the Y coordinates for each cell. The default is 'Y_centroid'.")
     parser.add_argument("--percentiles", type=int, nargs='+', default=[2, 12, 88, 98], help="Specify the interval of percentile levels of the expression utilized to intialize the GMM. The cells falling within these percentiles are utilized to distinguish between negative cells (first two values) and positive cells (last two values).")
     parser.add_argument("--windowSize", type=int, default=64, help="Size of the Thumbnails.")
-    parser.add_argument("--outputDir", type=str, default=None, help="Path to output directory. The result will be located at `outputDir/GATOR/Thumbnails/`.")
+    parser.add_argument("--restrictDensity", type=bool, default=True, help="This parameter is utilized to regulate the number of positive cells observed in a given field of view. In the case of markers that do not exhibit a distinct spatial pattern, such as immune cells, it is recommended to train the model using sparse cells in the field of view.")
+    parser.add_argument("--restrictDensityNumber", type=int, default=None, help="This parameter is employed in conjunction with `restrictDensity`. By default, the program attempts to automatically identify less dense regions when restrictDensity is set to `True` using a GMM approach. However, `restrictDensityNumber` can be utilized to exert greater control over the process, allowing the user to limit the number of positive cells they wish to observe within the field of view. This parameter requires integers.")
+    parser.add_argument("--restrictDensity", type=bool, default=True, help="This parameter is utilized to regulate the number of positive cells observed in a given field of view. In the case of markers that do not exhibit a distinct spatial pattern, such as immune cells, it is recommended to train the model using sparse cells in the field of view.")    
+    parser.add_argument("--projectDir", type=str, default=None, help="Path to output directory. The result will be located at `projectDir/GATOR/Thumbnails/`.")
     args = parser.parse_args()
     generateThumbnails(spatialTablePath=args.spatialTablePath,
                         imagePath=args.imagePath,
@@ -463,4 +515,6 @@ if __name__ == '__main__':
                         y_coordinate=args.y_coordinate,
                         percentiles=args.percentiles,
                         windowSize=args.windowSize,
-                        outputDir=args.outputDir)
+                        restrictDensity=args.restrictDensity,
+                        restrictDensityNumber=args.restrictDensityNumber,
+                        projectDir=args.projectDir)
