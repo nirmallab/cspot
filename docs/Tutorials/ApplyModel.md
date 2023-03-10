@@ -13,6 +13,11 @@ import gatorpy as ga
 import os
 ```
 
+    WARNING:tensorflow:From /opt/anaconda3/envs/gator/lib/python3.9/site-packages/tensorflow/python/compat/v2_compat.py:107: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    non-resource variables are not supported in the long term
+
+
 **We need `three` input for this module to run**
 - The generated Model
 - Raw Image
@@ -39,18 +44,12 @@ The function `gatorPredict` is employed to make predictions about the expression
 
 
 ```python
-outputDir = cwd
+ga.gatorPipeline(imagePath=imagePath,
+                 gatorModelPath=gatorModelPath, projectDir=cwd, markerChannelMapPath=markerChannelMapPath)
 
-ga.gatorPredict( imagePath=imagePath,
-                 gatorModelPath=gatorModelPath,
-                 outputDir=outputDir, 
-                 markerChannelMapPath=markerChannelMapPath, 
-                 markerColumnName='marker', 
-                 channelColumnName='channel', 
-                 modelColumnName='gatormodel', 
-                 GPU=-1)
 ```
 
+    {'imagePath': '/Users/aj/Desktop/gatorExampleData/image/exampleImage.tif', 'gatorModelPath': '/Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/', 'projectDir': '/Users/aj/Desktop/gatorExampleData', 'markerChannelMapPath': '/Users/aj/Desktop/gatorExampleData/markers.csv'}
     Running gator model ECAD on channel 2 corresponding to marker ECAD
     loading data
     WARNING:tensorflow:From /opt/anaconda3/envs/gator/lib/python3.9/site-packages/keras/layers/normalization/batch_normalization.py:561: _colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
@@ -66,6 +65,8 @@ ga.gatorPredict( imagePath=imagePath,
       return tf.layers.dropout(lbn, 0.15, training=UNet2D.tfTraining)
     /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:222: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
       tf.layers.batch_normalization(tf.nn.conv2d(cc, luXWeights2, strides=[1, 1, 1, 1], padding='SAME'),
+    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:243: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      return tf.layers.batch_normalization(
 
 
     loading data
@@ -73,12 +74,6 @@ ga.gatorPredict( imagePath=imagePath,
     0
     1
     INFO:tensorflow:Restoring parameters from /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ECAD/model.ckpt
-
-
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:243: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
-      return tf.layers.batch_normalization(
-
-
     Model restored.
     Inference...
     Running gator model CD3D on channel 5 corresponding to marker CD3D
@@ -90,6 +85,40 @@ ga.gatorPredict( imagePath=imagePath,
     INFO:tensorflow:Restoring parameters from /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/CD3D/model.ckpt
     Model restored.
     Inference...
+
+
+
+```python
+outputDir = cwd
+
+ga.gatorPredict( imagePath=imagePath,
+                 gatorModelPath=gatorModelPath,
+                 outputDir=outputDir, 
+                 markerChannelMapPath=markerChannelMapPath, 
+                 markerColumnName='marker', 
+                 channelColumnName='channel', 
+                 modelColumnName='gatormodel', 
+                 GPU=-1)
+```
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb Cell 8 in <cell line: 3>()
+          <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=0'>1</a> outputDir = cwd
+    ----> <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=2'>3</a> ga.gatorPredict( imagePath=imagePath,
+          <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=3'>4</a>                  gatorModelPath=gatorModelPath,
+          <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=4'>5</a>                  outputDir=outputDir, 
+          <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=5'>6</a>                  markerChannelMapPath=markerChannelMapPath, 
+          <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=6'>7</a>                  markerColumnName='marker', 
+          <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=7'>8</a>                  channelColumnName='channel', 
+          <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=8'>9</a>                  modelColumnName='gatormodel', 
+         <a href='vscode-notebook-cell:/Users/aj/Dropbox%20%28Partners%20HealthCare%29/nirmal%20lab/softwares/gatorpy/docs/Tutorials/notebooks/ApplyModel.ipynb#X10sZmlsZQ%3D%3D?line=9'>10</a>                  GPU=-1)
+
+
+    TypeError: gatorPredict() got an unexpected keyword argument 'outputDir'
 
 
 **Same function if the user wants to run it via Command Line Interface**
