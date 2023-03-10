@@ -8,35 +8,16 @@ Run Gator Pipeline
 
 # libs
 import inspect
-
-
-
-# Libs
-import os, argparse
-import pandas as pd
-import pathlib
-
-# tools libs
-from skimage import io as skio
-import tensorflow.compat.v1 as tf
-import tifffile
-import numpy as np
-from skimage.transform import resize
-
-# from other .py scripts
-if __name__ == '__main__':
-    from toolbox.imtools import im2double
-    from UNet import *
-else:
-    from .toolbox.imtools import im2double
-    from .UNet import UNet2D
-    
+import argparse
 
 
 if __name__ == '__main__':
     from gatorPredict import gatorPredict
 else:
-    from gatorPredict import gatorPredict
+    from .gatorPredict import gatorPredict
+    from .generateGatorScore import generateGatorScore
+    from .gatorObject import gatorObject
+    from .gator import gator
 
 
 
@@ -44,33 +25,44 @@ else:
 # Function
 
 def gatorPipeline (**kwargs):    
-    # start
+
+    
+    ##########################################################################
+    # STEP: 1 :- PREDICT
+    ##########################################################################
     function1_args = inspect.signature(gatorPredict).parameters.keys()
-    print(function1_args)
+    # Extract only the arguments that gatorPredict expects from the keyword arguments
+    function1_kwargs = {k: kwargs[k] for k in kwargs if k in function1_args}
+    # Call gatorPredict with the extracted arguments
+    # run the predictions
+    gatorPredict (**function1_kwargs)
+    
+    ##########################################################################
+    # STEP: 2 :- generateGatorScore
+    ##########################################################################
+    function2_args = inspect.signature(generateGatorScore).parameters.keys()
+    function2_kwargs = {k: kwargs[k] for k in kwargs if k in function2_args}
+    generateGatorScore (**function2_kwargs)
+    
+    
+    ##########################################################################
+    # STEP: 3 :- Generate gatorObject
+    ##########################################################################
+    function3_args = inspect.signature(gatorObject).parameters.keys()
+    function3_kwargs = {k: kwargs[k] for k in kwargs if k in function3_args}
+    gatorObject (**function3_kwargs)
+    
+    
+    ##########################################################################
+    # STEP: 4 :- Run Gator Algorithm
+    ##########################################################################
+    function4_args = inspect.signature(gator).parameters.keys()
+    function4_kwargs = {k: kwargs[k] for k in kwargs if k in function4_args}
+    gator (**function4_kwargs)
+    
+    
 
-# execute the pipeline
-gatorPipeline()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Run gatorPipeline function')
+    args = parser.parse_args()
 
-
-# =============================================================================
-# def my_wrapper(*args, **kwargs):
-#     # Do something before calling the wrapped functions
-#     
-#     # Get the list of arguments that my_function1 expects
-#     function1_args = inspect.signature(cloneFolder).parameters.keys()
-#     # Extract only the arguments that my_function1 expects from the keyword arguments
-#     function1_kwargs = {k: kwargs[k] for k in kwargs if k in function1_args}
-#     # Call my_function1 with the extracted arguments
-#     result = my_function1(*args, **function1_kwargs)
-#     # Do something with the result
-#     
-#     # Get the list of arguments that my_function2 expects
-#     function2_args = inspect.signature(my_function2).parameters.keys()
-#     # Extract only the arguments that my_function2 expects from the keyword arguments
-#     function2_kwargs = {k: kwargs[k] for k in kwargs if k in function2_args}
-#     # Call my_function2 with the extracted arguments
-#     result = my_function2(*args, **function2_kwargs)
-#     # Do something with the result
-#     
-#     # ...
-# =============================================================================

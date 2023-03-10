@@ -25,6 +25,7 @@ import tifffile
 import numpy as np
 from skimage.transform import resize
 
+
 # from other .py scripts
 if __name__ == '__main__':
     from toolbox.imtools import im2double
@@ -32,6 +33,7 @@ if __name__ == '__main__':
 else:
     from .toolbox.imtools import im2double
     from .UNet import UNet2D
+
 
 # Function
 def gatorPredict (imagePath,

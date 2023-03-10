@@ -9,3 +9,5 @@ from .gatorPhenotype import gatorPhenotype
 from .gatorTrain import gatorTrain
 from .gatorPredict import gatorPredict
 from .addPredictions import addPredictions
+from .UNet import concat3, UNet2D
+from .gatorPipeline import gatorPipeline
