@@ -21,11 +21,9 @@ else:
 
 
 
-
 # Function
 
 def gatorPipeline (**kwargs):    
-
     
     ##########################################################################
     # STEP: 1 :- PREDICT

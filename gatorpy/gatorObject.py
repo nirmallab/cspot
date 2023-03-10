@@ -31,7 +31,8 @@ def gatorObject (spatialTablePath,
                  remove_string_from_name=None,
                  log=True,
                  dropMarkers=None,
-                 outputDir=None):
+                 verbose=True,
+                 projectDir=None):
     """
 Parameters:
     spatialTablePath (list):
@@ -71,13 +72,16 @@ Parameters:
         Specify a list of markers to be removed from the analysis, for
         example: ["background_channel", "CD20"]. 
 
-    outputDir (string, optional):
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
+
+    projectDir (string, optional):
         Provide the path to the output directory. The result will be located at
-        `outputDir/GATOR/gatorObject/`.
+        `projectDir/GATOR/gatorObject/`.
 
 Returns:
     gatorObject (anndata):
-        If outputDir is provided the Gator Object will be saved as a
+        If projectDir is provided the Gator Object will be saved as a
         `.h5ad` file in the provided directory.
 
 Example:
@@ -103,10 +107,11 @@ Example:
                         remove_string_from_name=None,
                         log=True,
                         dropMarkers=None,
-                        outputDir=cwd)
+                        verbose=True,
+                        projectDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python gatorObject.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv --gatorScorePath /Users/aj/Desktop/gatorExampleData/GATOR/gatorScore/exampleProbabiltyMap.ome.csv --outputDir /Users/aj/Desktop/gatorExampleData
+        python gatorObject.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv --gatorScorePath /Users/aj/Desktop/gatorExampleData/GATOR/gatorScore/exampleProbabiltyMap.ome.csv --projectDir /Users/aj/Desktop/gatorExampleData
         
         ```
 
@@ -115,8 +120,8 @@ Example:
 #probTablePath = r"C:\Users\ajn16\Dropbox (Partners HealthCare)\Data\gator\data\ajn_training_data\GATOR\probQuant\113_GatorOutput.csv"
 #dropMarkers = ['bg2b', 'bg3b', 'bg4b', 'ECAD_2']
 
-#outputDir = 'C:/Users/ajn16/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data'
-#gatorObject (spatialTablePath=spatialTablePath, probTablePath=probTablePath, outputDir=outputDir, dropMarkers=dropMarkers)
+#projectDir = 'C:/Users/ajn16/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data'
+#gatorObject (spatialTablePath=spatialTablePath, probTablePath=probTablePath, projectDir=projectDir, dropMarkers=dropMarkers)
 
     # spatialTablePath list or string
     if isinstance(spatialTablePath, str):
@@ -130,7 +135,8 @@ Example:
     # Import spatialTablePath
     def load_process_data (image):
         # Print the data that is being processed
-        print(f"Loading {image.name}")
+        if verbose is True:
+            print(f"Loading {image.name}")
         d = pd.read_csv(image)
         # If the data does not have a unique image ID column, add one.
         if 'imageid' not in d.columns:
@@ -214,8 +220,8 @@ Example:
         adata.X = np.log1p(adata.X)
 
     # Save data if requested
-    if outputDir is not None:
-        finalPath = pathlib.Path(outputDir + '/GATOR/gatorObject')
+    if projectDir is not None:
+        finalPath = pathlib.Path(projectDir + '/GATOR/gatorObject')
         if not os.path.exists(finalPath):
             os.makedirs(finalPath)
         if len(spatialTablePath) > 1:
@@ -239,7 +245,8 @@ if __name__ == '__main__':
     parser.add_argument('--remove_string_from_name', type=str, default=None, help='Cleans up channel names by removing user specified string from all marker names.')
     parser.add_argument('--log', type=bool, default=True, help='Apply log1p transformation to log the data.')
     parser.add_argument('--dropMarkers', type=str, nargs='+', default=None, help='Specify a list of markers to be removed from the analysis.')
-    parser.add_argument('--outputDir', type=str, default=None, help='Provide the path to the output directory.')
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")       
+    parser.add_argument('--projectDir', type=str, default=None, help='Provide the path to the output directory.')
     args = parser.parse_args()
     gatorObject(spatialTablePath=args.spatialTablePath,
                 gatorScorePath=args.gatorScorePath,
@@ -250,4 +257,5 @@ if __name__ == '__main__':
                 remove_string_from_name=args.remove_string_from_name,
                 log=args.log,
                 dropMarkers=args.dropMarkers,
-                outputDir=args.outputDir)
+                verbose=args.verbose,
+                projectDir=args.projectDir)

@@ -47,8 +47,8 @@ def gator (gatorObject,
            random_state=0,
            rescaleMethod='minmax',
            label='gatorOutput',
-           silent=True,
-           outputDir=None, **kwargs):
+           verbose=True,
+           projectDir=None, **kwargs):
     """
 Parameters:
     gatorObject (anndata):
@@ -110,20 +110,20 @@ Parameters:
         Assign a label for the object within `adata.uns` where the predictions
         from Gator will be stored. 
 
-    silent (bool, optional):
-        Enables the display of step-by-step events on the console. 
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
 
-    outputDir (str, optional):
+    projectDir (str, optional):
         Provide the path to the output directory. The result will be located at
-        `outputDir/GATOR/gatorOutput/`. 
+        `projectDir/GATOR/gatorOutput/`. 
 
     **kwargs (keyword parameters):
         Additional arguments to pass to the `HistGradientBoostingClassifier()` function.
 
 Returns:
     gatorObject (anndata):
-        If outputDir is provided the updated Gator Object will saved within the
-        provided outputDir.
+        If projectDir is provided the updated Gator Object will saved within the
+        provided projectDir.
 
 Example:
 
@@ -147,11 +147,11 @@ Example:
                     random_state=0,
                     rescaleMethod='sigmoid',
                     label='gatorOutput',
-                    silent=True,
-                    outputDir=cwd)
+                    verbose=True,
+                    projectDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python gator.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad --outputDir /Users/aj/Desktop/gatorExampleData
+        python gator.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad --projectDir /Users/aj/Desktop/gatorExampleData
                 
         
         ```
@@ -159,7 +159,7 @@ Example:
     """
 
     #gatorObject = "/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/gatorObject/1_6_GatorOutput.h5ad"
-    #gatorScore='gatorScore'; minAbundance=0.002; percentiles=[1, 20, 80, 99]; dropMarkers = None;leakData=False;rescaleMethod='sigmoid';silent = False
+    #gatorScore='gatorScore'; minAbundance=0.002; percentiles=[1, 20, 80, 99]; dropMarkers = None;leakData=False;rescaleMethod='sigmoid';verbose = False
     #scaleData=False; log=True; x_coordinate='X_centroid'; y_coordinate='Y_centroid'; imageid='imageid'; random_state=0; label='gatorOutput'
     #gatorObject = '/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/gatorPredict/2_28_GatorOutput.h5ad'
     #gatorObject = '/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/gatorPredict/4_113_GatorOutput.h5ad'
@@ -429,7 +429,7 @@ Example:
     # to store in adata
     failed_markers_dict = {adata.obs[imageid].unique()[0] : failed_markers}
 
-    if silent is False:
+    if verbose is True:
         print('Failed Markers are: ' + ", ".join(str(x) for x in failed_markers))
 
     ###########################################################################
@@ -474,7 +474,7 @@ Example:
 
 
         if marker in expression_unet_common:
-            if silent is False:
+            if verbose is True:
                 print("NN marker: " + str(marker))
             # run GMM on probQuant_data
             X = probQuant_data[marker].values.reshape(-1,1)
@@ -506,18 +506,18 @@ Example:
             neg = list(set(expCellsNeg).intersection(set(probCellsNeg)))
 
             # print no of cells
-            if silent is False:
+            if verbose is True:
                 print("POS cells: {} and NEG cells: {}.".format(len(pos), len(neg)))
 
             # check if the length is less than 20 cells and if so add the marker to only_expression
             if len(pos) < 20 or len(neg) < 20: ## CHECK!
                 only_expression.append(marker)
-                if silent is False:
+                if verbose is True:
                     print ("As the number of POS/NEG cells is low for " + str(marker) + ", GMM will fitted using only expression values.")
 
 
         if marker in only_expression:
-            if silent is False:
+            if verbose is True:
                 print("Expression marker: " + str(marker))
             # Run GMM only on the expression data
             Z = pre_processed_data[marker].values.reshape(-1,1)
@@ -543,7 +543,7 @@ Example:
             random.seed(random_state); neg = random.sample(neg, k=int(len(neg) * 0.7))
 
             # print no of cells
-            if silent is False:
+            if verbose is True:
                 print("Defined POS cells is {} and NEG cells is {}.".format(len(pos), len(neg)))
 
             # What happens of POS/NEG is less than 20
@@ -553,14 +553,14 @@ Example:
                     percentiles = [1,20,80,99]
                 neg = list(indexPercentile (pre_processed_data, marker, lowPercentile=percentiles[0], highPercentile=percentiles[1]))
                 pos = list(indexPercentile (pre_processed_data, marker, lowPercentile=percentiles[2], highPercentile=percentiles[3]))
-                if silent is False:
+                if verbose is True:
                     print ("As the number of POS/NEG cells is low for " + str(marker) + ", cells falling within the given percentile " + str(percentiles) + ' was used.')
 
         # return the output
         return marker, pos, neg
 
     # Run the function on all markers
-    if silent is False:
+    if verbose is True:
         print("Intial GMM Fitting")
     r_bonafide_cells = lambda x: bonafide_cells (marker=x,
                                                 expression_unet_common=expression_unet_common,
@@ -585,7 +585,7 @@ Example:
         neg = bonafide_cells_result[2]
         PD = pre_processed_data.copy()
 
-        if silent is False:
+        if verbose is True:
             print('Processing: ' + str(marker))
 
         # class balance the number of pos and neg cells based on the lowest denominator
@@ -612,7 +612,7 @@ Example:
         return marker, combined_data
 
     # Run the function
-    if silent is False:
+    if verbose is True:
         print("Building the Training Data")
     r_trainingData = lambda x: trainingData (bonafide_cells_result=x,
                                                  pre_processed_data=pre_processed_data,
@@ -636,7 +636,7 @@ Example:
         predictionData = combined_data.drop(index=index_names_to_drop, inplace=False)
         predictionData = predictionData.drop('label', axis=1)
 
-        if silent is False:
+        if verbose is True:
             print('classifying: ' + str(marker))
 
         # shuffle the data
@@ -674,7 +674,7 @@ Example:
         return marker, pred, prob, midpoint
 
     # Run the function
-    if silent is False:
+    if verbose is True:
         print("Fitting model for classification:")
     r_gatorClassifier = lambda x: gatorClassifier (trainingData_result=x,random_state=random_state)
     gatorClassifier_result = list(map(r_gatorClassifier, trainingData_result))
@@ -715,7 +715,7 @@ Example:
         pos = bonafide_cells_result[1]
         neg = bonafide_cells_result[2]
 
-        if silent is False:
+        if verbose is True:
             print("Processing: " + str(marker))
         # prepare data
         X = pre_processed_data.drop(marker, axis=1)
@@ -742,7 +742,7 @@ Example:
         return results
 
     # Run the function
-    if silent is False:
+    if verbose is True:
         print("Running Anomaly Detection")
     r_anomalyDetector = lambda x: anomalyDetector (bonafide_cells_result = x,
                                                    pre_processed_data = pre_processed_data,
@@ -784,7 +784,7 @@ Example:
 
     # marker = 'ECAD'
     def rescaleData (marker, pre_processed_data, prediction_results, midpoints_dict):
-        if silent is False:
+        if verbose is True:
             print("Processing: " + str(marker))
         # unravel data
         data = pre_processed_data[marker].values
@@ -807,7 +807,7 @@ Example:
         return rescaled_data
 
     # Run the function
-    if silent is False:
+    if verbose is True:
         print("Rescaling the raw data")
     r_rescaleData = lambda x: rescaleData (marker=x,
                                            pre_processed_data=pre_processed_data,
@@ -853,8 +853,8 @@ Example:
     #bdata.uns[str(label)] = probability_results
 
     # Save data if requested
-    if outputDir is not None:
-        finalPath = pathlib.Path(outputDir + '/GATOR/gatorOutput')
+    if projectDir is not None:
+        finalPath = pathlib.Path(projectDir + '/GATOR/gatorOutput')
         if not os.path.exists(finalPath):
             os.makedirs(finalPath)
         if len(gatorObjectPath) > 1:
@@ -881,8 +881,8 @@ if __name__ == '__main__':
     parser.add_argument('--random_state', type=int, default=0, help='Seed used by the random number generator')
     parser.add_argument('--rescaleMethod', type=str, default='minmax', help='Choose between `sigmoid` and `minmax`')
     parser.add_argument('--label', type=str, default='gatorOutput', help='Assign a label for the object within `adata.uns` where the predictions from Gator will be stored')
-    parser.add_argument('--silent', type=bool, default=True, help='Enables the display of step-by-step events on the console')
-    parser.add_argument('--outputDir', type=str, default=None, help='Provide the path to the output directory')
+    parser.add_argument('--verbose', type=bool, default=True, help='Enables the display of step-by-step events on the console')
+    parser.add_argument('--projectDir', type=str, default=None, help='Provide the path to the output directory')
     args = parser.parse_args()
     gator(gatorObject=args.gatorObject,
           gatorScore=args.gatorScore,
@@ -897,5 +897,5 @@ if __name__ == '__main__':
           random_state=args.random_state,
           rescaleMethod=args.rescaleMethod,
           label=args.label,
-          silent=args.silent,
-          outputDir=args.outputDir)
+          verbose=args.verbose,
+          projectDir=args.projectDir)

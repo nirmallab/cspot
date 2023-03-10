@@ -43,6 +43,7 @@ def gatorPredict (imagePath,
                  markerColumnName='marker', 
                  channelColumnName='channel', 
                  modelColumnName='gatormodel', 
+                 verbose=True,
                  GPU=-1):
     
     """
@@ -67,7 +68,10 @@ Parameters:
      
     modelColumnName (str, optional):  
         The name of the column in the marker panel list that contains the model names. The default value is 'gatormodel'.
-     
+
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
+
     GPU (int, optional):  
         An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
 
@@ -93,6 +97,7 @@ Example:
                          markerColumnName='marker', 
                          channelColumnName='channel', 
                          modelColumnName='gatormodel', 
+                         verbose=True,
                          GPU=-1)
         
         # Same function if the user wants to run it via Command Line Interface
@@ -175,7 +180,8 @@ Example:
             channel = row[channelColumnName]
             markerName = row[markerColumnName]
             gatormodel = row[modelColumnName]
-            print('Running gator model ' + str(gatormodel) + ' on channel ' + str(channel) + ' corresponding to marker ' + str(markerName) )
+            if verbose is True:
+                print('Running gator model ' + str(gatormodel) + ' on channel ' + str(channel) + ' corresponding to marker ' + str(markerName) )
 
 
             tf.reset_default_graph()
@@ -263,6 +269,7 @@ if __name__ == '__main__':
     parser.add_argument('--markerColumnName', type=str, default='marker', help='The name of the column in the marker panel list that contains the marker names. The default value is `marker`.')
     parser.add_argument('--channelColumnName', type=str, default='channel', help='The name of the column in the marker panel list that contains the channel names. The default value is `channel`.')
     parser.add_argument('--modelColumnName', type=str, default='gatormodel', help='The name of the column in the marker panel list that contains the model names. The default value is `gatormodel`.')
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")      
     parser.add_argument('--GPU', type=int, default=-1, help='An optional argument to explicitly select the GPU to use. The default value is 0, meaning that the GPU will be selected automatically.')
 
     args = parser.parse_args()
@@ -273,6 +280,7 @@ if __name__ == '__main__':
                  markerColumnName=args.markerColumnName, 
                  channelColumnName=args.channelColumnName, 
                  modelColumnName=args.modelColumnName, 
+                 verbose=args.verbose,
                  GPU=args.GPU)
 
 

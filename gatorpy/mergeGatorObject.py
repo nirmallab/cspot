@@ -29,7 +29,8 @@ def mergeGatorObject (gatorObjects,
                       fileName='mergedGatorObject',
                       layers=['preProcessed'],
                       uns= ['gatorOutput','gatorScore','failedMarkers'],
-                      outputDir=None):
+                      verbose=True,
+                      projectDir=None):
     """
 Parameters:
     gatorObjects (list):
@@ -46,14 +47,17 @@ Parameters:
     uns (list, optional):
         The `.uns` section within the Gator Objects to be merged together.
 
-    outputDir (str, optional):
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console. 
+
+    projectDir (str, optional):
         Provide the path to the output directory. The result will be located at
-        `outputDir/GATOR/mergedGatorObject/`. 
+        `projectDir/GATOR/mergedGatorObject/`. 
 
 Returns:
     Gator (anndata):
-        If `outputDir` is provided the merged Gator Object will saved within the
-        provided outputDir.
+        If `projectDir` is provided the merged Gator Object will saved within the
+        provided projectDir.
 
 Example:
 
@@ -69,16 +73,16 @@ Example:
                                       fileName='mergedGatorObject',
                                       layers=['preProcessed'],
                                       uns= ['gatorOutput','gatorScore'],
-                                      outputDir=cwd)
+                                      projectDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python mergeGatorObject.py --gatorObjects /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad --outputDir /Users/aj/Desktop/gatorExampleData
+        python mergeGatorObject.py --gatorObjects /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad --projectDir /Users/aj/Desktop/gatorExampleData
         
         
         ```
     """
 
-    # layers=['preProcessed']; uns= ['gatorPredict','probQuant']; fileName='gatorMerged'; outputDir=None
+    # layers=['preProcessed']; uns= ['gatorPredict','probQuant']; fileName='gatorMerged'; projectDir=None
 
     # Convert to list of anndata objects
     if isinstance (gatorObjects, list):
@@ -109,7 +113,8 @@ Example:
             adata = gatorObject.copy()
 
         # print
-        print ("Extracting data from: " + str( adata.obs['imageid'].unique()[0]) )
+        if verbose is True:
+            print ("Extracting data from: " + str( adata.obs['imageid'].unique()[0]) )
 
         # process the data
         rawData = pd.DataFrame(adata.raw.X, index=adata.obs.index, columns=adata.var.index)
@@ -139,7 +144,8 @@ Example:
 
     # Run the function
     # Run the function:
-    print("Extracting data")
+    if verbose is True:
+        print("Extracting data")
     r_processX = lambda x: processX (gatorObject=x, process_layers=process_layers)
     processX_result = list(map(r_processX, gatorObjects)) # Apply function
 
@@ -198,8 +204,8 @@ Example:
         bdata.uns['all_markers'] = adata.uns['all_markers']
 
     # write the output
-    if outputDir is not None:
-        finalPath = pathlib.Path(outputDir + '/GATOR/mergedGatorObject')
+    if projectDir is not None:
+        finalPath = pathlib.Path(projectDir + '/GATOR/mergedGatorObject')
         if not os.path.exists(finalPath):
             os.makedirs(finalPath)
         bdata.write(finalPath / f'{fileName}.h5ad')
@@ -214,10 +220,12 @@ if __name__ == '__main__':
     parser.add_argument('--fileName', type=str, default='mergedGatorObject', help='Designate a Name for the resulting combined Gator object')
     parser.add_argument('--layers', type=str, nargs='+', default=['preProcessed'], help='The layers section within the Gator Objects to be merged together')
     parser.add_argument('--uns', type=str, nargs='+', default=['gatorOutput','gatorScore'], help='The uns section within the Gator Objects to be merged together')
-    parser.add_argument('--outputDir', type=str, default=None, help='Provide the path to the output directory')
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")       
+    parser.add_argument('--projectDir', type=str, default=None, help='Provide the path to the output directory')
     args = parser.parse_args()
     mergeGatorObject(gatorObjects=args.gatorObjects,
                      fileName=args.fileName,
                      layers=args.layers, 
                      uns=args.uns,
-                     outputDir=args.outputDir)
+                     verbose=args.verbose,
+                     projectDir=args.projectDir)

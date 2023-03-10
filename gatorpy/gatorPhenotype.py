@@ -77,7 +77,8 @@ def gatorPhenotype (gatorObject,
                     pheno_threshold_percent=None,
                     pheno_threshold_abs=None,
                     fileName=None,
-                    outputDir=None):
+                    verbose=True,
+                    projectDir=None):
     """
 Parameters:
     gatorObject (anndata):
@@ -113,12 +114,15 @@ Parameters:
     fileName (string, optional):
         File Name to be used while saving the gator object.
 
-    outputDir (string, optional):
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
+
+    projectDir (string, optional):
         Provide the path to the output directory.
         
 Returns:
     gatorObject (anndata):
-        Modified Gator object with the Phenotypes is returned. If `outputDir` is 
+        Modified Gator object with the Phenotypes is returned. If `projectDir` is 
         provided, it will be saved in the defined directory.
 
 Example:
@@ -142,10 +146,10 @@ Example:
                             pheno_threshold_percent=None,
                             pheno_threshold_abs=None,
                             fileName=None,
-                            outputDir=cwd)
+                            projectDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python gatorPhenotype.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad --phenotype /Users/aj/Desktop/gatorExampleData/phenotype_workflow.csv --outputDir /Users/aj/Desktop/gatorExampleData
+        python gatorPhenotype.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad --phenotype /Users/aj/Desktop/gatorExampleData/phenotype_workflow.csv --projectDir /Users/aj/Desktop/gatorExampleData
 
         
         ```
@@ -210,8 +214,8 @@ Example:
         r_gate_satisfation_morethan = lambda x: gate_satisfation_morethan(marker=x, data=data, midpoint=midpoint)
 
         def prob_mapper (data, all_phenotype, cell, midpoint):
-
-            print("Phenotyping " + str(cell))
+            if verbose is True:
+                print("Phenotyping " + str(cell))
 
             # Get the appropriate dict from all_phenotype
             p = all_phenotype[cell]
@@ -357,16 +361,17 @@ Example:
                 #cells_of_interest = phenotype_labels[phenotype_labels[column_of_interest] == i].index
                 cells_of_interest = phenotype_labels[phenotype_labels[column_of_interest].eq(i).any(axis=1)].index
                 d = data.loc[cells_of_interest]
-                print("-- Subsetting " + str(i))
+                if verbose is True:
+                    print("-- Subsetting " + str(i))
                 phenotype_l = pd.DataFrame(phenotype_cells(data = d, group = i, phenotype=phenotype, midpoint=midpoint), columns = [i])
                 phenotype_labels = phenotype_labels.merge(phenotype_l, how='outer', left_index=True, right_index=True)
 
     # Rearrange the rows back to original
     phenotype_labels = phenotype_labels.reindex(data.index)
     phenotype_labels = phenotype_labels.replace('-rest', np.nan, regex=True)
-
-    print("Consolidating the phenotypes across all groups")
-    phenotype_labels_Consolidated = phenotype_labels.fillna(method='ffill', axis = 1)
+    if verbose is True:
+        print("Consolidating the phenotypes across all groups")
+        phenotype_labels_Consolidated = phenotype_labels.fillna(method='ffill', axis = 1)
     phenotype_labels[label] = phenotype_labels_Consolidated.iloc[:,-1].values
 
     # replace nan to 'other cells'
@@ -406,9 +411,9 @@ Example:
     adata.obs[label] = phenotype_labels[label]
 
     # Save data if requested
-    if outputDir is not None:
+    if projectDir is not None:
         
-        finalPath = pathlib.Path(outputDir + '/GATOR/gatorPhenotyped/')
+        finalPath = pathlib.Path(projectDir + '/GATOR/gatorPhenotyped/')
         if not os.path.exists(finalPath):
             os.makedirs(finalPath)
         # determine file name
@@ -438,7 +443,8 @@ if __name__ == '__main__':
     parser.add_argument('--pheno_threshold_percent', type=float, default=None, help='User-defined threshold for recategorizing phenotypes as "unknown"')
     parser.add_argument('--pheno_threshold_abs', type=int, default=None, help='User-defined threshold for recategorizing phenotypes as "unknown"')
     parser.add_argument('--fileName', type=str, default=None, help="File name for saving the modified gatorObject.")
-    parser.add_argument('--outputDir', type=str, help="Directory to save the modified gatorObject.")
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")
+    parser.add_argument('--projectDir', type=str, help="Directory to save the modified gatorObject.")
     args = parser.parse_args()
     gatorPhenotype(gatorObject=args.gatorObject,
                    phenotype=args.phenotype,
@@ -448,7 +454,8 @@ if __name__ == '__main__':
                    pheno_threshold_percent=args.pheno_threshold_percent,
                    pheno_threshold_abs=args.pheno_threshold_abs,
                    fileName=args.fileName, 
-                   outputDir=args.outputDir)
+                   verbose=args.verbose,
+                   projectDir=args.projectDir)
     
     
     

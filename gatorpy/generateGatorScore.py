@@ -25,10 +25,11 @@ import argparse
 
 # Function
 def generateGatorScore (probabilityMaskPath,
-                     segmentationMaskPath,
-                     feature='median',
-                     markerNames=None,
-                     outputDir=None):
+                         segmentationMaskPath,
+                         feature='median',
+                         verbose=True,
+                         markerNames=None,
+                         projectDir=None):
 
     """
 Parameters:
@@ -41,19 +42,22 @@ Parameters:
     feature (str, optional):
         Calculates the `mean` or `median` Gator Score for each cell.
 
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
+
     markerNames (list, optional):
         The program searches for marker names in the meta data (description section)
         of the tiff files created by `dlModelPredict` by default. If the meta data
         is lost due to user modifications, provide the marker names for each
         channel/layer in the `probabilityMaskPath` here.
 
-    outputDir (str, optional):
+    projectDir (str, optional):
         Provide the path to the output directory. The result will be located at
-        `outputDir/GATOR/gatorScore/`.
+        `projectDir/GATOR/gatorScore/`.
 
 Returns:
     CSV (dataframe):
-        The `.csv` file containing the `gatorScore` is stored in the provided outputDir.
+        The `.csv` file containing the `gatorScore` is stored in the provided projectDir.
 
 Example:
 
@@ -69,10 +73,11 @@ Example:
         ga.generateGatorScore (probabilityMaskPath=probabilityMaskPath,
                      segmentationMaskPath=segmentationPath,
                      feature='median',
-                     outputDir=cwd)
+                     verbose=True,
+                     projectDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python generateGatorScore.py --probabilityMaskPath /Users/aj/Desktop/gatorExampleData/dlPredict/exampleProbabiltyMap.ome.tif --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif --markerNames ECAD CD45 CD4 CD3D CD8A CD45R Ki67 --outputDir /Users/aj/Desktop/gatorExampleData/
+        python generateGatorScore.py --probabilityMaskPath /Users/aj/Desktop/gatorExampleData/dlPredict/exampleProbabiltyMap.ome.tif --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif --markerNames ECAD CD45 CD4 CD3D CD8A CD45R Ki67 --projectDir /Users/aj/Desktop/gatorExampleData/
         
         ```
 
@@ -81,9 +86,9 @@ Example:
 
     #probabilityMask = '/Users/aj/Dropbox (Partners HealthCare)/Data/gator/data/ajn_training_data/GATOR/dlPredict/6_GatorOutput.ome.tif'
     #segmentationMaskPath = '/Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif'
-    #outputDir = '/Users/aj/Desktop/gatorExampleData'
+    #projectDir = '/Users/aj/Desktop/gatorExampleData'
     #markerNames = ['ECAD', 'CD45', 'CD4', 'CD3D', 'CD8A', 'CD45_2', 'KI67']
-    #probQuant (probabilityMask, segmentationMaskPath,  feature='median', markerNames=markerNames, outputDir=outputDir)
+    #probQuant (probabilityMask, segmentationMaskPath,  feature='median', markerNames=markerNames, projectDir=projectDir)
 
     # read the seg mask
     segM = tifffile.imread(pathlib.Path(segmentationMaskPath))
@@ -101,7 +106,8 @@ Example:
         return np.median(img[mask])
 
     # quantify
-    print("Quantifying the probability masks")
+    if verbose is True:
+        print("Quantifying the probability masks")
     quantTable = pd.DataFrame(measure.regionprops_table(segM, intensity_image=probM,
                                                         properties=['label','mean_intensity'],
                                                         extra_properties=[median_intensity])).set_index('label')
@@ -150,12 +156,12 @@ Example:
     #sns.distplot(quantTable['ECAD'])
 
 
-    # if outputDir is given
-    if outputDir is None:
-        outputDir = os.getcwd()
+    # if projectDir is given
+    if projectDir is None:
+        projectDir = os.getcwd()
 
     # final path to save results
-    finalPath = pathlib.Path(outputDir + '/GATOR/gatorScore/')
+    finalPath = pathlib.Path(projectDir + '/GATOR/gatorScore/')
     if not os.path.exists(finalPath):
         os.makedirs(finalPath)
 
@@ -170,11 +176,13 @@ if __name__ == '__main__':
     parser.add_argument('--probabilityMaskPath', type=str, help='Path of the probability map image produced by dlModelPredict.')
     parser.add_argument('--segmentationMaskPath', type=str, help='Path of the pre-computed segmentation mask.')
     parser.add_argument('--feature', type=str, default='median', help='Calculates the mean or median gatorScore for each cell.')
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")       
     parser.add_argument('--markerNames', nargs='+', help='List of marker names for each channel/layer in the probabilityMaskPath.')
-    parser.add_argument('--outputDir', type=str, help='Path to the output directory.')
+    parser.add_argument('--projectDir', type=str, help='Path to the output directory.')
     args = parser.parse_args()
     generateGatorScore(probabilityMaskPath=args.probabilityMaskPath,
                     segmentationMaskPath=args.segmentationMaskPath,
                     feature=args.feature,
+                    verbose=args.verbose,
                     markerNames=args.markerNames,
-                    outputDir=args.outputDir)
+                    projectDir=args.projectDir)

@@ -37,7 +37,7 @@ def addPredictions (gatorObject,
                     gatorOutput='gatorOutput',
                     gatorScore='gatorScore', 
                     midpoint=0.5,
-                    outputDir=None):
+                    projectDir=None):
     """
 Parameters:
 
@@ -61,7 +61,7 @@ Parameters:
     midpoint (float, optional):  
         The threshold for determining positive cells, in conjunction with 'gatorScore'.
 
-    outputDir (string, optional):  
+    projectDir (string, optional):  
         Provide the path to the output directory. If `None`, the `gatorObject` will 
         be returned to memory.
 
@@ -88,7 +88,7 @@ Example:
                         gatorOutput='gatorOutput',
                         gatorScore='gatorScore', 
                         midpoint=0.5,
-                        outputDir=None)
+                        projectDir=None)
         
         # Same function if the user wants to run it via Command Line Interface
         python addPredictions.py --gatorObject Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad    	
@@ -127,8 +127,8 @@ Example:
     
     # Return to adata
     # Save data if requested
-    if outputDir is not None:    
-        finalPath = pathlib.Path(outputDir)     
+    if projectDir is not None:    
+        finalPath = pathlib.Path(projectDir)     
         if not os.path.exists(finalPath):
             os.makedirs(finalPath)
         # determine file name
@@ -151,11 +151,11 @@ if __name__ == '__main__':
     parser.add_argument('--gatorOutput', type=str, default='gatorOutput', help='Name under which gatorOutput is stored.')
     parser.add_argument('--gatorScore', type=str, default='gatorScore', help='Name under which gatorScore is stored.')
     parser.add_argument('--midpoint', type=float, default=0.5, help='Threshold for determining positive cells, in conjunction with gatorScore.')
-    parser.add_argument('--outputDir', type=str, default=None, help='Path to the output directory. If None, gatorObject will be returned to memory.')
+    parser.add_argument('--projectDir', type=str, default=None, help='Path to the output directory. If None, gatorObject will be returned to memory.')
     args = parser.parse_args()
     addPredictions(gatorObject=args.gatorObject, 
                    method=args.method, 
                    gatorOutput=args.gatorOutput, 
                    gatorScore=args.gatorScore, 
                    midpoint=args.midpoint, 
-                   outputDir=args.outputDir)
+                   projectDir=args.projectDir)
