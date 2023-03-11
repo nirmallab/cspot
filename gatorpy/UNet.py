@@ -323,7 +323,6 @@ class UNet2D:
 		WValid = np.zeros((nValid, imSize, imSize, nClasses))
 		WTest = np.zeros((nTest, imSize, imSize, nClasses))
 
-		print('loading data, computing mean / st dev')
 		if not os.path.exists(modelPath):
 			os.makedirs(modelPath)
 		# if restoreVariables:

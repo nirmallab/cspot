@@ -47,7 +47,7 @@ Parameters:
 
     markerNames (list, optional):
         The program searches for marker names in the meta data (description section)
-        of the tiff files created by `dlModelPredict` by default. If the meta data
+        of the tiff files created by `gatorPredict` by default. If the meta data
         is lost due to user modifications, provide the marker names for each
         channel/layer in the `probabilityMaskPath` here.
 

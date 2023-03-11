@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gatorpy"
-version = "0.1.2"
+version = "0.1.3"
 description = "GATOR: A scalable framework for automated processing of highly multiplexed tissue images"
 authors = ["Ajit Johnson Nirmal <ajitjohnson.n@gmail.com>"]
 readme = "README.md"
@@ -39,3 +39,7 @@ tensorflow = "^2.11.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+
+

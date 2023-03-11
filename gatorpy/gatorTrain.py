@@ -37,7 +37,8 @@ def gatorTrain(trainingDataPath,
                nOut0=16,
                stdDev0=0.03,
                batchSize=16,
-               epochs=100):
+               epochs=100,
+               verbose=True):
     """
 
 Parameters:
@@ -90,6 +91,9 @@ Parameters:
     
     epochs (int, optional):
         Number of training epochs.
+
+    verbose (bool, optional):
+        If True, print detailed information about the process to the console.  
 
 Returns:
     
@@ -230,43 +234,34 @@ Example:
 
     gatorTrainInternal_result = list(
         map(r_gatorTrainInternal,  directories))  # Apply function
+    
+    # Finish Job
+    if verbose is True:
+        print('Gator Models have been generated, head over to "' + str(projectDir) + '/GATOR/gatorModel" to view results')
+
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Train a deep learning model using data for each marker, stored in separate directories.')
-    parser.add_argument('--trainingDataPath', type=str,
-                        help='The file path leading to the directory that holds the training data for each marker.')
-    parser.add_argument('--projectDir', type=str,
-                        help='Path to output directory.')
-    parser.add_argument("--trainMarkers", type=str, nargs="*", default=None,
-                        help="Generate models for a specified list of markers.")
-    parser.add_argument('--artefactPath', type=str,
-                        help='Path to the directory where the artefacts data is loaded from.', default=None)
-    parser.add_argument('--imSize', type=int,
-                        help='Image size (assumed to be square).', default=64)
-    parser.add_argument('--nChannels', type=int,
-                        help='Number of channels in the input image.', default=1)
-    parser.add_argument('--nClasses', type=int,
-                        help='Number of classes in the classification problem.', default=2)
-    parser.add_argument('--nExtraConvs', type=int,
-                        help='Number of extra convolutional layers to add to the model.', default=0)
-    parser.add_argument('--nLayers', type=int,
-                        help='Total number of layers in the model.', default=3)
-    parser.add_argument('--featMapsFact', type=int,
-                        help='Factor to multiply the number of feature maps by in each layer.', default=2)
-    parser.add_argument('--downSampFact', type=int,
-                        help='Factor to down-sample the feature maps by in each layer.', default=2)
-    parser.add_argument(
-        '--ks', type=int, help='Kernel size for the convolutional layers.', default=3)
-    parser.add_argument(
-        '--nOut0', type=int, help='Number of filters in the first layer.', default=16)
-    parser.add_argument('--stdDev0', type=float,
-                        help='Standard deviation for the initializer for the first layer.', default=0.03)
-    parser.add_argument('--batchSize', type=int,
-                        help='Batch size for training.', default=16)
-    parser.add_argument('--epochs', type=int,
-                        help='Number of training epochs.', default=100)
+    parser.add_argument('--trainingDataPath', type=str, help='The file path leading to the directory that holds the training data for each marker.')
+    parser.add_argument('--projectDir', type=str, help='Path to output directory.')
+    parser.add_argument("--trainMarkers", type=str, nargs="*", default=None, help="Generate models for a specified list of markers.")
+    parser.add_argument('--artefactPath', type=str, help='Path to the directory where the artefacts data is loaded from.', default=None)
+    parser.add_argument('--imSize', type=int, help='Image size (assumed to be square).', default=64)
+    parser.add_argument('--nChannels', type=int, help='Number of channels in the input image.', default=1)
+    parser.add_argument('--nClasses', type=int, help='Number of classes in the classification problem.', default=2)
+    parser.add_argument('--nExtraConvs', type=int, help='Number of extra convolutional layers to add to the model.', default=0)
+    parser.add_argument('--nLayers', type=int, help='Total number of layers in the model.', default=3)
+    parser.add_argument('--featMapsFact', type=int, help='Factor to multiply the number of feature maps by in each layer.', default=2)
+    parser.add_argument('--downSampFact', type=int, help='Factor to down-sample the feature maps by in each layer.', default=2)
+    parser.add_argument('--ks', type=int, help='Kernel size for the convolutional layers.', default=3)
+    parser.add_argument('--nOut0', type=int, help='Number of filters in the first layer.', default=16)
+    parser.add_argument('--stdDev0', type=float, help='Standard deviation for the initializer for the first layer.', default=0.03)
+    parser.add_argument('--batchSize', type=int, help='Batch size for training.', default=16)
+    parser.add_argument('--epochs', type=int, help='Number of training epochs.', default=100)
+    parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")    
+
     args = parser.parse_args()
     gatorTrain(trainingDataPath=args.trainingDataPath,
                projectDir=args.projectDir,
@@ -283,4 +278,5 @@ if __name__ == '__main__':
                nOut0=args.nOut0,
                stdDev0=args.stdDev0,
                batchSize=args.batchSize,
-               epochs=args.epochs)
+               epochs=args.epochs,
+               verbose=args.verbose)

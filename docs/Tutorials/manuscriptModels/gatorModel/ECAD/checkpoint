@@ -1,0 +1,2 @@
+model_checkpoint_path: "F:\\ajn_training_data\\model.ckpt"
+all_model_checkpoint_paths: "F:\\ajn_training_data\\model.ckpt"

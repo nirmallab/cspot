@@ -81,7 +81,7 @@ Parameters:
         Apply `log1p` transformation on the data, unless it has already been log
         transformed in which case set it to `False`. 
 
-    stringentThreshold (float, optional):
+    stringentThreshold (bool, optional):
         The Gaussian Mixture Model (GMM) is utilized to distinguish positive and 
         negative cells by utilizing gatorScores. The stringentThreshold can be utilized 
         to further refine the classification of positive and negative cells. 
@@ -862,7 +862,11 @@ Example:
         else:
             imid = gatorObjectPath[0].stem
         bdata.write(finalPath / f'{imid}.h5ad')
-
+        
+    # Finish Job
+    if verbose is True:
+        print('Gator ran successfully, head over to "' + str(projectDir) + '/GATOR/gatorOutput" to view results')
+        
     return bdata
 
 # Make the Function CLI compatable
@@ -875,6 +879,7 @@ if __name__ == '__main__':
     parser.add_argument('--dropMarkers', type=list, default=None, help='Specify a list of markers to be removed from the analysis')
     parser.add_argument('--RobustScale', type=bool, default=False, help='When set to True, the data will be subject to Robust Scaling before the Gradient Boosting Classifier is trained')
     parser.add_argument('--log', type=bool, default=True, help='Apply `log1p` transformation on the data, unless it has already been log transformed in which case set it to `False`')
+    parser.add_argument('--stringentThreshold', type=bool, default=False, help='Threshold to refine the classification of positive and negative cells')
     parser.add_argument('--x_coordinate', type=str, default='X_centroid', help='The column name in `single-cell spatial table` that records the X coordinates for each cell')
     parser.add_argument('--y_coordinate', type=str, default='Y_centroid', help='The column name in `single-cell spatial table` that records the Y coordinates for each cell')
     parser.add_argument('--imageid', type=str, default='imageid', help='The name of the column that holds the unique image ID')
@@ -891,6 +896,7 @@ if __name__ == '__main__':
           dropMarkers=args.dropMarkers,
           RobustScale=args.RobustScale,
           log=args.log,
+          stringentThreshold=args.stringentThreshold, 
           x_coordinate=args.x_coordinate,
           y_coordinate=args.y_coordinate,
           imageid=args.imageid,

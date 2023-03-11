@@ -25,8 +25,12 @@ import tifffile
 import numpy as np
 from skimage.transform import resize
 
+
 # from other .py scripts
 if __name__ == '__main__':
+    from toolbox.imtools import im2double
+    from UNet import UNet2D
+elif __name__ == 'gatorPredict':
     from toolbox.imtools import im2double
     from UNet import UNet2D
 else:
@@ -57,7 +61,7 @@ Parameters:
     projectDir (str):  
         The path to the output directory where the processed images (`probabilityMasks`) will be saved.
      
-    markerChannelPath (str, optional):  
+    markerChannelMapPath (str, optional):  
         The path to the marker panel list, which contains information about the markers used in the image. This argument is required.
      
     markerColumnName (str, optional):  

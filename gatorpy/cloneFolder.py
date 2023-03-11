@@ -183,6 +183,10 @@ Example:
     r_processFolder = lambda x: processFolder (folderIndex=x)
     process_folders = list(map(r_processFolder, list(range(len(copyFolder)))))
 
+    # Finish Job
+    if verbose is True:
+        print('Cloning Folder is complete, head over to /GATOR/Thumbnails" to view results')
+
 # Make the Function CLI compatable
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Clone folder file structure')
