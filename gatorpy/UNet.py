@@ -15,10 +15,11 @@ import pkgutil
 
 tf.disable_v2_behavior()
 
+
 # from other .py scripts
 if pkgutil.find_loader("UNet") is not None:
-    from toolbox.imtools import *
-    from toolbox.ftools import *
+    from toolbox.imtools import tifread, normalize, im2double, imwrite
+    from toolbox.ftools import pathjoin, saveData, loadData
     from toolbox.PartitionOfImage import PI2D
     from toolbox.GPUselect import pick_gpu_lowest_memory
 else:
@@ -44,6 +45,7 @@ else:
 #from toolbox import GPUselect
 #from .toolbox.imtools import tifread, tifwrite, imshow, imshowlist, imread, imwrite, im2double, size, imresizeDouble, imresize3Double, imresizeUInt8, imresize3UInt8, normalize, snormalize, cat, imerode, imdilate, imerode3, imdilate3, sphericalStructuralElement, medfilt, maxfilt, minfilt, ptlfilt, imgaussfilt, imlogfilt, imgradmag, localstats, localstats3, imderivatives, imderivatives3, imfeatures, imfeatures3, stack2list, thrsegment
 #from .toolbox.ftools import fileparts, listfiles, listsubdirs, pathjoin, saveData, loadData, createFolderIfNonExistent, moveFile, copyFile, removeFile
+
 
 
 # Functions 
@@ -794,3 +796,4 @@ class UNet2D:
 		# PI2D.patchOutput(i-j+k,normalize(imgradmag(PI2D.getPatch(i-j+k),1)))
 
 		return PI2D.getValidOutput()
+
