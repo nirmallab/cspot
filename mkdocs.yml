@@ -50,13 +50,14 @@ nav:
         - Phenotype cells:
             - gatorPhenotype: 'Functions/gatorPhenotype.md'
         - Helper Functions:
-            - gatorToCSV: 'Functions/gatorToCSV.md'
+            - gatorExport: 'Functions/gatorExport.md'
             - addPredictions: 'Functions/addPredictions.md'
     - Tutorials:
         - Installation and Set Up: 'Tutorials/SetUp.md'
         - Build Gator Model: 'Tutorials/BuildGatorModels.md'
         - Run Gator Algorithm: 'Tutorials/RunGatorAlgorithm.md'
-        - Phenotype cells: 'Tutorials/CellPhenotyping.md'
+        - Phenotype Cells: 'Tutorials/CellPhenotyping.md'
+        - Helper Functions: 'Tutorials/HelperFunctions.md'
 
 
 plugins:
