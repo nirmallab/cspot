@@ -6,11 +6,11 @@
 
 """
 !!! abstract "Short Description"
-    The gatorPipeline function is simply a wrapper for the following functions:
-    - gatorPredict
-    - generateGatorScore
-    - gatorObject
-    - gator
+    The gatorPipeline function is simply a wrapper for the following functions:  
+    - gatorPredict  
+    - generateGatorScore  
+    - gatorObject  
+    - gator  
       
     Typically, in production settings, `gatorPipeline` would be utilized, whereas 
     step-by-step analysis would be employed for troubleshooting, model validation, 
@@ -228,6 +228,7 @@ Example:
                 --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif \
                 --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv \
                 --projectDir /Users/aj/Desktop/gatorExampleData
+        ```
                 
          
     """
