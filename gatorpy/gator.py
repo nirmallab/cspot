@@ -35,7 +35,7 @@ import argparse
 
 def gator (gatorObject,
            gatorScore='gatorScore',
-           minAbundance=0.002,
+           minAbundance=0.005,
            percentiles=[1, 20, 80, 99],
            dropMarkers = None,
            RobustScale=False,

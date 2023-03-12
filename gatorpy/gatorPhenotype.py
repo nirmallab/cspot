@@ -426,6 +426,10 @@ Example:
             imid = fileName
     
         adata.write(finalPath / f'{imid}.h5ad')
+        # Print
+        if verbose is True:
+            print('Modified gatorObjects is stored at "' + str(projectDir) + '/GATOR/gatorPhenotyped')
+
     else:
         # Return data
         return adata

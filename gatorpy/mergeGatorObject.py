@@ -209,6 +209,10 @@ Example:
         if not os.path.exists(finalPath):
             os.makedirs(finalPath)
         bdata.write(finalPath / f'{fileName}.h5ad')
+        # Print
+        if verbose is True:
+            print('Given gatorObjects have been merged, head over to "' + str(projectDir) + '/GATOR/mergedGatorObject" to view results')
+
 
     # return data
     return bdata

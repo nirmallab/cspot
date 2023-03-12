@@ -1,9 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+#Created on Wed Mar  8 21:51:38 2023
+#@author: Ajit Johnson Nirmal
+#Run Gator Pipeline
+
 """
-Created on Wed Mar  8 21:51:38 2023
-@author: Ajit Johnson Nirmal
-Run Gator Pipeline
+!!! abstract "Short Description"
+    The gatorPipeline function is simply a wrapper for the following functions:
+    - gatorPredict
+    - generateGatorScore
+    - gatorObject
+    - gator
+      
+    Typically, in production settings, `gatorPipeline` would be utilized, whereas 
+    step-by-step analysis would be employed for troubleshooting, model validation, 
+    and similar tasks that necessitate greater granularity or control.
+      
+    Please refer to the individual function documentation for parameter tuning.
+
+## Function
 """
 
 # libs
@@ -164,45 +179,55 @@ Parameters:
     
 Returns:
     gatorObject (anndata):
-        If projectDir is provided the updated Gator Object will saved within the
-        provided projectDir.
+        Returns a gatorObject with predictions of all positve and negative cells. 
 
 Example:
 
         ```python
         
-        # Manadatory parameters for running the gator pipeline
+        # Path to all the files that are necessary files for running the 
+        Gator Prediction Algorithm (broken down based on sub functions)
         projectDir = '/Users/aj/Desktop/gatorExampleData'
+        
+        # gatorPredict related paths
         imagePath = projectDir + '/image/exampleImage.tif'
         markerChannelMapPath = projectDir + '/markers.csv'
         gatorModelPath = projectDir + '/GATOR/gatorModel/'
+        
+        # Generate generateGatorScore related paths
         segmentationPath = projectDir + '/segmentation/exampleSegmentationMask.tif'
+        
+        # gatorObject related paths
         spatialTablePath = projectDir + '/quantification/exampleSpatialTable.csv'
         
         # Run the pipeline
         ga.gatorPipeline(   
-                        # parameters for gatorPredict
-                        imagePath=imagePath,
-                        gatorModelPath=gatorModelPath,
-                        markerChannelMapPath=markerChannelMapPath,
-                        # parameters for generateGatorScore
-                        segmentationMaskPath=segmentationPath,
-                        # parameters for gatorObject
-                        spatialTablePath=spatialTablePath,
-                        # parameters to run gator
-                        # ..
-                        # common parameters
-                        verbose=False,
-                        projectDir=projectDir)
+                    # parameters for gatorPredict function
+                    imagePath=imagePath,
+                    gatorModelPath=gatorModelPath,
+                    markerChannelMapPath=markerChannelMapPath,
+
+                    # parameters for generateGatorScore function
+                    segmentationMaskPath=segmentationPath,
+
+                    # parameters for gatorObject function
+                    spatialTablePath=spatialTablePath,
+
+                    # parameters to run gator function
+                    # ..
+
+                    # common parameters
+                    verbose=False,
+                    projectDir=projectDir)
         
         # Same function if the user wants to run it via Command Line Interface
         python gatorPipeline.py \
-        --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif \
-        --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ \
-        --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv \
-        --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif \
-        --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv \
-        --projectDir /Users/aj/Desktop/gatorExampleData
+                --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif \
+                --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ \
+                --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv \
+                --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif \
+                --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv \
+                --projectDir /Users/aj/Desktop/gatorExampleData
                 
          
     """

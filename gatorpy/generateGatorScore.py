@@ -168,6 +168,10 @@ Example:
     # file name
     file_name = pathlib.Path(probabilityMaskPath).stem + '.csv'
     quantTable.to_csv(finalPath / file_name)
+    
+    # Finish Job
+    if verbose is True:
+        print('gatorScore is ready, head over to' + str(projectDir) + '/GATOR/gatorScore" to view results')
 
 
 # Make the Function CLI compatable

@@ -40,21 +40,22 @@ nav:
             - cloneFolder: 'Functions/cloneFolder.md'
             - generateTrainTestSplit: 'Functions/generateTrainTestSplit.md'
             - gatorTrain: 'Functions/gatorTrain.md'
-        - Apply Gator Model:
+        - Run Gator Algorithm:
+            - gatorPipeline: 'Functions/gatorPipeline.md'
             - gatorPredict: 'Functions/gatorPredict.md'
             - generateGatorScore: 'Functions/generateGatorScore.md'
-        - Run Gator Algorithm:
             - gatorObject: 'Functions/gatorObject.md'
             - gator: 'Functions/gator.md'
             - mergeGatorObject: 'Functions/mergeGatorObject.md'
         - Phenotype cells:
             - gatorPhenotype: 'Functions/gatorPhenotype.md'
         - Helper Functions:
+            - gatorToCSV: 'Functions/gatorToCSV.md'
             - addPredictions: 'Functions/addPredictions.md'
     - Tutorials:
-        - Build Gator Model: 'Tutorials/BuildModel.md'
-        - Apply Gator Model: 'Tutorials/ApplyModel.md'
-        - Run Gator Algorithm: 'Tutorials/RunGator.md'
+        - Installation and Set Up: 'Tutorials/SetUp.md'
+        - Build Gator Model: 'Tutorials/BuildGatorModels.md'
+        - Run Gator Algorithm: 'Tutorials/RunGatorAlgorithm.md'
         - Phenotype cells: 'Tutorials/CellPhenotyping.md'
 
 

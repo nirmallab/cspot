@@ -229,9 +229,16 @@ Example:
         else:
             imid = gatorScorePath[0].stem
         adata.write(finalPath / f'{imid}.h5ad')
+        # Finish Job
+        if verbose is True:
+            print('Gator Object has been created, head over to'+ str(projectDir) + '/GATOR/gatorObject" to view results')
     else:
         # Return data
+        if verbose is True:
+            print('Gator Object has been created')
         return adata
+    
+        
 
 # Make the Function CLI compatable
 if __name__ == '__main__':
