@@ -25,8 +25,7 @@ def gatorExport (gatorObject,
                  CellID='CellID',
                  verbose=True):
     """
-Parameters
-    ----------
+Parameters:
     gatorObject (anndata):
         Pass the `gatorObject` loaded into memory or a path to the `gatorObject` 
         file (.h5ad).
