@@ -1,27 +1,27 @@
-# 🐊 GATOR 
-## Apply `gatorModels` to new images.
-**lease keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `Gator` and will not yeild any meaningful results.**
+# 🐊 Run the GATOR Prediction Algorithm on new images
 
-**Download the [exemplar dataset](https://github.com/nirmalLab/gatorpy/tree/main/docs/Tutorials/gatorExampleData) and [executable notebook](https://github.com/nirmalLab/gatorpy/blob/main/docs/Tutorials/notebooks/ApplyModel.ipynb)**
+**Download the [executable notebook](https://github.com/nirmalLab/gatorpy/blob/main/docs/Tutorials/notebooks/ApplyModel.ipynb) and [trained models]().**  
+For the purpose of this tutorial, replace the `gatorModel` folder within the exemplar data with the newly downloaded `gatorModel` directory. 
   
-Make sure you have completed `Build Model` Tutorial before you try to execute this Jupyter Notebook!
+Make sure you have completed `BuildModels` Tutorial before you try to execute this Jupyter Notebook!
+  
+Please keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `Gator` and will not yeild any meaningful results.
+
+
+**Running the Gator Prediction Algorithm involves the following steps:**
+- Run the `gatorPredict` function on a new image. It will produce an image with probability masks
+- Run the `generateGatorScore` function on the probability masks to generate the `gatorScores`
+- Run the `gatorObject` to create an anndata object with the `gatorScores` and pre-computed `single-cell table`
+- Lastly, run `gator`  on the gatorObject
+  
+**Note: To make things easy, all of the above steps can be run with a single command `gatorPipeline`.**  
+Typically, in production settings, `gatorPipeline` would be utilized, whereas step-by-step analysis would be employed for troubleshooting, model validation, and similar tasks that necessitate greater granularity or control.
 
 
 ```python
-# import packages
+# import packages in jupyter notebook (not needed for command line interface users)
 import gatorpy as ga
-import os
 ```
-
-    WARNING:tensorflow:From /opt/anaconda3/envs/gator/lib/python3.9/site-packages/tensorflow/python/compat/v2_compat.py:107: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    non-resource variables are not supported in the long term
-
-
-**We need `three` input for this module to run**
-- The generated Model
-- Raw Image
-- markers.csv file that maps the marker names and the gatorModel.
 
 
 ```python
@@ -34,8 +34,8 @@ markerChannelMapPath = cwd + '/markers.csv'
 gatorModelPath = cwd + '/GATOR/gatorModel/'
 
 # Generate gatorScores
-#probabilityMaskPath = cwd + '/GATOR/gatorPredict/exampleImage_gatorPredict.ome.tif'
-#segmentationPath = cwd + '/segmentation/exampleSegmentationMask.tif'
+probabilityMaskPath = cwd + '/GATOR/gatorPredict/exampleImage_gatorPredict.ome.tif'
+segmentationPath = cwd + '/segmentation/exampleSegmentationMask.tif'
 ```
 
 ## Run the Gator Pipeline
@@ -119,7 +119,8 @@ python gatorPipeline.py \
         --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv \
         --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif \
         --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv \
-        --projectDir /Users/aj/Desktop/gatorExampleData
+        --projectDir /Users/aj/Desktop/gatorExampleData \
+        --verbose True
 ```
 
 ## Step-1: Apply the generated Models on the Image of interest (Pixel Level)
