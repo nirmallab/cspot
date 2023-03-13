@@ -5,11 +5,11 @@ hide:
 ---
 
 # 🐊 Getting Started with Gator 
-Kindly note that **Gator is not a plug-and-play solution**, rather it's a framework that requires significant upfront investment of time from potential users for training and validating deep learning models, which can then be utilized in a plug-and-play manner for processing large volumes of similar multiplexed imaging data.
+Kindly note that **Gator is not a plug-and-play solution**. It's a framework that requires significant upfront investment of time from potential users for training and validating deep learning models, which can then be utilized in a plug-and-play manner for processing large volumes of similar multiplexed imaging data.
   
-**There are two ways to set it up based on how you would like to run the program**
-- Using an interactive environment like Jupyter Notebooks
-- Using Command Line Interface
+**There are two ways to set it up based on how you would like to run the program**  
+- Using an interactive environment like Jupyter Notebooks  
+- Using Command Line Interface  
   
 Before we set up Gator, we highly recommend using a environment manager like Conda. Using an environment manager like Conda allows you to create and manage isolated environments with specific package versions and dependencies. 
   
@@ -37,7 +37,7 @@ pip install notebook
 
 # open the notebook and import Gator
 import gatorpy as ga
-# follow the tutorials for how to run specific function
+# Go to the tutorial section to follow along
 ```
 
 ## **Command Line Interface**
@@ -45,12 +45,12 @@ import gatorpy as ga
 wget https://github.com/nirmalLab/gatorpy/archive/main.zip
 unzip main.zip 
 cd gatorpy-main/gatorpy 
-# follow the tutorials for how to run specific function
+# Go to the tutorial section to follow along
 
 ```
 
 ## **Docker Container**
 ```
 docker pull nirmallab/gatorpy:gatorpy
-# follow the tutorials for how to run specific function
+# Go to the tutorial section to follow along
 ```
