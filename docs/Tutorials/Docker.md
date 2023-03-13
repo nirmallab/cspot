@@ -24,10 +24,8 @@ If you are comfortable using Docker and would like to execute the commands in yo
 To use your own data, it is recommended to follow the same folder structure as the sample data. However, if that is not possible, you should place all the required data within a single folder. This is because we need to tell Docker where to find all the raw data, and specifying a single directory makes it easier to manage the data within the container.
   
 ```
-# specify the directory where the sample data lives
+# specify the directory where the sample data lives and Run the docker command
 export projectDir="/Users/aj/Desktop/gatorExampleData"
-
-# Run the docker command
 docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
                 nirmallab/gatorpy:gatorpy \
                 python /app/generateThumbnails.py \
