@@ -58,6 +58,7 @@ nav:
         - Run Gator Algorithm: 'Tutorials/RunGatorAlgorithm.md'
         - Phenotype Cells: 'Tutorials/CellPhenotyping.md'
         - Helper Functions: 'Tutorials/HelperFunctions.md'
+        - Run Gator with Docker: 'Tutorials/Docker.md'
 
 
 plugins:
