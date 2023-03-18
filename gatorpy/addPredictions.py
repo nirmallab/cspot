@@ -37,7 +37,7 @@ def addPredictions (gatorObject,
                     gatorOutput='gatorOutput',
                     gatorScore='gatorScore', 
                     midpoint=0.5,
-                    projectDir=None):
+                    outputDir=None):
     """
 Parameters:
 
@@ -61,8 +61,11 @@ Parameters:
     midpoint (float, optional):  
         The threshold for determining positive cells, in conjunction with 'gatorScore'.
 
-    projectDir (string, optional):  
-        Provide the path to the output directory. If `None`, the `gatorObject` will 
+    outputDir (string, optional):  
+        Provide the path to the output directory. Kindly take note that this particular 
+        output will not be automatically saved in a predetermined directory, 
+        unlike the other outputs. The file will be saved in the directory 
+        specified by the `outputDir` parameter. If `None`, the `gatorObject` will 
         be returned to memory.
 
 Returns:
@@ -88,13 +91,12 @@ Example:
                         gatorOutput='gatorOutput',
                         gatorScore='gatorScore', 
                         midpoint=0.5,
-                        projectDir=None)
+                        outputDir=None)
         
         # Same function if the user wants to run it via Command Line Interface
         python addPredictions.py --gatorObject Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad    	
 
     """
-    
     # Load the adata
     if isinstance(gatorObject, str):
         adata = ad.read(gatorObject)
@@ -108,9 +110,9 @@ Example:
     
     # intialize the data    
     if method == 'gatorOutput':
-        attach_df = adata.uns[gatorOutput]
+        attach_df = adata.uns[gatorOutput].copy()
     elif method == 'gatorScore':
-        df = adata.uns[gatorScore]
+        df = adata.uns[gatorScore].copy()
         attach_df = assign_labels (df, midpoint=midpoint)
         
         
@@ -127,8 +129,8 @@ Example:
     
     # Return to adata
     # Save data if requested
-    if projectDir is not None:    
-        finalPath = pathlib.Path(projectDir)     
+    if outputDir is not None:    
+        finalPath = pathlib.Path(outputDir)     
         if not os.path.exists(finalPath):
             os.makedirs(finalPath)
         # determine file name
@@ -151,11 +153,11 @@ if __name__ == '__main__':
     parser.add_argument('--gatorOutput', type=str, default='gatorOutput', help='Name under which gatorOutput is stored.')
     parser.add_argument('--gatorScore', type=str, default='gatorScore', help='Name under which gatorScore is stored.')
     parser.add_argument('--midpoint', type=float, default=0.5, help='Threshold for determining positive cells, in conjunction with gatorScore.')
-    parser.add_argument('--projectDir', type=str, default=None, help='Path to the output directory. If None, gatorObject will be returned to memory.')
+    parser.add_argument('--outputDir', type=str, default=None, help='Path to the output directory. If None, gatorObject will be returned to memory.')
     args = parser.parse_args()
     addPredictions(gatorObject=args.gatorObject, 
                    method=args.method, 
                    gatorOutput=args.gatorOutput, 
                    gatorScore=args.gatorScore, 
                    midpoint=args.midpoint, 
-                   projectDir=args.projectDir)
+                   outputDir=args.outputDir)

@@ -51,6 +51,7 @@ nav:
             - gatorPhenotype: 'Functions/gatorPhenotype.md'
         - Helper Functions:
             - gatorExport: 'Functions/gatorExport.md'
+            - scatterPlot: 'Functions/scatterPlot.md'
             - addPredictions: 'Functions/addPredictions.md'
     - Tutorials:
         - Installation and Set Up: 'Tutorials/SetUp.md'
