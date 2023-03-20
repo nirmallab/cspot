@@ -1,6 +1,6 @@
 # 🐊 Run the GATOR Prediction Algorithm on new images
 
-**Download the [executable notebook](https://github.com/nirmalLab/gatorpy/blob/main/docs/Tutorials/notebooks/ApplyModel.ipynb) and [trained models](https://github.com/nirmallab/gatorpy/tree/main/docs/Tutorials/manuscriptModels/).**  
+**Download the [executable notebook](https://github.com/nirmalLab/gatorpy/blob/main/docs/Tutorials/notebooks/ApplyModel.ipynb) and [trained models](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO).**  
 For the purpose of this tutorial, replace the `gatorModel` folder within the exemplar data with the newly downloaded `gatorModel` directory. 
   
 Make sure you have completed `BuildModels` Tutorial before you try to execute this Jupyter Notebook!
