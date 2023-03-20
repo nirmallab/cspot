@@ -54,6 +54,7 @@ nav:
             - scatterPlot: 'Functions/scatterPlot.md'
             - addPredictions: 'Functions/addPredictions.md'
     - Tutorials:
+        - Download Tutorial Data: 'Tutorials/exampleData.md'
         - Installation and Set Up: 'Tutorials/SetUp.md'
         - Build Gator Model: 'Tutorials/BuildGatorModels.md'
         - Run Gator Algorithm: 'Tutorials/RunGatorAlgorithm.md'

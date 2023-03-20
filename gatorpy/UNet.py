@@ -751,8 +751,7 @@ class UNet2D:
 			UNet2D.DatasetStDev = loadData(pathjoin(modelPath, 'datasetStDev.data'))
 		else:
 			UNet2D.DatasetStDev = std
-		print(UNet2D.DatasetMean)
-		print(UNet2D.DatasetStDev)
+
 
 		# --------------------------------------------------
 		# session

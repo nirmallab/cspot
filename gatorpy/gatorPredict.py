@@ -48,7 +48,8 @@ def gatorPredict (imagePath,
                  channelColumnName='channel', 
                  modelColumnName='gatormodel', 
                  verbose=True,
-                 GPU=-1):
+                 GPU=-1,
+                 dsFactor=1):
     
     """
 Parameters:
@@ -78,6 +79,9 @@ Parameters:
 
     GPU (int, optional):  
         An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
+
+    dsFactor (float, optional):
+        An optional argument to downsample image before inference. The default value is 1, meaning that the image is not downsampled. Use it to modify image pixel size to match training data in the model.
 
 Returns:
     Predicted Probability Masks (images):  
@@ -170,8 +174,6 @@ Example:
         os.makedirs(probPath,exist_ok=True)
 
 
-
-
     def data(runMenu, 
              imagePath, 
              modelPath, 
@@ -200,19 +202,15 @@ Example:
                 I = tifffile.imread(imagePath, key=int(channel-1))
 
             if I.dtype == 'float32':
-                I=np.uint16(I)
+                I = im2double(I) * 255
+            elif I.dtype == 'uint16':
+                I = im2double(I) * 255
+
             rawVert = I.shape[0]
             rawHorz = I.shape[1]
-            rawI = I
-
             hsize = int(float(rawVert * float(dsFactor)))
             vsize = int(float(rawHorz * float(dsFactor)))
-            # I = resize(I, (hsize, vsize))
-            cells = I
-            maxLimit = np.max(I)
-            I=I/65535*255
-
-            rawI = im2double(rawI) / np.max(im2double(rawI))
+            I = resize(I, (hsize, vsize),preserve_range=True)
 
             append_kwargs = {
                 'bigtiff': True,
@@ -229,9 +227,8 @@ Example:
             PM = resize(PM, (rawVert, rawHorz))
             yield np.uint8(255 * PM)
 
-    with tifffile.TiffWriter(probPath / (fileName + '_gatorPredict.ome.tif')) as tiff:
-        tiff.write(data(runMenu, imagePath, modelPath, probPath, dsFactor=1, GPU=0), shape=(numMarkers,I.shape[0],I.shape[1]), dtype='uint8', metadata={'Channel': {'Name': runMenu.marker.tolist()}, 'axes': 'CYX'})
-
+    with tifffile.TiffWriter(probPath / (fileName + '_gatorPredict.ome.tif'),bigtiff=True) as tiff:
+        tiff.write(data(runMenu, imagePath, modelPath, probPath, dsFactor=dsFactor, GPU=0), shape=(numMarkers,I.shape[0],I.shape[1]), dtype='uint8', metadata={'Channel': {'Name': runMenu.marker.tolist()}, 'axes': 'CYX'})
         UNet2D.singleImageInferenceCleanup()
 
 
@@ -275,6 +272,7 @@ if __name__ == '__main__':
     parser.add_argument('--modelColumnName', type=str, default='gatormodel', help='The name of the column in the marker panel list that contains the model names. The default value is `gatormodel`.')
     parser.add_argument("--verbose", type=bool, default=True, help="If True, print detailed information about the process to the console.")      
     parser.add_argument('--GPU', type=int, default=-1, help='An optional argument to explicitly select the GPU to use. The default value is 0, meaning that the GPU will be selected automatically.')
+    parser.add_argument('--dsFactor', type=float, default=1,help='Scaling Factor.')
 
     args = parser.parse_args()
     gatorPredict(imagePath=args.imagePath, 
@@ -285,7 +283,8 @@ if __name__ == '__main__':
                  channelColumnName=args.channelColumnName, 
                  modelColumnName=args.modelColumnName, 
                  verbose=args.verbose,
-                 GPU=args.GPU)
+                 GPU=args.GPU,
+                 dsFactor=args.dsFactor)
 
 
 
