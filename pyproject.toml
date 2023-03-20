@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gatorpy"
-version = "0.1.7"
+version = "0.1.8"
 description = "GATOR: A scalable framework for automated processing of highly multiplexed tissue images"
 authors = ["Ajit Johnson Nirmal <ajitjohnson.n@gmail.com>"]
 readme = "README.md"
