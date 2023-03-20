@@ -5,7 +5,7 @@ The [executable notebook can be **downloaded here**](https://github.com/nirmalLa
   
 **When following the tutorial, it is crucial to read the text as simply running the cells will not work!**
   
-Please keep in mind that the [sample data](https://github.com/nirmalLab/gatorpy/tree/main/docs/Tutorials/gatorExampleData) is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `Gator` and will not yeild any meaningful results.
+Please keep in mind that the [sample data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO) is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `Gator` and will not yeild any meaningful results.
 
 **Training a Gator Model involves the following steps:**
 - For any given marker: Identify a image that could be used to generate postive and negative thumbnails

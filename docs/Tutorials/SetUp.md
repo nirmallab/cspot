@@ -29,7 +29,7 @@ pip install gatorpy
 
 ## Download the Exemplar Dataset
 To help you get used to the program we have provided some dummy data.   
-**Download link to the [exemplar dataset provided here.](https://github.com/nirmalLab/gatorpy/tree/main/docs/Tutorials/gatorExampleData)**  
+**Download link to the [exemplar dataset provided here.](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO)**  
 All of the following files are mandatory for running Gator, but `phenotype_workflow.csv` is optional and can be skipped if single cell phenotyping is not required.
 ```
 gatorExampleData
