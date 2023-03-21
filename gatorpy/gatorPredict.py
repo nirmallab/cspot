@@ -121,18 +121,27 @@ Example:
     maper = pd.read_csv(pathlib.Path(markerChannelMapPath))
     columnnames =  [word.lower() for word in maper.columns]
     maper.columns = columnnames
-
+    
+    # making it compatable with mcmicro when no channel info is provided
+    if not set(['channel', 'channels', channelColumnName]).intersection(set(columnnames)):
+        # add a column called 'channel'
+        maper['channel'] = [i + 1 for i in range(len(maper))]
+        columnnames = list(maper.columns)
+        
+        
     # identify the marker column name (doing this to make it easier for people who confuse between marker and markers)
     if markerColumnName not in columnnames:
-           if markerColumnName != 'marker':
-               raise ValueError('markerColumnName not found in markerChannelMap, please check')
-           if 'markers' in columnnames:
-               markerCol = 'markers'
-           else:
-               raise ValueError('markerColumnName not found in markerChannelMap, please check')
+        # ckeck if 'markers' or 'marker_name' or 'marker_names' is in columnnames
+        # if so assign that match to markerCol
+        for colname in columnnames:
+            if 'marker' in colname or 'markers' in colname or 'marker_name' in colname or 'marker_names' in colname:
+                markerCol = colname
+                break
+        else:
+            raise ValueError('markerColumnName not found in markerChannelMap, please check')
     else:
-           markerCol = markerColumnName
-   
+        markerCol = markerColumnName
+
 
    # identify the channel column name (doing this to make it easier for people who confuse between channel and channels)
     if channelColumnName not in columnnames:
@@ -151,7 +160,7 @@ Example:
         if modelColumnName != 'gatormodel':
             raise ValueError('modelColumnName not found in markerChannelMap, please check')
         if 'gatormodels' in columnnames:
-            channelCol = 'gatormodels'
+            modelCol = 'gatormodels'
         else:
             raise ValueError('modelColumnName not found in markerChannelMap, please check')
     else:
@@ -162,7 +171,6 @@ Example:
 
     # shortcuts
     numMarkers = len(runMenu)
-    len(runMenu.columns)
 
     I = skio.imread(imagePath, img_num=0, plugin='tifffile')
 
@@ -178,14 +186,14 @@ Example:
              imagePath, 
              modelPath, 
              projectDir, 
-             dsFactor=1, 
-             GPU=0):
+             dsFactor=dsFactor, 
+             GPU=GPU):
         
         # Loop through the rows of the DataFrame
         for index, row in runMenu.iterrows():
-            channel = row[channelColumnName]
-            markerName = row[markerColumnName]
-            gatormodel = row[modelColumnName]
+            channel = row[channelCol]
+            markerName = row[markerCol]
+            gatormodel = row[modelCol]
             if verbose is True:
                 print('Running gator model ' + str(gatormodel) + ' on channel ' + str(channel) + ' corresponding to marker ' + str(markerName) )
 
@@ -227,8 +235,8 @@ Example:
             PM = resize(PM, (rawVert, rawHorz))
             yield np.uint8(255 * PM)
 
-    with tifffile.TiffWriter(probPath / (fileName + '_gatorPredict.ome.tif'),bigtiff=True) as tiff:
-        tiff.write(data(runMenu, imagePath, modelPath, probPath, dsFactor=dsFactor, GPU=0), shape=(numMarkers,I.shape[0],I.shape[1]), dtype='uint8', metadata={'Channel': {'Name': runMenu.marker.tolist()}, 'axes': 'CYX'})
+    with tifffile.TiffWriter(probPath / (fileName + '_gatorPredict.ome.tif'), bigtiff=True) as tiff:
+        tiff.write(data(runMenu, imagePath, modelPath, probPath, dsFactor=dsFactor, GPU=GPU), shape=(numMarkers,I.shape[0],I.shape[1]), dtype='uint8', metadata={'Channel': {'Name': runMenu[markerCol].tolist()}, 'axes': 'CYX'})
         UNet2D.singleImageInferenceCleanup()
 
 
