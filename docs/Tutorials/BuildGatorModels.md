@@ -68,11 +68,11 @@ ga.generateThumbnails ( spatialTablePath=spatialTablePath,
 
 **Same function if the user wants to run it via Command Line Interface**
 ```
-python generateThumbnails.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv /
-                            --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif /
-                            --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv /
-                            --markers ECAD CD3D /
-                            --maxThumbnails 100 /
+python generateThumbnails.py --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv \
+                            --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif \
+                            --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv \
+                            --markers ECAD CD3D \
+                            --maxThumbnails 100 \
                             --projectDir /Users/aj/Desktop/gatorExampleData/
 ```
 
@@ -246,7 +246,9 @@ ga.gatorTrain(trainingDataPath=trainingDataPath,
 
 **Same function if the user wants to run it via Command Line Interface**
 ```
-python gatorTrain.py --trainingDataPath /Users/aj/Desktop/gatorExampleData/GATOR/TrainingData --projectDir /Users/aj/Desktop/gatorExampleData/ --epochs=1
+python gatorTrain.py --trainingDataPath /Users/aj/Desktop/gatorExampleData/GATOR/TrainingData \
+                        --projectDir /Users/aj/Desktop/gatorExampleData/ \
+                        --epochs=1
 ```
 
 
