@@ -6,7 +6,7 @@
 
 ## Download Gator from Docker Hub
 ```
-docker pull nirmallab/gatorpy:gatorpy
+docker pull nirmallab/gatorpy:latest
 
 ```
 
@@ -27,7 +27,7 @@ To use your own data, it is recommended to follow the same folder structure as t
 # specify the directory where the sample data lives and Run the docker command
 export projectDir="/Users/aj/Desktop/gatorExampleData"
 docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
-                nirmallab/gatorpy:gatorpy \
+                nirmallab/gatorpy:latest \
                 python /app/generateThumbnails.py \
                 --spatialTablePath $projectDir/quantification/exampleSpatialTable.csv \
                 --imagePath $projectDir/image/exampleImage.tif \
@@ -43,7 +43,7 @@ docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
 ```
 export projectDir="/Users/aj/Desktop/gatorExampleData"
 docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
-                nirmallab/gatorpy:gatorpy \
+                nirmallab/gatorpy:latest \
                 python /app/generateTrainTestSplit.py \
                 --thumbnailFolder $projectDir/GATOR/Thumbnails/CD3D $projectDir/GATOR/Thumbnails/ECAD\
                 --projectDir $projectDir
@@ -54,7 +54,7 @@ docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
 ```
 export projectDir="/Users/aj/Desktop/gatorExampleData"
 docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
-                nirmallab/gatorpy:gatorpy \
+                nirmallab/gatorpy:latest \
                 python /app/gatorTrain.py \
                 --trainingDataPath $projectDir/GATOR/TrainingData \
                 --projectDir $projectDir \
@@ -70,7 +70,7 @@ To keep things simple, we're running the entire pipeline with a single command i
 ```
 export projectDir="/Users/aj/Desktop/gatorExampleData"
 docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
-                nirmallab/gatorpy:gatorpy \
+                nirmallab/gatorpy:latest \
                 python /app/gatorPipeline.py \
                 --imagePath $projectDir/image/exampleImage.tif \
                 --gatorModelPath $projectDir/GATOR/gatorModel/ \
@@ -87,7 +87,7 @@ docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
 ```
 export projectDir="/Users/aj/Desktop/gatorExampleData"
 docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
-                nirmallab/gatorpy:gatorpy \
+                nirmallab/gatorpy:latest \
                 python /app/mergeGatorObject.py \
                 --gatorObjects $projectDir/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad $projectDir/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad \
                 --projectDir $projectDir
@@ -99,7 +99,7 @@ docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
 ```
 export projectDir="/Users/aj/Desktop/gatorExampleData"
 docker run -it --mount type=bind,source=$projectDir,target=/$projectDir \
-                            nirmallab/gatorpy:gatorpy \
+                            nirmallab/gatorpy:latest \
                             python /app/gatorPhenotype.py \
                             --gatorObject $projectDir/GATOR/gatorObject/exampleImage_gatorPredict.ome.h5ad \
                             --phenotype $projectDir/phenotype_workflow.csv \
