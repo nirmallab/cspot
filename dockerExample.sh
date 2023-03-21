@@ -4,17 +4,16 @@ docker rmi --force gatorpy
 docker system prune --all --force --volumes
 
 # build a new image
-docker build -t gatorpy .
+docker build -t nirmallab/gatorpy:20230321 -t nirmallab/gatorpy:latest .
 
 # login to push
 docker login
-docker tag gatorpy nirmallab/gatorpy:gatorpy
 
 # push to docker hub
-docker push nirmallab/gatorpy:gatorpy
+docker push nirmallab/gatorpy:20230321 nirmallab/gatorpy:latest
 
 # pull from docker hub
-docker pull nirmallab/gatorpy:gatorpy
+docker pull nirmallab/gatorpy:latest
 
 
 # interactive
