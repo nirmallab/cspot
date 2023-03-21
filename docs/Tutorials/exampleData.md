@@ -3,11 +3,9 @@ A short guide to downloading our exemplar data for trying out the Gator algorith
   
 If you want to try out the Gator algorithm, follow these simple steps to download our exemplar data:
 
-<hr>
-
 1. Navigate to the Harvard Dataverse website and download the exemplar data (see screenshot below!)
   
-    **Data:  https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO**
+    **[Data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO):  https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO**
 
 ![Harvard DataVerse](../../assets/harvardDataverse.jpg "Click on the denoted region to download the data")
 
