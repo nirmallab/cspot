@@ -155,7 +155,7 @@ Example:
     nrows = (len(cols_to_plot) - 1) // ncols + 1
     
     # resolve figsize
-    figsize = (figsize[0], figsize[1]*nrows)
+    figsize = (figsize[0]*ncols, figsize[1]*nrows)
     
     # Estimate point size
     if s is None:
