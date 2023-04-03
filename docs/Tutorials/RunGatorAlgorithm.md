@@ -124,7 +124,7 @@ Let us visualize the marker postivity of three markers using a helper plotting f
 
 
 ```python
-gatorObject = r"C:\Users\aj\Documents\gatorExampleData\GATOR\gatorOutput\exampleImage_gatorPredict.ome.h5ad"
+gatorObject = projectDir + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad'
 
 # Plot image to console
 ga.scatterPlot(gatorObject,
@@ -134,20 +134,20 @@ ga.scatterPlot(gatorObject,
             s=0.5,
             ncols=3,
             dpi=90,
-            figsize=(12, 4),
-            outputDir=r"C:\Users\aj\Documents\gatorExampleData\GATOR\gatorOutput",
+            figsize=(4, 4),
+            outputDir=projectDir + '/GATOR',
             outputFileName='gatorplot.png')
 
 ```
 
+    /opt/anaconda3/envs/gator/lib/python3.9/site-packages/anndata/_core/anndata.py:121: ImplicitModificationWarning: Transforming to str index.
+      warnings.warn("Transforming to str index.", ImplicitModificationWarning)
+
+
 
     
-![png](RunGatorAlgorithm_files/RunGatorAlgorithm_12_0.png)
+![png](RunGatorAlgorithm_files/RunGatorAlgorithm_12_1.png)
     
-
-
-
-    <Figure size 640x480 with 0 Axes>
 
 
 <hr>
