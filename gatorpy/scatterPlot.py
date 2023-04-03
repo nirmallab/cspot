@@ -111,6 +111,7 @@ Example:
         python scatterPlot.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad \
                             --markers ECAD CD8A \
                             --outputDir /Users/aj/Desktop/gatorExampleData/GATOR
+        ```
         
     """
     
@@ -167,7 +168,9 @@ Example:
         classes = list(subset[col])
         
         # get the current subplot axes
-        if nrows==1 or ncols==1:
+        if nrows==1 and ncols==1:
+            ax = axs
+        elif nrows==1 or ncols==1:
             ax = axs[i]
         else:
             ax = axs[i // ncols, i % ncols]
@@ -178,11 +181,13 @@ Example:
         # plot the 'neg' points with a small size
         neg_x = [x[j] for j in range(len(classes)) if classes[j] == 'neg']
         neg_y = [y[j] for j in range(len(classes)) if classes[j] == 'neg']
+        #ax.scatter(x=neg_x, y=neg_y, c=negcellsColor, s=s, alpha=alpha)
         ax.scatter(x=neg_x, y=neg_y, c=negcellsColor, s=s, alpha=alpha, **kwargs)
     
         # plot the 'pos' points on top of the 'neg' points with a larger size
         pos_x = [x[j] for j in range(len(classes)) if classes[j] == 'pos']
         pos_y = [y[j] for j in range(len(classes)) if classes[j] == 'pos']
+        #ax.scatter(x=pos_x, y=pos_y, c=poscellsColor, s=s, alpha=alpha)
         ax.scatter(x=pos_x, y=pos_y, c=poscellsColor, s=s, alpha=alpha, **kwargs)
     
         ax.set_xticklabels([])
@@ -195,11 +200,12 @@ Example:
         fig.delaxes(axs[i // ncols, i % ncols])
 
     plt.tight_layout()
-    plt.show()
 
     # save figure
     if outputDir is not None:
         plt.savefig(pathlib.Path(outputDir) / outputFileName)
+    
+    #plt.show()
     
 
 if __name__ == '__main__':
