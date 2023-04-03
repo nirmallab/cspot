@@ -35,7 +35,7 @@ projectDir = '/Users/aj/Desktop/gatorExampleData'
 # gatorPredict related paths
 imagePath = projectDir + '/image/exampleImage.tif'
 markerChannelMapPath = projectDir + '/markers.csv'
-gatorModelPath = projectDir + '/GATOR/gatorModel/'
+gatorModelPath = projectDir + '/manuscriptModels/'
 
 # Generate generateGatorScore related paths
 segmentationPath = projectDir + '/segmentation/exampleSegmentationMask.tif'
@@ -69,11 +69,46 @@ ga.gatorPipeline(
 
 ```
 
+    loading data
+    WARNING:tensorflow:From c:\Users\aj\.conda\envs\gator\lib\site-packages\keras\layers\normalization\batch_normalization.py:562: _colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Colocations handled automatically by placer.
+
+
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:137: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      bn = tf.nn.leaky_relu(tf.layers.batch_normalization(c00+shortcut, training=UNet2D.tfTraining))
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:159: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      lbn = tf.nn.leaky_relu(tf.layers.batch_normalization(
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:162: UserWarning: `tf.layers.dropout` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dropout` instead.
+      return tf.layers.dropout(lbn, 0.15, training=UNet2D.tfTraining)
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:224: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      tf.layers.batch_normalization(tf.nn.conv2d(cc, luXWeights2, strides=[1, 1, 1, 1], padding='SAME'),
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:245: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      return tf.layers.batch_normalization(
+
+
+    loading data
+    loading data
+    INFO:tensorflow:Restoring parameters from C:\Users\aj\Documents\gatorExampleData\manuscriptModels\ECAD\model.ckpt
+    Model restored.
+    Inference...
+    loading data
+    loading data
+    loading data
+    INFO:tensorflow:Restoring parameters from C:\Users\aj\Documents\gatorExampleData\manuscriptModels\CD3D\model.ckpt
+    Model restored.
+    Inference...
+
+
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\gator.py:390: RuntimeWarning: invalid value encountered in divide
+      below_midpoint = (below_midpoint - min_below) / range_below
+
+
 **Same function if the user wants to run it via Command Line Interface**
 ```
 python gatorPipeline.py \
         --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif \
-        --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ \
+        --gatorModelPath /Users/aj/Desktop/gatorExampleData/manuscriptModels/ \
         --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv \
         --segmentationMaskPath /Users/aj/Desktop/gatorExampleData/segmentation/exampleSegmentationMask.tif \
         --spatialTablePath /Users/aj/Desktop/gatorExampleData/quantification/exampleSpatialTable.csv \
@@ -82,6 +117,38 @@ python gatorPipeline.py \
 ```
 
 Head over to `GATOR/gatorOutput` to view results
+
+## Visualize the results
+
+Let us visualize the marker postivity of three markers using a helper plotting function provided within Gator.
+
+
+```python
+gatorObject = r"C:\Users\aj\Documents\gatorExampleData\GATOR\gatorOutput\exampleImage_gatorPredict.ome.h5ad"
+
+# Plot image to console
+ga.scatterPlot(gatorObject,
+            markers=['ECAD', 'CD8A', 'CD45'],
+            poscellsColor='#78290f',
+            negcellsColor='#e5e5e5',
+            s=0.5,
+            ncols=3,
+            dpi=90,
+            figsize=(12, 4),
+            outputDir=r"C:\Users\aj\Documents\gatorExampleData\GATOR\gatorOutput",
+            outputFileName='gatorplot.png')
+
+```
+
+
+    
+![png](RunGatorAlgorithm_files/RunGatorAlgorithm_12_0.png)
+    
+
+
+
+    <Figure size 640x480 with 0 Axes>
+
 
 <hr>
 
@@ -101,7 +168,7 @@ projectDir = '/Users/aj/Desktop/gatorExampleData'
 # gatorPredict related paths
 imagePath = projectDir + '/image/exampleImage.tif'
 markerChannelMapPath = projectDir + '/markers.csv'
-gatorModelPath = projectDir + '/GATOR/gatorModel/'
+gatorModelPath = projectDir + '/manuscriptModels/'
 
 ```
 
@@ -120,10 +187,40 @@ ga.gatorPredict( imagePath=imagePath,
                  modelColumnName='gatormodel')
 ```
 
+    Running gator model ECAD on channel 2 corresponding to marker ECAD
+    loading data
+
+
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:137: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      bn = tf.nn.leaky_relu(tf.layers.batch_normalization(c00+shortcut, training=UNet2D.tfTraining))
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:159: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      lbn = tf.nn.leaky_relu(tf.layers.batch_normalization(
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:162: UserWarning: `tf.layers.dropout` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dropout` instead.
+      return tf.layers.dropout(lbn, 0.15, training=UNet2D.tfTraining)
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:224: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      tf.layers.batch_normalization(tf.nn.conv2d(cc, luXWeights2, strides=[1, 1, 1, 1], padding='SAME'),
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:245: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+      return tf.layers.batch_normalization(
+
+
+    loading data
+    loading data
+    INFO:tensorflow:Restoring parameters from C:\Users\aj\Documents\gatorExampleData\manuscriptModels\ECAD\model.ckpt
+    Model restored.
+    Inference...
+    Running gator model CD3D on channel 5 corresponding to marker CD3D
+    loading data
+    loading data
+    loading data
+    INFO:tensorflow:Restoring parameters from C:\Users\aj\Documents\gatorExampleData\manuscriptModels\CD3D\model.ckpt
+    Model restored.
+    Inference...
+
+
 **Same function if the user wants to run it via Command Line Interface**
 ```
 python gatorPredict.py --imagePath /Users/aj/Desktop/gatorExampleData/image/exampleImage.tif \
-                        --gatorModelPath /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ \
+                        --gatorModelPath /Users/aj/Desktop/gatorExampleData/manuscriptModels/ \
                         --projectDir /Users/aj/Desktop/gatorExampleData \
                         --markerChannelMapPath /Users/aj/Desktop/gatorExampleData/markers.csv
 ```
@@ -150,7 +247,7 @@ ga.generateGatorScore(probabilityMaskPath=probabilityMaskPath,
 ```
 
     Quantifying the probability masks
-    gatorScore is ready, head over to/Users/aj/Desktop/gatorExampleData/GATOR/gatorScore" to view results
+    gatorScore is ready, head over toC:\Users\aj\Documents\gatorExampleData/GATOR/gatorScore" to view results
 
 
 **Same function if the user wants to run it via Command Line Interface**
@@ -193,7 +290,7 @@ adata = ga.gatorObject (spatialTablePath=spatialTablePath,
 ```
 
     Loading exampleSpatialTable.csv
-    Gator Object has been created, head over to/Users/aj/Desktop/gatorExampleData/GATOR/gatorObject" to view results
+    Gator Object has been created, head over toC:\Users\aj\Documents\gatorExampleData/GATOR/gatorObject" to view results
 
 
 **Same function if the user wants to run it via Command Line Interface**
@@ -276,9 +373,10 @@ adata = ga.mergeGatorObject ( gatorObjects=gatorObjects,
     Extracting data
     Extracting data from: exampleSpatialTable
     Extracting data from: exampleSpatialTable
+    Given gatorObjects have been merged, head over to "C:\Users\aj\Documents\gatorExampleData/GATOR/mergedGatorObject" to view results
 
 
-    /opt/anaconda3/envs/gator/lib/python3.9/site-packages/anndata/_core/anndata.py:1828: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\anndata\_core\anndata.py:1828: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
       utils.warn_names_duplicates("obs")
 
 

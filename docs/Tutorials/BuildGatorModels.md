@@ -28,7 +28,7 @@ In this case we will set the downloaded sample data as our `projectDir`. My samp
 
 ```python
 # set the working directory & set paths to the example data
-projectDir = '/Users/aj/Desktop/gatorExampleData'
+projectDir = 'C:\Users\aj\Documents\gatorExampleData'
 imagePath = projectDir + '/image/exampleImage.tif'
 spatialTablePath = projectDir + '/quantification/exampleSpatialTable.csv'
 markerChannelMapPath = projectDir + '/markers.csv'
@@ -63,7 +63,7 @@ ga.generateThumbnails ( spatialTablePath=spatialTablePath,
 
     Processing Marker: ECAD
     Processing Marker: CD3D
-    Thumbnails have been generated, head over to "/Users/aj/Desktop/gatorExampleData/GATOR/Thumbnails" to view results
+    Thumbnails have been generated, head over to "C:\Users\aj\Documents\gatorExampleData/GATOR/Thumbnails" to view results
 
 
 **Same function if the user wants to run it via Command Line Interface**
@@ -143,7 +143,7 @@ ga.generateTrainTestSplit ( thumbnailFolder,
 
     Processing: CD3D
     Processing: ECAD
-    Training data has been generated, head over to "/Users/aj/Desktop/gatorExampleData/GATOR/TrainingData" to view results
+    Training data has been generated, head over to "C:\Users\aj\Documents\gatorExampleData/GATOR/TrainingData" to view results
 
 
 **Same function if the user wants to run it via Command Line Interface**
@@ -179,19 +179,24 @@ ga.gatorTrain(trainingDataPath=trainingDataPath,
                epochs=1)
 ```
 
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:137: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+    WARNING:tensorflow:From c:\Users\aj\.conda\envs\gator\lib\site-packages\keras\layers\normalization\batch_normalization.py:562: _colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Colocations handled automatically by placer.
+
+
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:137: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
       bn = tf.nn.leaky_relu(tf.layers.batch_normalization(c00+shortcut, training=UNet2D.tfTraining))
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:159: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:159: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
       lbn = tf.nn.leaky_relu(tf.layers.batch_normalization(
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:162: UserWarning: `tf.layers.dropout` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dropout` instead.
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:162: UserWarning: `tf.layers.dropout` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dropout` instead.
       return tf.layers.dropout(lbn, 0.15, training=UNet2D.tfTraining)
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:224: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:224: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
       tf.layers.batch_normalization(tf.nn.conv2d(cc, luXWeights2, strides=[1, 1, 1, 1], padding='SAME'),
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/UNet.py:245: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\UNet.py:245: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
       return tf.layers.batch_normalization(
 
 
-    /Users/aj/Desktop/gatorExampleData/GATOR/TrainingData/CD3D/training
+    C:\Users\aj\Documents\gatorExampleData\GATOR\TrainingData\CD3D\training
     Training for 8 steps
     Found 120 training images
     Found 40 validation images
@@ -201,22 +206,37 @@ ga.gatorTrain(trainingDataPath=trainingDataPath,
     Using 0 and 1 for mean and standard deviation.
     saving data
     saving data
-    Using 18.0 and 0.0 for global max and min intensities.
-    Class balance ratio is 20.28898128898129
-    step 00000, e: 0.515714, epoch: 1
-    Model saved in file: /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/CD3D/model.ckpt
-    step 00001, e: 0.359827, epoch: 1
-    step 00002, e: 0.508145, epoch: 1
-    step 00003, e: 0.632633, epoch: 1
-    step 00004, e: 0.474240, epoch: 1
-    step 00005, e: 0.412801, epoch: 1
-    step 00006, e: 0.540362, epoch: 2
-    step 00007, e: 0.486726, epoch: 2
+    Using 17.0 and 0.0 for global max and min intensities.
+    Class balance ratio is 28.89235540959679
+    WARNING:tensorflow:From c:\Users\aj\.conda\envs\gator\lib\site-packages\tensorflow\python\util\dispatch.py:1176: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Use `tf.cast` instead.
+    WARNING:tensorflow:From c:\Users\aj\.conda\envs\gator\lib\site-packages\tensorflow\python\util\dispatch.py:1176: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Use `tf.cast` instead.
+    WARNING:tensorflow:From c:\Users\aj\.conda\envs\gator\lib\site-packages\tensorflow\python\util\dispatch.py:1176: calling reduce_min_v1 (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+    Instructions for updating:
+    keep_dims is deprecated, use keepdims instead
+    WARNING:tensorflow:From c:\Users\aj\.conda\envs\gator\lib\site-packages\tensorflow\python\util\dispatch.py:1176: calling reduce_max_v1 (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+    Instructions for updating:
+    keep_dims is deprecated, use keepdims instead
+    WARNING:tensorflow:From c:\Users\aj\.conda\envs\gator\lib\site-packages\tensorflow\python\util\dispatch.py:1176: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+    Instructions for updating:
+    Deprecated in favor of operator or tf.math.divide.
+    step 00000, e: 0.596460, epoch: 1
+    Model saved in file: C:\Users\aj\Documents\gatorExampleData\GATOR\gatorModel\CD3D\model.ckpt
+    step 00001, e: 0.373511, epoch: 1
+    step 00002, e: 0.457912, epoch: 1
+    step 00003, e: 0.397952, epoch: 1
+    step 00004, e: 0.480417, epoch: 1
+    step 00005, e: 0.386193, epoch: 1
+    step 00006, e: 0.364911, epoch: 2
+    step 00007, e: 0.468340, epoch: 2
     saving data
     loading data
-    INFO:tensorflow:Restoring parameters from /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/CD3D/model.ckpt
+    INFO:tensorflow:Restoring parameters from C:\Users\aj\Documents\gatorExampleData\GATOR\gatorModel\CD3D\model.ckpt
     Model restored.
-    /Users/aj/Desktop/gatorExampleData/GATOR/TrainingData/ECAD/training
+    C:\Users\aj\Documents\gatorExampleData\GATOR\TrainingData\ECAD\training
     Training for 8 steps
     Found 120 training images
     Found 40 validation images
@@ -226,22 +246,22 @@ ga.gatorTrain(trainingDataPath=trainingDataPath,
     Using 0 and 1 for mean and standard deviation.
     saving data
     saving data
-    Using 70.0 and 0.0 for global max and min intensities.
-    Class balance ratio is 6.918801353310778
-    step 00000, e: 0.573542, epoch: 1
-    Model saved in file: /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ECAD/model.ckpt
-    step 00001, e: 0.472750, epoch: 1
-    step 00002, e: 0.516162, epoch: 1
-    step 00003, e: 0.503170, epoch: 1
-    step 00004, e: 0.444074, epoch: 1
-    step 00005, e: 0.569520, epoch: 1
-    step 00006, e: 0.570594, epoch: 2
-    step 00007, e: 0.434399, epoch: 2
+    Using 76.0 and 0.0 for global max and min intensities.
+    Class balance ratio is 6.764928909952607
+    step 00000, e: 0.424926, epoch: 1
+    Model saved in file: C:\Users\aj\Documents\gatorExampleData\GATOR\gatorModel\ECAD\model.ckpt
+    step 00001, e: 0.447697, epoch: 1
+    step 00002, e: 0.415780, epoch: 1
+    step 00003, e: 0.388040, epoch: 1
+    step 00004, e: 0.380466, epoch: 1
+    step 00005, e: 0.397942, epoch: 1
+    step 00006, e: 0.374510, epoch: 2
+    step 00007, e: 0.365455, epoch: 2
     saving data
     loading data
-    INFO:tensorflow:Restoring parameters from /Users/aj/Desktop/gatorExampleData/GATOR/gatorModel/ECAD/model.ckpt
+    INFO:tensorflow:Restoring parameters from C:\Users\aj\Documents\gatorExampleData\GATOR\gatorModel\ECAD\model.ckpt
     Model restored.
-    Gator Models have been generated, head over to "/Users/aj/Desktop/gatorExampleData/GATOR/gatorModel" to view results
+    Gator Models have been generated, head over to "C:\Users\aj\Documents\gatorExampleData/GATOR/gatorModel" to view results
 
 
 **Same function if the user wants to run it via Command Line Interface**

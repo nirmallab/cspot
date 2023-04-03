@@ -39,86 +39,86 @@ phenotype.style.format(na_rep='')
 
 <style type="text/css">
 </style>
-<table id="T_c1772">
+<table id="T_e5872">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_c1772_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
-      <th id="T_c1772_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
-      <th id="T_c1772_level0_col2" class="col_heading level0 col2" >ECAD</th>
-      <th id="T_c1772_level0_col3" class="col_heading level0 col3" >CD45</th>
-      <th id="T_c1772_level0_col4" class="col_heading level0 col4" >CD4</th>
-      <th id="T_c1772_level0_col5" class="col_heading level0 col5" >CD3D</th>
-      <th id="T_c1772_level0_col6" class="col_heading level0 col6" >CD8A</th>
-      <th id="T_c1772_level0_col7" class="col_heading level0 col7" >KI67</th>
+      <th id="T_e5872_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
+      <th id="T_e5872_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
+      <th id="T_e5872_level0_col2" class="col_heading level0 col2" >ECAD</th>
+      <th id="T_e5872_level0_col3" class="col_heading level0 col3" >CD45</th>
+      <th id="T_e5872_level0_col4" class="col_heading level0 col4" >CD4</th>
+      <th id="T_e5872_level0_col5" class="col_heading level0 col5" >CD3D</th>
+      <th id="T_e5872_level0_col6" class="col_heading level0 col6" >CD8A</th>
+      <th id="T_e5872_level0_col7" class="col_heading level0 col7" >KI67</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_c1772_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_c1772_row0_col0" class="data row0 col0" >all</td>
-      <td id="T_c1772_row0_col1" class="data row0 col1" >Immune</td>
-      <td id="T_c1772_row0_col2" class="data row0 col2" ></td>
-      <td id="T_c1772_row0_col3" class="data row0 col3" >anypos</td>
-      <td id="T_c1772_row0_col4" class="data row0 col4" >anypos</td>
-      <td id="T_c1772_row0_col5" class="data row0 col5" >anypos</td>
-      <td id="T_c1772_row0_col6" class="data row0 col6" >anypos</td>
-      <td id="T_c1772_row0_col7" class="data row0 col7" ></td>
+      <th id="T_e5872_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_e5872_row0_col0" class="data row0 col0" >all</td>
+      <td id="T_e5872_row0_col1" class="data row0 col1" >Immune</td>
+      <td id="T_e5872_row0_col2" class="data row0 col2" ></td>
+      <td id="T_e5872_row0_col3" class="data row0 col3" >anypos</td>
+      <td id="T_e5872_row0_col4" class="data row0 col4" >anypos</td>
+      <td id="T_e5872_row0_col5" class="data row0 col5" >anypos</td>
+      <td id="T_e5872_row0_col6" class="data row0 col6" >anypos</td>
+      <td id="T_e5872_row0_col7" class="data row0 col7" ></td>
     </tr>
     <tr>
-      <th id="T_c1772_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_c1772_row1_col0" class="data row1 col0" >all</td>
-      <td id="T_c1772_row1_col1" class="data row1 col1" >ECAD+</td>
-      <td id="T_c1772_row1_col2" class="data row1 col2" >pos</td>
-      <td id="T_c1772_row1_col3" class="data row1 col3" ></td>
-      <td id="T_c1772_row1_col4" class="data row1 col4" ></td>
-      <td id="T_c1772_row1_col5" class="data row1 col5" ></td>
-      <td id="T_c1772_row1_col6" class="data row1 col6" ></td>
-      <td id="T_c1772_row1_col7" class="data row1 col7" ></td>
+      <th id="T_e5872_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_e5872_row1_col0" class="data row1 col0" >all</td>
+      <td id="T_e5872_row1_col1" class="data row1 col1" >ECAD+</td>
+      <td id="T_e5872_row1_col2" class="data row1 col2" >pos</td>
+      <td id="T_e5872_row1_col3" class="data row1 col3" ></td>
+      <td id="T_e5872_row1_col4" class="data row1 col4" ></td>
+      <td id="T_e5872_row1_col5" class="data row1 col5" ></td>
+      <td id="T_e5872_row1_col6" class="data row1 col6" ></td>
+      <td id="T_e5872_row1_col7" class="data row1 col7" ></td>
     </tr>
     <tr>
-      <th id="T_c1772_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_c1772_row2_col0" class="data row2 col0" >ECAD+</td>
-      <td id="T_c1772_row2_col1" class="data row2 col1" >KI67+ ECAD+</td>
-      <td id="T_c1772_row2_col2" class="data row2 col2" ></td>
-      <td id="T_c1772_row2_col3" class="data row2 col3" ></td>
-      <td id="T_c1772_row2_col4" class="data row2 col4" ></td>
-      <td id="T_c1772_row2_col5" class="data row2 col5" ></td>
-      <td id="T_c1772_row2_col6" class="data row2 col6" ></td>
-      <td id="T_c1772_row2_col7" class="data row2 col7" >pos</td>
+      <th id="T_e5872_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_e5872_row2_col0" class="data row2 col0" >ECAD+</td>
+      <td id="T_e5872_row2_col1" class="data row2 col1" >KI67+ ECAD+</td>
+      <td id="T_e5872_row2_col2" class="data row2 col2" ></td>
+      <td id="T_e5872_row2_col3" class="data row2 col3" ></td>
+      <td id="T_e5872_row2_col4" class="data row2 col4" ></td>
+      <td id="T_e5872_row2_col5" class="data row2 col5" ></td>
+      <td id="T_e5872_row2_col6" class="data row2 col6" ></td>
+      <td id="T_e5872_row2_col7" class="data row2 col7" >pos</td>
     </tr>
     <tr>
-      <th id="T_c1772_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_c1772_row3_col0" class="data row3 col0" >Immune</td>
-      <td id="T_c1772_row3_col1" class="data row3 col1" >CD4+ T</td>
-      <td id="T_c1772_row3_col2" class="data row3 col2" ></td>
-      <td id="T_c1772_row3_col3" class="data row3 col3" ></td>
-      <td id="T_c1772_row3_col4" class="data row3 col4" >allpos</td>
-      <td id="T_c1772_row3_col5" class="data row3 col5" >allpos</td>
-      <td id="T_c1772_row3_col6" class="data row3 col6" ></td>
-      <td id="T_c1772_row3_col7" class="data row3 col7" ></td>
+      <th id="T_e5872_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_e5872_row3_col0" class="data row3 col0" >Immune</td>
+      <td id="T_e5872_row3_col1" class="data row3 col1" >CD4+ T</td>
+      <td id="T_e5872_row3_col2" class="data row3 col2" ></td>
+      <td id="T_e5872_row3_col3" class="data row3 col3" ></td>
+      <td id="T_e5872_row3_col4" class="data row3 col4" >allpos</td>
+      <td id="T_e5872_row3_col5" class="data row3 col5" >allpos</td>
+      <td id="T_e5872_row3_col6" class="data row3 col6" ></td>
+      <td id="T_e5872_row3_col7" class="data row3 col7" ></td>
     </tr>
     <tr>
-      <th id="T_c1772_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_c1772_row4_col0" class="data row4 col0" >Immune</td>
-      <td id="T_c1772_row4_col1" class="data row4 col1" >CD8+ T</td>
-      <td id="T_c1772_row4_col2" class="data row4 col2" ></td>
-      <td id="T_c1772_row4_col3" class="data row4 col3" ></td>
-      <td id="T_c1772_row4_col4" class="data row4 col4" ></td>
-      <td id="T_c1772_row4_col5" class="data row4 col5" >allpos</td>
-      <td id="T_c1772_row4_col6" class="data row4 col6" >allpos</td>
-      <td id="T_c1772_row4_col7" class="data row4 col7" ></td>
+      <th id="T_e5872_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_e5872_row4_col0" class="data row4 col0" >Immune</td>
+      <td id="T_e5872_row4_col1" class="data row4 col1" >CD8+ T</td>
+      <td id="T_e5872_row4_col2" class="data row4 col2" ></td>
+      <td id="T_e5872_row4_col3" class="data row4 col3" ></td>
+      <td id="T_e5872_row4_col4" class="data row4 col4" ></td>
+      <td id="T_e5872_row4_col5" class="data row4 col5" >allpos</td>
+      <td id="T_e5872_row4_col6" class="data row4 col6" >allpos</td>
+      <td id="T_e5872_row4_col7" class="data row4 col7" ></td>
     </tr>
     <tr>
-      <th id="T_c1772_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_c1772_row5_col0" class="data row5 col0" >Immune</td>
-      <td id="T_c1772_row5_col1" class="data row5 col1" >Non T CD4+ cells</td>
-      <td id="T_c1772_row5_col2" class="data row5 col2" ></td>
-      <td id="T_c1772_row5_col3" class="data row5 col3" ></td>
-      <td id="T_c1772_row5_col4" class="data row5 col4" >pos</td>
-      <td id="T_c1772_row5_col5" class="data row5 col5" >neg</td>
-      <td id="T_c1772_row5_col6" class="data row5 col6" ></td>
-      <td id="T_c1772_row5_col7" class="data row5 col7" ></td>
+      <th id="T_e5872_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_e5872_row5_col0" class="data row5 col0" >Immune</td>
+      <td id="T_e5872_row5_col1" class="data row5 col1" >Non T CD4+ cells</td>
+      <td id="T_e5872_row5_col2" class="data row5 col2" ></td>
+      <td id="T_e5872_row5_col3" class="data row5 col3" ></td>
+      <td id="T_e5872_row5_col4" class="data row5 col4" >pos</td>
+      <td id="T_e5872_row5_col5" class="data row5 col5" >neg</td>
+      <td id="T_e5872_row5_col6" class="data row5 col6" ></td>
+      <td id="T_e5872_row5_col7" class="data row5 col7" ></td>
     </tr>
   </tbody>
 </table>
@@ -174,23 +174,22 @@ adata = ga.gatorPhenotype ( gatorObject=gatorObject,
     Phenotyping CD4+ T
     Phenotyping CD8+ T
     Phenotyping Non T CD4+ cells
-
-
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/gatorPhenotype.py:259: SettingWithCopyWarning: 
-    A value is trying to be set on a copy of a slice from a DataFrame.
-    Try using .loc[row_indexer,col_indexer] = value instead
-    
-    See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-      allpos_score['score'] = allpos_score.max(axis=1)
-    /Users/aj/Dropbox (Partners HealthCare)/nirmal lab/softwares/gatorpy/gatorpy/gatorPhenotype.py:259: SettingWithCopyWarning: 
-    A value is trying to be set on a copy of a slice from a DataFrame.
-    Try using .loc[row_indexer,col_indexer] = value instead
-    
-    See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-      allpos_score['score'] = allpos_score.max(axis=1)
-
-
     Consolidating the phenotypes across all groups
+    Modified gatorObjects is stored at "C:\Users\aj\Documents\gatorExampleData/GATOR/gatorPhenotyped
+
+
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\gatorPhenotype.py:259: SettingWithCopyWarning: 
+    A value is trying to be set on a copy of a slice from a DataFrame.
+    Try using .loc[row_indexer,col_indexer] = value instead
+    
+    See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+      allpos_score['score'] = allpos_score.max(axis=1)
+    c:\Users\aj\.conda\envs\gator\lib\site-packages\gatorpy\gatorPhenotype.py:259: SettingWithCopyWarning: 
+    A value is trying to be set on a copy of a slice from a DataFrame.
+    Try using .loc[row_indexer,col_indexer] = value instead
+    
+    See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+      allpos_score['score'] = allpos_score.max(axis=1)
 
 
 **Same function if the user wants to run it via Command Line Interface**
