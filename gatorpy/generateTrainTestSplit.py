@@ -170,11 +170,15 @@ Example:
             remanining_pos = list(set(positive_cells) - set(train_pos))
             val_pos = random.sample(remanining_pos, round(len(remanining_pos) * 0.5)) # validation
             test_pos = list(set(remanining_pos) - set(val_pos)) # test
+        else:
+            train_pos = []; val_pos = []; test_pos = []
         if len(negative_cells) > 0:
             train_neg = random.sample(negative_cells, round(len(negative_cells) * 0.6))
             remanining_neg = list(set(negative_cells) - set(train_neg))
             val_neg = random.sample(remanining_neg, round(len(remanining_neg) * 0.5))
             test_neg = list(set(remanining_neg) - set(val_neg))
+        else:
+            train_neg = []; val_neg = []; test_neg = []
 
 
         # loop through training dataset and save images and masks
