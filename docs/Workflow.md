@@ -4,5 +4,5 @@ hide:
   - navigation
 ---
 
-## Cheatsheet for Gator Workflow
+## Cheatsheet for CSPOT Workflow
 ![workflow diagram](./assets/Workflow.png)

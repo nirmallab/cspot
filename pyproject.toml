@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "gatorpy"
-version = "0.1.15"
-description = "GATOR: A scalable framework for automated processing of highly multiplexed tissue images"
+name = "cspot"
+version = "0.1.0"
+description = "CELL SPOTTER (CSPOT): A scalable framework for automated processing of highly multiplexed tissue images"
 authors = ["Ajit Johnson Nirmal <ajitjohnson.n@gmail.com>"]
 readme = "README.md"
 
 keywords = ["image analysis","multiplex imaging","single cell analysis"]
 
-homepage = "https://pypi.org/project/gatorpy/"
-documentation = "https://nirmallab.github.io/gatorpy/"
-repository = "https://github.com/nirmallab/gatorpy"
+homepage = "https://pypi.org/project/cspot/"
+documentation = "https://nirmallab.github.io/cspot/"
+repository = "https://github.com/nirmallab/cspot"
 
 classifiers = [
               "Development Status :: 4 - Beta",

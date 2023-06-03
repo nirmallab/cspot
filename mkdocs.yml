@@ -1,10 +1,10 @@
-site_name: GATOR (Scaling Multiplex Imaging Technology)
+site_name: CELL SPOTTER (CSPOT)
 site_description: A scalable framework for automated processing of highly multiplexed tissue images
 site_author: Ajit Johnson Nirmal
 docs_dir: docs/
 
-repo_url: https://github.com/nirmalLab/gatorpy/
-edit_uri: https://github.com/nirmalLab/gatorpy/edit/main/docs
+repo_url: https://github.com/nirmalLab/cspot/
+edit_uri: https://github.com/nirmalLab/cspot/edit/main/docs
 
 theme:
   name: material
@@ -34,33 +34,33 @@ nav:
     - Home: 'index.md'
     - Getting Started: 'Getting Started.md'
     - Workflow: 'Workflow.md'
-    - Gator Functions:
-        - Build Gator Model:
+    - CSPOT Functions:
+        - Build CSPOT Model:
             - generateThumbnails: 'Functions/generateThumbnails.md'
             - cloneFolder: 'Functions/cloneFolder.md'
             - generateTrainTestSplit: 'Functions/generateTrainTestSplit.md'
-            - gatorTrain: 'Functions/gatorTrain.md'
-        - Run Gator Algorithm:
-            - gatorPipeline: 'Functions/gatorPipeline.md'
-            - gatorPredict: 'Functions/gatorPredict.md'
-            - generateGatorScore: 'Functions/generateGatorScore.md'
-            - gatorObject: 'Functions/gatorObject.md'
-            - gator: 'Functions/gator.md'
-            - mergeGatorObject: 'Functions/mergeGatorObject.md'
+            - csTrain: 'Functions/csTrain.md'
+        - Run CSPOT Algorithm:
+            - csPipeline: 'Functions/csPipeline.md'
+            - csPredict: 'Functions/csPredict.md'
+            - generateCSScore: 'Functions/generateCSScore.md'
+            - csObject: 'Functions/csObject.md'
+            - cspot: 'Functions/cspot.md'
+            - mergecsObject: 'Functions/mergecsObject.md'
         - Phenotype cells:
-            - gatorPhenotype: 'Functions/gatorPhenotype.md'
+            - csPhenotype: 'Functions/csPhenotype.md'
         - Helper Functions:
-            - gatorExport: 'Functions/gatorExport.md'
+            - csExport: 'Functions/csExport.md'
             - scatterPlot: 'Functions/scatterPlot.md'
             - addPredictions: 'Functions/addPredictions.md'
     - Tutorials:
         - Download Tutorial Data: 'Tutorials/exampleData.md'
         - Installation and Set Up: 'Tutorials/SetUp.md'
-        - Build Gator Model: 'Tutorials/BuildGatorModels.md'
-        - Run Gator Algorithm: 'Tutorials/RunGatorAlgorithm.md'
+        - Build CSPOT Model: 'Tutorials/BuildCSModels.md'
+        - Run CSPOT Algorithm: 'Tutorials/RunCSAlgorithm.md'
         - Phenotype Cells: 'Tutorials/CellPhenotyping.md'
         - Helper Functions: 'Tutorials/HelperFunctions.md'
-        - Run Gator with Docker: 'Tutorials/Docker.md'
+        - Run CSPOT with Docker: 'Tutorials/Docker.md'
 
 
 plugins:
