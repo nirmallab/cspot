@@ -1,6 +1,6 @@
-# 🐊 Run the CSPOT Prediction Algorithm on new images
+# 🎯 Run the CSPOT Prediction Algorithm on new images
 
-**Download the [executable notebook](https://github.com/nirmalLab/cspot/blob/main/docs/Tutorials/notebooks/ApplyModel.ipynb) and [trained models](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO).**  
+**Download the [executable notebook](https://github.com/nirmallab/cspot/blob/main/docs/Tutorials/notebooks/RunCSPOTAlgorithm.ipynb) and [trained models](https://doi.org/10.7910/DVN/C45JWT).**  
 
 For the purpose of this tutorial, we will use the `manuscriptModels` as opposed to the models that you trained in the previous tutorial.
     
@@ -348,9 +348,8 @@ Note that merging csObjects requires merging multiple sections, not simple conca
 
 ```python
 # set the working directory & set paths to the example data
-csObjects = [projectDir + '/CSPOT/csOutput/exampleImage_cspotPredict.ome.h5ad',
-            projectDir + '/CSPOT/csOutput/exampleImage_cspotPredict.ome.h5ad']
-
+csObjects = [projectDir + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad',
+            projectDir + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad']
 ```
 
 
@@ -365,32 +364,13 @@ adata = cs.mergecsObject ( csObjects=csObjects,
 ```
 
     Extracting data
+    Extracting data from: exampleSpatialTable
+    Extracting data from: exampleSpatialTable
+    Given csObjects have been merged, head over to "/Users/aj/Documents/cspotExampleData/CSPOT/mergedcsObject" to view results
 
 
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    Cell In[26], line 2
-          1 # For this tutorial, supply the same gatorObject twice for merging, but multiple gatorObjects can be merged in ideal conditions.
-    ----> 2 adata = cs.mergecsObject ( csObjects=csObjects,
-          3                               fileName='mergedcspotObject',
-          4                               layers=['preProcessed'],
-          5                               uns= ['cspotOutput','csScore'],
-          6                               projectDir=projectDir)
-
-
-    File ~/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/mergecsObject.py:148, in mergecsObject(csObjects, fileName, layers, uns, verbose, projectDir)
-        146     print("Extracting data")
-        147 r_processX = lambda x: processX (csObject=x, process_layers=process_layers)
-    --> 148 processX_result = list(map(r_processX, csObject)) # Apply function
-        150 # combine all the data
-        151 # create a dictinoary between index and data type
-        152 mapping = {i: element for i, element in enumerate(process_layers)}
-
-
-    NameError: name 'csObject' is not defined
+    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/anndata/_core/anndata.py:1828: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+      utils.warn_names_duplicates("obs")
 
 
 **Same function if the user wants to run it via Command Line Interface**

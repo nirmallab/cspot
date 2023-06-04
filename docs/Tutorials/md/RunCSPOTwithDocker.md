@@ -1,4 +1,4 @@
-# 🐊 Run CSPOT with Docker
+# 🎯 Run CSPOT with Docker
 
 1. Install Docker on your local machine if you haven't already done so.
 2. Open a terminal or command prompt on your machine.

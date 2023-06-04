@@ -1,9 +1,9 @@
-# 🐊 CSPOT Phenotyping
+# 🎯 CSPOT Phenotyping
 Assign phenotypes to each cell. Clustering data may not always be ideal, so we developed a cell type assignment algorithm that does a hierarchical assignment process iteratively.
   
 Please keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `cspot` and will not yeild any meaningful results.
 
-Download [executable notebook here](https://github.com/nirmalLab/cspot/blob/main/docs/Tutorials/notebooks/CellPhenotyping.ipynb).
+Download [executable notebook here](https://github.com/nirmallab/cspot/blob/main/docs/Tutorials/notebooks/PhenotypeCells.ipynb).
   
 Make sure you have completed `Build cepot Model` and `Run cspot Algorithm` Tutorial before you try to execute this Jupyter Notebook!
 

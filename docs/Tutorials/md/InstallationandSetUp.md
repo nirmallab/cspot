@@ -1,5 +1,6 @@
-# 🐊 Setting up CSPOT 
-## Kindly note that **CSPOT is not a plug-and-play solution**, rather it's a framework that requires significant upfront investment of time from potential users for training and validating deep learning models, which can then be utilized in a plug-and-play manner for processing large volumes of similar multiplexed imaging data.
+# 🎯 Setting up CSPOT 
+
+### Kindly note that **CSPOT is not a plug-and-play solution**, rather it's a framework that requires significant upfront investment of time from potential users for training and validating deep learning models, which can then be utilized in a plug-and-play manner for processing large volumes of similar multiplexed imaging data.
 
 **There are two ways to set it up based on how you would like to run the program**
 - Using an interactive environment like Jupyter Notebooks

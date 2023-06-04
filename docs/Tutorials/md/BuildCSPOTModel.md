@@ -1,11 +1,11 @@
-# 🐊 Build a CSPOT Model 
+# 🎯 Build a CSPOT Model 
 
 
-The [executable notebook can be **downloaded here**](https://github.com/nirmalLab/gatorpy/blob/main/docs/Tutorials/notebooks/BuildModels.ipynb)  
+The [executable notebook can be **downloaded here**](https://github.com/nirmallab/cspot/blob/main/docs/Tutorials/notebooks/BuildCSPOTModel.ipynb)  
   
 **When following the tutorial, it is crucial to read the text as simply running the cells will not work!**
   
-Please keep in mind that the [sample data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO) is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `cspot` and will not yeild any meaningful results.
+Please keep in mind that the [sample data](https://doi.org/10.7910/DVN/C45JWT) is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `cspot` and will not yeild any meaningful results.
 
 **Training a CSPOT Model involves the following steps:**
 - For any given marker: Identify a image that could be used to generate postive and negative thumbnails
@@ -21,11 +21,6 @@ Please keep in mind that the [sample data](https://dataverse.harvard.edu/dataset
 # import packages in jupyter notebook (not needed for command line interface users)
 import cspot as cs
 ```
-
-    WARNING:tensorflow:From /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/tensorflow/python/compat/v2_compat.py:107: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    non-resource variables are not supported in the long term
-
 
 **CSPOT auto generates subfolders and so always set a single folder as `projectDir` and cspot will use that for all subsequent steps.**  
 In this case we will set the downloaded sample data as our `projectDir`. My sample data is on my desktop as seen below.

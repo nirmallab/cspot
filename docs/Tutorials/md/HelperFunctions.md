@@ -1,4 +1,4 @@
-# 🐊 CSPOT Helper Functions
+# 🎯 CSPOT Helper Functions
 
 ## Export the results to `.csv`
 Once the CSPOT pipeline has been executed, all the output is stored within the csObject. An efficient way to export the results of csScore, cspotOutput, and the rescaled data is by using a function that saves them as a CSV file. This allows for easy sharing and analysis of the data in other programs.
