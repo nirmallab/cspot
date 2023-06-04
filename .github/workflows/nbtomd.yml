@@ -30,12 +30,6 @@ jobs:
       - run: pip install nbconvert
       - run: jupyter nbconvert --to markdown docs/Tutorials/notebooks/*.ipynb
       #- run: mv docs/Tutorials/notebooks/*.md docs/Tutorials/
-      #- run: |
-      #    for file in docs/Tutorials/notebooks/*; do
-      #        if [[ ! "$file" =~ \.ipynb$ ]]; then
-      #            mv -fT "$file" docs/Tutorials/md/
-      #        fi
-      #    done
       - run: |
           for file in docs/Tutorials/notebooks/*; do
               if [[ ! "$file" =~ \.ipynb$ ]]; then
