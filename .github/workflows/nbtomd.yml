@@ -33,7 +33,7 @@ jobs:
       - run: |
           for file in docs/Tutorials/notebooks/*; do
               if [[ ! "$file" =~ \.ipynb$ ]]; then
-                  mv -f "$file" docs/Tutorials/md/
+                  mv -fT "$file" docs/Tutorials/md/
               fi
           done
       - run: ls docs/Tutorials/
