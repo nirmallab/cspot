@@ -10,7 +10,7 @@ If you want to try out the CSPOT algorithm, follow these simple steps to downloa
 ![Harvard DataVerse](../../assets/harvardDataverse.png "Click on the denoted region to download the data")
 
 2. Click on the "Access Dataset" --> "Original Format ZIP" button.
-3. Wait for the download to complete. The size of the file is approximately 12 MB.
+3. Wait for the download to complete. The size of the file is approximately 40 MB.
 4. Unzip the downloaded file to access the data.
 
 **To ensure that you can follow the tutorial correctly, please make sure that the following folder structure (screenshot below) is maintained:**

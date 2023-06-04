@@ -15,7 +15,7 @@ Running cspot via docker follows the same principles as running cspot via Comman
   
 If you are comfortable using Docker and would like to execute the commands in your preferred way, please feel free to do so. However, if you are new to Docker and would like step-by-step instructions, please follow the tutorial below.
   
-**Download the [sample data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO)**. Please keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `cspot` and will not yeild any meaningful results.
+**Download the [sample data](https://doi.org/10.7910/DVN/C45JWT)**. Please keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `cspot` and will not yeild any meaningful results.
   
 **The purpose of this tutorial is solely to demonstrate how to run cspot using Docker. If you require detailed explanations of each step, please refer to the other tutorials.**
 

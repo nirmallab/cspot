@@ -45,7 +45,7 @@ conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0 -y
 
 ## Download the Exemplar Dataset
 To help you get used to the program we have provided some dummy data.   
-**Download link to the [exemplar dataset provided here.](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO)**  
+**Download link to the [exemplar dataset provided here.](https://doi.org/10.7910/DVN/C45JWT)**  
 All of the following files are mandatory for running cspot, but `phenotype_workflow.csv` is optional and can be skipped if single cell phenotyping is not required. `manuscriptModels` is provided explicitly for going through this tutorial. 
 ```
 cspotExampleData/
