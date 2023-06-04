@@ -29,7 +29,13 @@ jobs:
       - run: pip install jupyter
       - run: pip install nbconvert
       - run: jupyter nbconvert --to markdown docs/Tutorials/notebooks/*.ipynb
-      - run: mv docs/Tutorials/notebooks/*.md docs/Tutorials/
+      #- run: mv docs/Tutorials/notebooks/*.md docs/Tutorials/
+      - run: |
+          for file in docs/Tutorials/notebooks/*; do
+              if [[ ! "$file" =~ \.ipynb$ ]]; then
+                  mv "$file" docs/Tutorials/
+              fi
+          done
       - run: ls docs/Tutorials/
 
       - name: GIT Commit 
