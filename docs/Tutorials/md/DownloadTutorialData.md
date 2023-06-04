@@ -1,13 +1,13 @@
-# 🐊 CSPOT Exemplar Data
+# 🎯 CSPOT Exemplar Data
 A short guide to downloading our exemplar data for trying out the CSPOT algorithm.
   
 If you want to try out the CSPOT algorithm, follow these simple steps to download our exemplar data:
 
 1. Navigate to the Harvard Dataverse website and download the exemplar data (see screenshot below!)
   
-    **[Data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO):  https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/QDZ6XO**
+    **[Data](https://doi.org/10.7910/DVN/C45JWT): https://doi.org/10.7910/DVN/C45JWT**
 
-![Harvard DataVerse](../../assets/harvardDataverse.jpg "Click on the denoted region to download the data")
+![Harvard DataVerse](../../assets/harvardDataverse.png "Click on the denoted region to download the data")
 
 2. Click on the "Access Dataset" --> "Original Format ZIP" button.
 3. Wait for the download to complete. The size of the file is approximately 12 MB.
@@ -15,7 +15,7 @@ If you want to try out the CSPOT algorithm, follow these simple steps to downloa
 
 **To ensure that you can follow the tutorial correctly, please make sure that the following folder structure (screenshot below) is maintained:**
 
-![Harvard DataVerse FolderStructure](../../assets/exampleFolderStructure.JPG "Click on the denoted region to download the data")
+![Harvard DataVerse FolderStructure](../../assets/exampleFolderStructure.png "Click on the denoted region to download the data")
 
 <hr>
 
