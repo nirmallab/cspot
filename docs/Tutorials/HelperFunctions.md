@@ -1,24 +1,24 @@
-# 🐊 GATOR Helper Functions
+# 🐊 CSPOT Helper Functions
 
 ## Export the results to `.csv`
-Once the Gator pipeline has been executed, all the output is stored within the gatorObject. An efficient way to export the results of gatorScore, gatorOutput, and the rescaled data is by using a function that saves them as a CSV file. This allows for easy sharing and analysis of the data in other programs.
+Once the CSPOT pipeline has been executed, all the output is stored within the csObject. An efficient way to export the results of csScore, cspotOutput, and the rescaled data is by using a function that saves them as a CSV file. This allows for easy sharing and analysis of the data in other programs.
 
 
 ```python
 # import packages
-import gatorpy as ga
+import cspot as cs
 ```
 
 
 ```python
-# path to files needed for gatorExport
-projectDir = '/Users/aj/Desktop/gatorExampleData'
-gatorObject = projectDir + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad'
+# path to files needed for csExport
+projectDir = '/Users/aj/Documents/cspotExampleData'
+csObject = projectDir + '/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad'
 ```
 
 
 ```python
-ga.gatorExport(gatorObject,
+cs.csExport(csObject,
                projectDir,
                fileName=None,
                raw=False,
@@ -27,29 +27,31 @@ ga.gatorExport(gatorObject,
 
 ```
 
-    Contents of the gatorObject have been exported to "/Users/aj/Desktop/gatorExampleData/GATOR/gatorExport"
+    Contents of the csObject have been exported to "/Users/aj/Documents/cspotExampleData/CSPOT/csExport"
 
 
 **Same function if the user wants to run it via Command Line Interface**
 ```
-python gatorExport.py --gatorObject /Users/aj/Desktop/gatorExampleData/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad --projectDir /Users/aj/Desktop/gatorExampleData
+python csExport.py \
+            --csObject /Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad \
+            --projectDir /Users/aj/Documents/cspotExampleData
 ```
 
 ## We also provide a helper functions to vizualize the identified postive and negative cells for each marker.
 
-The `addPredictions` function serves as a link between `gatorpy` and `scimap` package. It's useful for evaluating model performance. The function transforms results stored in `anndata.uns` to `anndata.obs` so they can be visualized using the `scimap` package's `sm.pl.image viewer` function. This displays `positive` and `negative` cells overlaid on the raw image.
+The `addPredictions` function serves as a link between `cspot` and `scimap` package. It's useful for evaluating model performance. The function transforms results stored in `anndata.uns` to `anndata.obs` so they can be visualized using the `scimap` package's `sm.pl.image viewer` function. This displays `positive` and `negative` cells overlaid on the raw image.
       
-The `addPredictions` function can take in two methods.  `gatorOutput` displays the result of running the `gator` function,  while `gatorScore` shows the raw output produced by the `gatorScore`  function, which returns a probability score. The `midpoint` parameter,  with a default value of 0.5, can be adjusted to define what is considered a `positive` result, when method is set to `gatorScore`.
+The `addPredictions` function can take in two methods.  `cspotOutput` displays the result of running the `cspot` function,  while `csScore` shows the raw output produced by the `csScore`  function, which returns a probability score. The `midpoint` parameter,  with a default value of 0.5, can be adjusted to define what is considered a `positive` result, when method is set to `csScore`.
 
 
 ```python
-# Path to gatorObject
-gatorObject = projectDir + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad'
+# Path to csObject
+csObject = projectDir + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad'
 
-adata = ga.addPredictions (gatorObject, 
-                    method='gatorOutput',
-                    gatorOutput='gatorOutput',
-                    gatorScore='gatorScore', 
+adata = cs.addPredictions (csObject, 
+                    method='cspotOutput',
+                    cspotOutput='cspotOutput',
+                    csScore='csScore', 
                     midpoint=0.5)
 
 ```
@@ -61,11 +63,14 @@ adata.obs.columns
 ```
 
 
+
+
     Index(['X_centroid', 'Y_centroid', 'Area', 'MajorAxisLength',
            'MinorAxisLength', 'Eccentricity', 'Solidity', 'Extent', 'Orientation',
-           'CellID', 'imageid', 'p_p_CD45R', 'p_p_CD8A', 'p_p_CD4', 'p_p_KI67',
-           'p_p_ECAD', 'p_p_CD45', 'p_p_CD3D'],
+           'CellID', 'imageid', 'p_ECAD', 'p_CD45', 'p_CD4', 'p_CD3D', 'p_CD8A',
+           'p_CD45R', 'p_KI67'],
           dtype='object')
+
 
 
 As it can be seen the addition of `p_CD45, p_CD4, p_CD8A, p_CD45R, p_KI67, p_ECAD, p_CD3D` to `adata.obs`. These columns can be vizualized with `scimap`. 
@@ -99,13 +104,13 @@ pip install notebook
 import scimap as sm
 import anndata as ad
 
-# import the gatorObject
-cwd = '/Users/aj/Desktop/gatorExampleData'
-gatorObject = cwd + '/GATOR/gatorOutput/exampleImage_gatorPredict.ome.h5ad'
-adata = ad.read(gatorObject)
+# import the csObject
+cwd = '/Users/aj/Desktop/cspotExampleData'
+csObject = cwd + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad'
+adata = ad.read(csObject)
 
 # Path to the raw image
-image_path = '/Users/aj/Desktop/gatorExampleData/image/exampleImage.tif'
+image_path = '/Users/aj/Documents/cspotExampleData/image/exampleImage.tif'
 sm.image_viewer(image_path, adata, overlay='p_CD45')
 
 ```
