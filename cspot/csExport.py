@@ -54,18 +54,21 @@ Returns:
 Example:
 
         ```python
-        # path to files
-        projectDir = '/Users/aj/Desktop/cspotExampleData'
-        csObject = projectDir + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad'
-        cs.csExport (csObject, 
-                         projectDir, 
-                         fileName=None, 
-                         raw=False, 
-                         CellID='CellID',
-                         verbose=True)
+        # path to files needed for csExport
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+        csObject = projectDir + '/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad'
+        
+        cs.csExport(csObject,
+               projectDir,
+               fileName=None,
+               raw=False,
+               CellID='CellID',
+               verbose=True)
         
         # Same function if the user wants to run it via Command Line Interface
-        python csExport.py --csObject /Users/aj/Desktop/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad --projectDir /Users/aj/Desktop/cspotExampleData
+        python csExport.py \
+            --csObject /Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad \
+            --projectDir /Users/aj/Documents/cspotExampleData
         
         ```
 

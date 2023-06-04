@@ -100,18 +100,24 @@ Returns:
 Example:
 
         ```python
+        
+        # Prohect directory
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+        
+        # path to the final output
         csObject = '/Users/aj/Desktop/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad'
+        
         # Plot image to console
-        ga.scatterPlot (csObject, 
-                         markers=['ECAD', 'CD8A'], 
-                         poscellsColor='#78290f',
-                         negcellsColor='#e5e5e5',
-                         s=0.1,
-                         ncols=1,
-                         dpi=200,
-                         figsize=(4, 10),
-                         outputDir=None,
-                         outputFileName='cspotplot.png')
+        cs.scatterPlot(csObject,
+            markers=['ECAD', 'CD8A', 'CD45'],
+            poscellsColor='#78290f',
+            negcellsColor='#e5e5e5',
+            s=3,
+            ncols=3,
+            dpi=90,
+            figsize=(4, 4),
+            outputDir=None,
+            outputFileName='cspotplot.png')
         
         # Same function if the user wants to run it via Command Line Interface
         python scatterPlot.py --csObject /Users/aj/Desktop/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad \

@@ -187,33 +187,33 @@ Example:
         
         # Path to all the files that are necessary files for running the 
         CSPOT Prediction Algorithm (broken down based on sub functions)
-        projectDir = '/Users/aj/Desktop/cspotExampleData'
-        
-        # csPredict related paths
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+
+        # gatorPredict related paths
         imagePath = projectDir + '/image/exampleImage.tif'
         markerChannelMapPath = projectDir + '/markers.csv'
-        csModelPath = projectDir + '/CSPOT/cspotModel/'
+        csModelPath = projectDir + '/manuscriptModels/'
         
-        # Generate generateCSScore related paths
+        # Generate generateGatorScore related paths
         segmentationPath = projectDir + '/segmentation/exampleSegmentationMask.tif'
         
-        # csObject related paths
+        # gatorObject related paths
         spatialTablePath = projectDir + '/quantification/exampleSpatialTable.csv'
         
         # Run the pipeline
-        ga.csPipeline(   
-                    # parameters for csPredict function
+        cs.csPipeline(   
+                    # parameters for gatorPredict function
                     imagePath=imagePath,
                     csModelPath=csModelPath,
                     markerChannelMapPath=markerChannelMapPath,
 
-                    # parameters for generateCSScore function
+                    # parameters for generateGatorScore function
                     segmentationMaskPath=segmentationPath,
 
-                    # parameters for csObject function
+                    # parameters for gatorObject function
                     spatialTablePath=spatialTablePath,
 
-                    # parameters to run CSPOT function
+                    # parameters to run gator function
                     # ..
 
                     # common parameters
@@ -222,12 +222,12 @@ Example:
         
         # Same function if the user wants to run it via Command Line Interface
         python csPipeline.py \
-                --imagePath /Users/aj/Desktop/cspotExampleData/image/exampleImage.tif \
-                --csModelPath /Users/aj/Desktop/cspotExampleData/CSPOT/cspotModel/ \
-                --markerChannelMapPath /Users/aj/Desktop/cspotExampleData/markers.csv \
-                --segmentationMaskPath /Users/aj/Desktop/cspotExampleData/segmentation/exampleSegmentationMask.tif \
-                --spatialTablePath /Users/aj/Desktop/cspotExampleData/quantification/exampleSpatialTable.csv \
-                --projectDir /Users/aj/Desktop/cspotExampleData
+                --imagePath /Users/aj/Documents/cspotExampleData/image/exampleImage.tif \
+                --csModelPath /Users/aj/Documents/cspotExampleData/CSPOT/cspotModel/ \
+                --markerChannelMapPath /Users/aj/Documents/cspotExampleData/markers.csv \
+                --segmentationMaskPath /Users/aj/Documents/cspotExampleData/segmentation/exampleSegmentationMask.tif \
+                --spatialTablePath /Users/aj/Documents/cspotExampleData/quantification/exampleSpatialTable.csv \
+                --projectDir /Users/aj/Documents/cspotExampleData
         ```
                 
          

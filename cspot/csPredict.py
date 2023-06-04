@@ -90,26 +90,29 @@ Returns:
 Example:
 
     	```python    
-        # set the working directory & set paths to the example data
-        cwd = '/Users/aj/Desktop/cspotExampleData'
-        imagePath = cwd + '/image/exampleImage.tif'
-        csModelPath = cwd + '/CSPOT/cspotModel/'
-        projectDir = cwd
-        markerChannelMapPath = cwd + '/markers.csv'
+        # Path to all the files that are necessary files for running csPredict
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+        
+        # csPredict related paths
+        imagePath = projectDir + '/image/exampleImage.tif'
+        markerChannelMapPath = projectDir + '/markers.csv'
+        csModelPath = projectDir + '/manuscriptModels/'
         
         # Run the function
-        ga.csPredict( imagePath=imagePath,
-                         csModelPath=csModelPath,
-                         projectDir=projectDir, 
-                         markerChannelMapPath=markerChannelMapPath, 
-                         markerColumnName='marker', 
-                         channelColumnName='channel', 
-                         modelColumnName='cspotmodel', 
-                         verbose=True,
-                         GPU=-1)
+        cs.csPredict( imagePath=imagePath,
+                 csModelPath=csModelPath,
+                 projectDir=projectDir,
+                 markerChannelMapPath=markerChannelMapPath, 
+                 markerColumnName='marker', 
+                 channelColumnName='channel', 
+                 modelColumnName='cspotmodel')
         
         # Same function if the user wants to run it via Command Line Interface
-        python csPredict.py --imagePath /Users/aj/Desktop/cspotExampleData/image/exampleImage.tif --csModelPath /Users/aj/Desktop/cspotExampleData/CSPOT/cspotModel/ --projectDir /Users/aj/Desktop/cspotExampleData --markerChannelMapPath /Users/aj/Desktop/cspotExampleData/markers.csv
+        python csPredict.py \
+            --imagePath /Users/aj/Documents/cspotExampleData/image/exampleImage.tif \
+            --csModelPath /Users/aj/Documents/cspotExampleData/manuscriptModels \
+            --projectDir /Users/aj/Documents/cspotExampleData \
+            --markerChannelMapPath /Users/aj/Documents/cspotExampleData/markers.csv
     	
     	```
      

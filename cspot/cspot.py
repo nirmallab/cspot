@@ -130,13 +130,13 @@ Example:
         ```python
         
         # set the working directory & set paths to the example data
-        cwd = '/Users/aj/Desktop/cspotExampleData'
-        csObject = cwd + '/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad'
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+        csObject = projectDir + '/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad'
         
         # Run the function
         adata = cs.cspot ( csObject=csObject,
                     csScore='csScore',
-                    minAbundance=0.002,
+                    minAbundance=0.005,
                     percentiles=[1, 20, 80, 99],
                     dropMarkers = None,
                     RobustScale=False,
@@ -147,11 +147,14 @@ Example:
                     random_state=0,
                     rescaleMethod='sigmoid',
                     label='cspotOutput',
-                    verbose=True,
-                    projectDir=cwd)
+                    verbose=False,
+                   projectDir=projectDir)
+
         
         # Same function if the user wants to run it via Command Line Interface
-        python cspot.py --csObject /Users/aj/Desktop/cspotExampleData/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad --projectDir /Users/aj/Desktop/cspotExampleData
+        python cspot.py \
+            --csObject /Users/aj/Documents/cspotExampleData/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad \
+            --projectDir /Users/aj/Documents/cspotExampleData
                 
         
         ```

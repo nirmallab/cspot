@@ -64,26 +64,27 @@ Example:
         ```python
         
         # High level working directory
-        cwd = '/Users/aj/Desktop/cspotExampleData'
+        projectDir = '/Users/aj/Documents/cspotExampleData'
         
         # list of folders to copy settings from
-        copyFolder = [cwd + '/CSPOT/Thumbnails/localNorm/CD3D',
-                      cwd + '/CSPOT/Thumbnails/localNorm/ECAD']
+        copyFolder = [projectDir + '/CSPOT/Thumbnails/localNorm/CD3D',
+                      projectDir + '/CSPOT/Thumbnails/localNorm/ECAD']
         # list of folders to apply setting to
-        applyFolder = [cwd + '/CSPOT/Thumbnails/CD3D',
-                      cwd + '/CSPOT/Thumbnails/ECAD']
+        applyFolder = [projectDir + '/CSPOT/Thumbnails/CD3D',
+                       projectDir + '/CSPOT/Thumbnails/ECAD']
         # note: Every copyFolder should have a corresponding applyFolder. The order matters! 
         
         # The function accepts the four pre-defined folders. If you had renamed them, please change it using the parameter below.
-        ga.cloneFolder (copyFolder, 
+        cs.cloneFolder (copyFolder, 
                         applyFolder, 
                         TruePos='TruePos', TrueNeg='TrueNeg', 
-                        PosToNeg='PosToNeg', NegToPos='NegToPos',
-                        verbose=True)
+                        PosToNeg='PosToNeg', NegToPos='NegToPos')
         
                 
         # Same function if the user wants to run it via Command Line Interface
-        python cloneFolder.py --copyFolder /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/localNorm/CD3D /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/localNorm/ECAD --applyFolder /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/CD3D /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/ECAD
+        python cloneFolder.py \
+            --copyFolder /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/localNorm/CD3D /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/localNorm/ECAD \
+            --applyFolder /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/CD3D /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/ECAD
         
         ```
 

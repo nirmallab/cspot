@@ -89,11 +89,11 @@ Example:
         ```python
         
         # set the working directory & set paths to the example data
-        cwd = '/Users/aj/Desktop/cspotExampleData'
+        projectDir = '/Users/aj/Documents/cspotExampleData'
         
-        # Module specific paths
-        spatialTablePath = cwd + '/quantification/exampleSpatialTable.csv'
-        csScorePath = cwd + '/CSPOT/csScore/exampleImage_cspotPredict.ome.csv'
+        # Path to all the files that are necessary files for running csObject function
+        segmentationPath = projectDir + '/segmentation/exampleSegmentationMask.tif'
+        csScorePath = projectDir + '/CSPOT/csScore/exampleImage_cspotPredict.ome.csv'
         
         # please note that there are a number of defaults in the below function that assumes certain structure within the spatialTable.
         # Please confirm it is similar with user data or modifiy the parameters accordingly
@@ -107,11 +107,13 @@ Example:
                         remove_string_from_name=None,
                         log=True,
                         dropMarkers=None,
-                        verbose=True,
-                        projectDir=cwd)
+                        projectDir=projectDir)
         
         # Same function if the user wants to run it via Command Line Interface
-        python csObject.py --spatialTablePath /Users/aj/Desktop/cspotExampleData/quantification/exampleSpatialTable.csv --csScorePath /Users/aj/Desktop/cspotExampleData/CSPOT/csScore/exampleProbabiltyMap.ome.csv --projectDir /Users/aj/Desktop/cspotExampleData
+        python csObject.py \
+            --spatialTablePath /Users/aj/Documents/cspotExampleData/quantification/exampleSpatialTable.csv \
+            --csScorePath /Users/aj/Documents/cspotExampleData/CSPOT/csScore/exampleImage_cspotPredict.ome.csv \
+            --projectDir /Users/aj/Documents/cspotExampleData
         
         ```
 

@@ -105,13 +105,12 @@ Example:
     
     ```python
     
-    # set the working directory & set paths to the example data
-    cwd = '/Users/aj/Desktop/cspotExampleData'
-    trainingDataPath = cwd + '/CSPOT/TrainingData'
-    projectDir = cwd
+    # High level working directory
+    projectDir = '/Users/aj/Documents/cspotExampleData'
     
-    # Run the Function
-    ga.csTrain(trainingDataPath=trainingDataPath,
+    trainingDataPath = projectDir + '/CSPOT/TrainingData'
+    
+    cs.csTrain(trainingDataPath=trainingDataPath,
                    projectDir=projectDir,
                    trainMarkers=None,
                    artefactPath=None,
@@ -129,7 +128,10 @@ Example:
                    epochs=1)
     
     # Same function if the user wants to run it via Command Line Interface
-    python csTrain.py --trainingDataPath /Users/aj/Desktop/cspotExampleData/CSPOT/TrainingData --projectDir /Users/aj/Desktop/cspotExampleData/ --epochs 1
+    python csTrain.py \
+        --trainingDataPath /Users/aj/Documents/cspotExampleData/CSPOT/TrainingData \
+        --projectDir /Users/aj/Documents/cspotExampleData/ \
+        --epochs 1
     
     ```
 

@@ -64,19 +64,22 @@ Example:
         ```python.
         
         # set the working directory & set paths to the example data
-        cwd = '/Users/aj/Desktop/cspotExampleData'
-        csObjects = [cwd + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad',
-                        cwd + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad']
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+        
+        csObjects = [projectDir + '/CSPOT/csOutput/exampleImage_cspotPredict.ome.h5ad',
+                     projectDir + '/CSPOT/csOutput/exampleImage_cspotPredict.ome.h5ad']
         
         # For this tutorial, supply the same csObject twice for merging, but multiple csObjects can be merged in ideal conditions.
-        adata = ga.mergecsObject ( csObjects=csObjects,
-                                      fileName='mergedCSObject',
-                                      layers=['preProcessed'],
-                                      uns= ['cspotOutput','csScore'],
-                                      projectDir=cwd)
+        adata = cs.mergecsObject ( csObjects=csObjects,
+                              fileName='mergedcspotObject',
+                              layers=['preProcessed'],
+                              uns= ['cspotOutput','csScore'],
+                              projectDir=projectDir)
         
         # Same function if the user wants to run it via Command Line Interface
-        python mergecsObject.py --csObjects /Users/aj/Desktop/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad /Users/aj/Desktop/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad --projectDir /Users/aj/Desktop/cspotExampleData
+        python mergecsObject.py \
+            --csObjects /Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad /Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad \
+            --projectDir /Users/aj/Documents/cspotExampleData
         
         
         ```
@@ -145,7 +148,7 @@ Example:
     if verbose is True:
         print("Extracting data")
     r_processX = lambda x: processX (csObject=x, process_layers=process_layers)
-    processX_result = list(map(r_processX, csObject)) # Apply function
+    processX_result = list(map(r_processX, csObjects)) # Apply function
 
     # combine all the data
     # create a dictinoary between index and data type

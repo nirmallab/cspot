@@ -75,24 +75,24 @@ Example:
         ```python
         
         # High level working directory
-        cwd = '/Users/aj/Desktop/cspotExampleData'
+        projectDir = '/Users/aj/Documents/cspotExampleData'
         
         # Folder where the raw Thumbnails are stored
-        thumbnailFolder = [cwd + '/CSPOT/Thumbnails/CD3D',
-                           cwd + '/CSPOT/Thumbnails/ECAD']
-        projectDir = cwd
+        thumbnailFolder = [projectDir + '/CSPOT/Thumbnails/CD3D',
+                           projectDir + '/CSPOT/Thumbnails/ECAD']
         
         # The function accepts the four pre-defined folders. If you had renamed them, please change it using the parameter below.
         # If you had deleted any of the folders and are not using them, replace the folder name with `None` in the parameter.
-        ga.generateTrainTestSplit ( thumbnailFolder, 
-                                    projectDir, 
+        cs.generateTrainTestSplit ( thumbnailFolder, 
+                                    projectDir=projectDir,
                                     file_extension=None,
-                                    verbose=True,
                                     TruePos='TruePos', NegToPos='NegToPos',
                                     TrueNeg='TrueNeg', PosToNeg='PosToNeg')
         
         # Same function if the user wants to run it via Command Line Interface
-        python generateTrainTestSplit.py --thumbnailFolder /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/CD3D /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/ECAD --projectDir /Users/aj/Desktop/cspotExampleData/
+        python generateTrainTestSplit.py \
+            --thumbnailFolder /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/CD3D /Users/aj/Desktop/cspotExampleData/CSPOT/Thumbnails/ECAD \
+            --projectDir /Users/aj/Desktop/cspotExampleData/
         
         ```
 

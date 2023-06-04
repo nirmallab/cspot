@@ -80,21 +80,21 @@ Example:
 
     	```python    
         
-        # set the working directory & set paths to the example data
-        cwd = '/Users/aj/Desktop/cspotExampleData'
+        # Path to projectDir
+        projectDir = '/Users/aj/Documents/cspotExampleData'
         
-        # Module specific paths
-        csObject = cwd + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad'
+        # Path to csObject
+        csObject = projectDir + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad'
         
-        adata = ga.addPredictions (csObject, 
-                        method='cspotOutput',
-                        cspotOutput='cspotOutput',
-                        csScore='csScore', 
-                        midpoint=0.5,
-                        outputDir=None)
+        adata = cs.addPredictions (csObject, 
+                            method='cspotOutput',
+                            cspotOutput='cspotOutput',
+                            csScore='csScore', 
+                            midpoint=0.5)
         
         # Same function if the user wants to run it via Command Line Interface
-        python addPredictions.py --csObject Users/aj/Desktop/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad    	
+        python addPredictions.py \
+            --csObject Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad    	
 
     """
     # Load the adata

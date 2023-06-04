@@ -54,13 +54,13 @@ nav:
             - scatterPlot: 'Functions/scatterPlot.md'
             - addPredictions: 'Functions/addPredictions.md'
     - Tutorials:
-        - Download Tutorial Data: 'Tutorials/exampleData.md'
-        - Installation and Set Up: 'Tutorials/SetUp.md'
-        - Build CSPOT Model: 'Tutorials/BuildCSModels.md'
-        - Run CSPOT Algorithm: 'Tutorials/RunCSAlgorithm.md'
-        - Phenotype Cells: 'Tutorials/CellPhenotyping.md'
+        - Download Tutorial Data: 'Tutorials/DownloadTutorialData.md'
+        - Installation and Set Up: 'Tutorials/InstallationandSetUp.md'
+        - Build CSPOT Model: 'Tutorials/BuildCSPOTModel.md'
+        - Run CSPOT Algorithm: 'Tutorials/RunCSPOTAlgorithm.md'
+        - Phenotype Cells: 'Tutorials/PhenotypeCells.md'
         - Helper Functions: 'Tutorials/HelperFunctions.md'
-        - Run CSPOT with Docker: 'Tutorials/Docker.md'
+        - Run CSPOT with Docker: 'Tutorials/RunCSPOTwithDocker.md'
 
 
 plugins:

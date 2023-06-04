@@ -145,13 +145,13 @@ Example:
         ```python
         
         # set the working directory & set paths to the example data
-        cwd = '/Users/aj/Desktop/cspotExampleData'
-        imagePath = cwd + '/image/exampleImage.tif'
-        spatialTablePath = cwd + '/quantification/exampleSpatialTable.csv'
-        markerChannelMapPath = cwd + '/markers.csv'
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+        imagePath = projectDir + '/image/exampleImage.tif'
+        spatialTablePath = projectDir + '/quantification/exampleSpatialTable.csv'
+        markerChannelMapPath = projectDir + '/markers.csv'
         
         # Run the function
-        ga.generateThumbnails ( spatialTablePath=spatialTablePath, 
+        cs.generateThumbnails ( spatialTablePath=spatialTablePath, 
                         imagePath=imagePath, 
                         markerChannelMapPath=markerChannelMapPath,
                         markers=["ECAD", "CD3D"], 
@@ -172,7 +172,13 @@ Example:
                         projectDir=cwd)
         
         # Same function if the user wants to run it via Command Line Interface
-        python generateThumbnails.py --spatialTablePath /Users/aj/Desktop/cspotExampleData/quantification/exampleSpatialTable.csv --imagePath /Users/aj/Desktop/cspotExampleData/image/exampleImage.tif --markerChannelMapPath /Users/aj/Desktop/cspotExampleData/markers.csv --markers ECAD CD3D --maxThumbnails 100 --projectDir /Users/aj/Desktop/cspotExampleData/
+        python generateThumbnails.py \
+            --spatialTablePath /Users/aj/Desktop/cspotExampleData/quantification/exampleSpatialTable.csv \
+            --imagePath /Users/aj/Desktop/cspotExampleData/image/exampleImage.tif \
+            --markerChannelMapPath /Users/aj/Desktop/cspotExampleData/markers.csv \
+            --markers ECAD CD3D \
+            --maxThumbnails 100 \
+            --projectDir /Users/aj/Desktop/cspotExampleData/
         
         ```
     """

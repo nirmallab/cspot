@@ -64,20 +64,22 @@ Example:
         ```python
         
         # global path
-        cwd = '/Users/aj/Desktop/cspotExampleData'
+        projectDir = '/Users/aj/Documents/cspotExampleData'
         
-        # function specific paths
-        probabilityMaskPath = cwd + '/CSPOT/csPredict/exampleImage_cspotPredict.ome.tif'
-        segmentationPath = cwd + '/segmentation/exampleSegmentationMask.tif'
+        # Path to all the files that are necessary files for running generateCSScore
+        segmentationPath = projectDir + '/segmentation/exampleSegmentationMask.tif'
+        probabilityMaskPath = projectDir + '/CSPOT/csPredict/exampleImage_cspotPredict.ome.tif'
         
-        ga.generateCSScore (probabilityMaskPath=probabilityMaskPath,
-                     segmentationMaskPath=segmentationPath,
-                     feature='median',
-                     verbose=True,
-                     projectDir=cwd)
+        cs.generateCSScore(probabilityMaskPath=probabilityMaskPath,
+                      segmentationMaskPath=segmentationPath,
+                      feature='median',
+                      projectDir=projectDir)
         
         # Same function if the user wants to run it via Command Line Interface
-        python generateCSScore.py --probabilityMaskPath /Users/aj/Desktop/cspotExampleData/dlPredict/exampleProbabiltyMap.ome.tif --segmentationMaskPath /Users/aj/Desktop/cspotExampleData/segmentation/exampleSegmentationMask.tif --markerNames ECAD CD45 CD4 CD3D CD8A CD45R Ki67 --projectDir /Users/aj/Desktop/cspotExampleData/
+        python generateCSScore.py \
+            --probabilityMaskPath /Users/aj/Documents/cspotExampleData/CSPOT/csPredict/exampleImage_cspotPredict.ome.tif \
+            --segmentationMaskPath /Users/aj/Documents/cspotExampleData/segmentation/exampleSegmentationMask.tif \
+            --projectDir /Users/aj/Documents/cspotExampleData
         
         ```
 

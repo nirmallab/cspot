@@ -129,16 +129,16 @@ Example:
 
         ```python
         
-        # set the working directory & set paths to the example data
-        cwd = '/Users/aj/Desktop/cspotExampleData'
-        # Module specific paths
-        csObject = cwd + '/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad'
+        # set the Project directory
+        projectDir = '/Users/aj/Documents/cspotExampleData'
+        # Path to the CSPOT Object
+        csObject = projectDir + '/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad'
         
         # load the phenotyping workflow
-        phenotype = cwd + '/phenotype_workflow.csv'
+        phenotype = pd.read_csv(str(projectDir) + '/phenotype_workflow.csv')
         
         # Run Function
-        adata = ga.csPhenotype ( csObject=csObject,
+        adata = cs.csPhenotype ( csObject=csObject,
                             phenotype=phenotype,
                             midpoint = 0.5,
                             label="phenotype",
@@ -146,10 +146,13 @@ Example:
                             pheno_threshold_percent=None,
                             pheno_threshold_abs=None,
                             fileName=None,
-                            projectDir=cwd)
+                            projectDir=projectDir)
         
         # Same function if the user wants to run it via Command Line Interface
-        python csPhenotype.py --csObject /Users/aj/Desktop/cspotExampleData/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad --phenotype /Users/aj/Desktop/cspotExampleData/phenotype_workflow.csv --projectDir /Users/aj/Desktop/cspotExampleData
+        python csPhenotype.py \
+            --csObject /Users/aj/Documents/cspotExampleData/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad \
+            --phenotype /Users/aj/Documents/cspotExampleData/phenotype_workflow.csv \
+            --projectDir /Users/aj/Documents/cspotExampleData
 
         
         ```
