@@ -1,4 +1,9 @@
 
+
+[![Downloads](https://static.pepy.tech/badge/cspot)](https://pepy.tech/project/cspot)
+[![docs](https://github.com/nirmallab/cspot/actions/workflows/docs.yml/badge.svg)](https://github.com/nirmallab/cspot/actions/workflows/docs.yml)
+
+
 # 🐊 Getting Started with CSPOT 
 Kindly note that **CSPOT is not a plug-and-play solution**. It's a framework that requires significant upfront investment of time from potential users for training and validating deep learning models, which can then be utilized in a plug-and-play manner for processing large volumes of similar multiplexed imaging data.
   
