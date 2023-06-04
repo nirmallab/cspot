@@ -33,7 +33,6 @@ theme:
 nav:
     - Home: 'index.md'
     - Getting Started: 'Getting Started.md'
-    - Workflow: 'Workflow.md'
     - CSPOT Functions:
         - Build CSPOT Model:
             - generateThumbnails: 'Functions/generateThumbnails.md'
