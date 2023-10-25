@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cspot"
-version = "1.0.6"
+version = "1.0.7"
 description = "CELL SPOTTER (CSPOT): A scalable framework for automated processing of highly multiplexed tissue images"
 authors = ["Ajit Johnson Nirmal <ajitjohnson.n@gmail.com>"]
 readme = "README.md"
@@ -28,7 +28,7 @@ tifffile = "^2022.8.12"
 pathlib = "^1.0.1"
 dask = "^2022.8.1"
 zarr = "^2.12.0"
-tensorflow = "2.13.0rc1"
+tensorflow = "2.13.0rc0"
 opencv-python = "^4.6.0.66"
 anndata = "^0.8.0"
 scikit-learn = "^1.2.1"

@@ -1,0 +1,30 @@
+FROM python:3.9
+
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y \
+    && rm -rf /var/lib/apt/lists/*
+
+
+
+RUN wget \
+    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    && bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda \
+    && rm -f Miniconda3-latest-Linux-x86_64.sh 
+
+ENV PATH=/opt/conda/bin:$PATH
+
+RUN /opt/conda/bin/conda install -c conda-forge cudatoolkit=11.8.0
+RUN pip install nvidia-cudnn-cu11==8.6.0.163 
+#RUN mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+#RUN echo 'CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+#RUN echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/:$CUDNN_PATH/lib' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+#RUN . $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+# Verify install:
+# RUN python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+
+# RUN /opt/conda/bin/conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0 -y
+
+RUN conda clean --all --yes
+
+RUN pip install --no-cache-dir cspot --upgrade
+
+COPY cspot/ /app/

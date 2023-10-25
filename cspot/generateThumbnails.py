@@ -334,28 +334,30 @@ Example:
         y_start = corners.loc[rowIndex]['y_start']; y_end = corners.loc[rowIndex]['y_end']
         # cropping image
         crop = zimg[y_start:y_end, x_start:x_end]
-        # convert the image to unit8
-        if globalNorm is True:
-            fullN = ((crop/npercentile)*255).clip(0, 255).astype('uint8')
-        else:
-            fullN = ((crop/maxpercentile)*255).clip(0, 255).astype('uint8')
-        # save the cropped image
-        if imgType == 'pos':
-            path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
-        elif imgType == 'neg':
-            path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')
-        # write file
-        tifffile.imwrite(path,fullN)
-        # local normalization if requested
-        if localNorm is True:
-            localN = ((crop/(np.percentile(crop.compute(), 99.99)))*255).clip(0, 255).astype('uint8')
-            # save image
+        # check if image is the right size
+        if crop.shape == (windowSize,windowSize):
+            # convert the image to unit8
+            if globalNorm is True:
+                fullN = ((crop/npercentile)*255).clip(0, 255).astype('uint8')
+            else:
+                fullN = ((crop/maxpercentile)*255).clip(0, 255).astype('uint8')
+            # save the cropped image
             if imgType == 'pos':
-                Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
+                path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
             elif imgType == 'neg':
-                Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')
+                path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')                      
             # write file
-            tifffile.imwrite(Lpath,localN)
+            tifffile.imwrite(path,fullN)
+            # local normalization if requested
+            if localNorm is True:
+                localN = ((crop/(np.percentile(crop, 99.99)))*255).clip(0, 255).astype('uint8') #.compute()
+                # save image
+                if imgType == 'pos':
+                    Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
+                elif imgType == 'neg':
+                    Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')     
+                # write file
+                tifffile.imwrite(Lpath,localN)
 
     # identify the cells of interest
     def processMarker (marker):
@@ -448,11 +450,17 @@ Example:
 
         # identify image name
         imname = pathlib.Path(imagePath).stem
-
+        
         # load the image
-        zimg = da.from_zarr(tifffile.imread(pathlib.Path(imagePath), aszarr=True, level=0, key=markerIndex))
-        npercentile = np.percentile(zimg.compute(), 99.99)
-        maxpercentile = zimg.max().compute()
+        zimg = tifffile.imread(str(pathlib.Path(imagePath)), level=0, key=markerIndex)
+        npercentile = np.percentile(zimg, 99.99)
+        maxpercentile = zimg.max()
+
+        # load the image (dask has issues)
+        #zimg = da.from_zarr(tifffile.imread(pathlib.Path(imagePath), aszarr=True, level=0, key=markerIndex))
+        #npercentile = np.percentile(zimg.compute(), 99.99)
+        #maxpercentile = zimg.max().compute()
+        
 
         # for older version f tifffile
         #zimg = zarr.open(tifffile.imread(pathlib.Path(imagePath), aszarr=True, level=0, key=markerIndex))
