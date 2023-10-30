@@ -17,7 +17,8 @@ If you are comfortable using Docker and would like to execute the commands in yo
   
 **Download the [sample data](https://doi.org/10.7910/DVN/C45JWT)**. Please keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute `cspot` and will not yeild any meaningful results.
   
-**The purpose of this tutorial is solely to demonstrate how to run cspot using Docker. If you require detailed explanations of each step, please refer to the other tutorials.**
+**The purpose of this tutorial is solely to demonstrate how to run cspot using Docker. If you require detailed explanations of each step, please refer to the other tutorials.   
+Please note the following is for running docker on a mac. The semantics will defer if you are using windows terminal or powershell (with regards to declaring projectDir and so on)**
 
 ## Step-1: Generate Thumbnails for Training Data
 
