@@ -10,13 +10,6 @@ Before we set up CSPOT, we highly recommend using a environment manager like Con
 
 **Download and Install the right [conda](https://docs.conda.io/en/latest/miniconda.html) based on the opertating system that you are using**
 
-We have tested the following 
-- Linux (CPU, GPU)
-- Windows (CPU, GPU)
-- Windows WSL (CPU, GPU)
-- Mac: Intel (CPU)
-- Mac M1 or M2 (CPU)
-
 <hr>
 
 ## Let's create a new conda environment and install CSPOT
@@ -35,11 +28,6 @@ pip install cspot
 
 ## If you would like CSPOT to use GPU:
 cspot uses Tensorflow. Please install necessary packages for tensorflow to recogonise your specific GPU.  
-We have tested the following command in windows machine using nvidia GPU. Does not work on windows WSL2 due to tensorflow's dependency issues.
-
-```
-conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0 -y 
-```
 
 <hr>
 
