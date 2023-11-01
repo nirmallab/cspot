@@ -31,15 +31,15 @@ import cspot as cs
 # Path to all the files that are necessary files for running the CSPOT Prediction Algorithm (broken down based on sub functions)
 projectDir = '/Users/aj/Documents/cspotExampleData'
 
-# gatorPredict related paths
+# cspotPredict related paths
 imagePath = projectDir + '/image/exampleImage.tif'
 markerChannelMapPath = projectDir + '/markers.csv'
 csModelPath = projectDir + '/manuscriptModels/'
 
-# Generate generateGatorScore related paths
+# Generate generatecspotScore related paths
 segmentationPath = projectDir + '/segmentation/exampleSegmentationMask.tif'
 
-# gatorObject related paths
+# cspotObject related paths
 spatialTablePath = projectDir + '/quantification/exampleSpatialTable.csv'
 
 ```
@@ -48,18 +48,18 @@ spatialTablePath = projectDir + '/quantification/exampleSpatialTable.csv'
 ```python
 # Run the pipeline (For function specific parameters, check the documentation)
 cs.csPipeline(   
-                    # parameters for gatorPredict function
+                    # parameters for cspotPredict function
                     imagePath=imagePath,
                     csModelPath=csModelPath,
                     markerChannelMapPath=markerChannelMapPath,
 
-                    # parameters for generateGatorScore function
+                    # parameters for generatecspotScore function
                     segmentationMaskPath=segmentationPath,
 
-                    # parameters for gatorObject function
+                    # parameters for cspotObject function
                     spatialTablePath=spatialTablePath,
 
-                    # parameters to run gator function
+                    # parameters to run cspot function
                     # ..
 
                     # common parameters
@@ -354,7 +354,7 @@ csObjects = [projectDir + '/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad
 
 
 ```python
-# For this tutorial, supply the same gatorObject twice for merging, but multiple gatorObjects can be merged in ideal conditions.
+# For this tutorial, supply the same cspotObject twice for merging, but multiple cspotObjects can be merged in ideal conditions.
 adata = cs.mergecsObject ( csObjects=csObjects,
                               fileName='mergedcspotObject',
                               layers=['preProcessed'],

@@ -40,11 +40,6 @@ Please keep in mind that the [sample data](https://doi.org/10.7910/DVN/C45JWT) i
 import cspot as cs
 ```
 
-    WARNING:tensorflow:From c:\Users\aj\.conda\envs\cspot\lib\site-packages\tensorflow\python\compat\v2_compat.py:107: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    non-resource variables are not supported in the long term
-
-
 **CSPOT auto generates subfolders and so always set a single folder as `projectDir` and cspot will use that for all subsequent steps.**  
 In this case we will set the downloaded sample data as our `projectDir`. My sample data is on my desktop as seen below.
 
@@ -86,7 +81,7 @@ cs.generateThumbnails ( spatialTablePath=spatialTablePath,
 
     Processing Marker: ECAD
     Processing Marker: CD3D
-    Thumbnails have been generated, head over to "/Users/aj/Documents/cspotExampleData/CSPOT/Thumbnails" to view results
+    Thumbnails have been generated, head over to "/Users/aj/Downloads/cspotExampleData/CSPOT/Thumbnails" to view results
 
 
 **The output from the above function will be stored under `CSPOT/Thumbnails/`.**  
@@ -117,7 +112,7 @@ cs.generateTrainTestSplit ( thumbnailFolder,
 
     Processing: CD3D
     Processing: ECAD
-    Training data has been generated, head over to "/Users/aj/Documents/cspotExampleData/CSPOT/TrainingData" to view results
+    Training data has been generated, head over to "/Users/aj/Downloads/cspotExampleData/CSPOT/TrainingData" to view results
 
 
 If you head over to `CSPOT/TrainingData/`, you will notice that each of the supplied marker above will have a folder with the associated `training, validataion and test` data that is required by the deep-learning algorithm to generate the model. 
@@ -165,18 +160,18 @@ cs.csTrain(trainingDataPath=trainingDataPath,
       return tf.layers.batch_normalization(
 
 
-    /Users/aj/Documents/cspotExampleData/CSPOT/TrainingData/CD3D/training
+    /Users/aj/Downloads/cspotExampleData/CSPOT/TrainingData/CD3D/training
     Training for 8 steps
-    Found 122 training images
-    Found 41 validation images
-    Found 41 test images
+    Found 120 training images
+    Found 40 validation images
+    Found 40 test images
     Of these, 0 are artefact training images
      and  0 artefact validation images
     Using 0 and 1 for mean and standard deviation.
     saving data
     saving data
     Using 16.0 and 0.0 for global max and min intensities.
-    Class balance ratio is 18.959115759448537
+    Class balance ratio is 15.749131057043549
     WARNING:tensorflow:From /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/tensorflow/python/util/dispatch.py:1176: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
     Instructions for updating:
     Use `tf.cast` instead.
@@ -192,20 +187,20 @@ cs.csTrain(trainingDataPath=trainingDataPath,
     WARNING:tensorflow:From /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/tensorflow/python/util/dispatch.py:1176: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
     Instructions for updating:
     Deprecated in favor of operator or tf.math.divide.
-    step 00000, e: 0.506249, epoch: 1
-    Model saved in file: /Users/aj/Documents/cspotExampleData/CSPOT/cspotModel/CD3D/model.ckpt
-    step 00001, e: 0.500656, epoch: 1
-    step 00002, e: 0.481774, epoch: 1
-    step 00003, e: 0.466444, epoch: 1
-    step 00004, e: 0.441243, epoch: 1
-    step 00005, e: 0.492766, epoch: 1
-    step 00006, e: 0.522770, epoch: 2
-    step 00007, e: 0.508577, epoch: 2
+    step 00000, e: 0.524932, epoch: 1
+    Model saved in file: /Users/aj/Downloads/cspotExampleData/CSPOT/cspotModel/CD3D/model.ckpt
+    step 00001, e: 0.393462, epoch: 1
+    step 00002, e: 0.706428, epoch: 1
+    step 00003, e: 0.483075, epoch: 1
+    step 00004, e: 0.619706, epoch: 1
+    step 00005, e: 0.435708, epoch: 1
+    step 00006, e: 0.453731, epoch: 2
+    step 00007, e: 0.338719, epoch: 2
     saving data
     loading data
-    INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/CSPOT/cspotModel/CD3D/model.ckpt
+    INFO:tensorflow:Restoring parameters from /Users/aj/Downloads/cspotExampleData/CSPOT/cspotModel/CD3D/model.ckpt
     Model restored.
-    /Users/aj/Documents/cspotExampleData/CSPOT/TrainingData/ECAD/training
+    /Users/aj/Downloads/cspotExampleData/CSPOT/TrainingData/ECAD/training
     Training for 8 steps
     Found 120 training images
     Found 40 validation images
@@ -215,22 +210,22 @@ cs.csTrain(trainingDataPath=trainingDataPath,
     Using 0 and 1 for mean and standard deviation.
     saving data
     saving data
-    Using 70.0 and 6.0 for global max and min intensities.
-    Class balance ratio is 6.6801200018750295
-    step 00000, e: 0.498890, epoch: 1
-    Model saved in file: /Users/aj/Documents/cspotExampleData/CSPOT/cspotModel/ECAD/model.ckpt
-    step 00001, e: 0.494717, epoch: 1
-    step 00002, e: 0.510676, epoch: 1
-    step 00003, e: 0.480390, epoch: 1
-    step 00004, e: 0.478806, epoch: 1
-    step 00005, e: 0.516272, epoch: 1
-    step 00006, e: 0.512058, epoch: 2
-    step 00007, e: 0.480931, epoch: 2
+    Using 63.0 and 0.0 for global max and min intensities.
+    Class balance ratio is 6.543625397117731
+    step 00000, e: 0.480363, epoch: 1
+    Model saved in file: /Users/aj/Downloads/cspotExampleData/CSPOT/cspotModel/ECAD/model.ckpt
+    step 00001, e: 0.499994, epoch: 1
+    step 00002, e: 0.507299, epoch: 1
+    step 00003, e: 0.496521, epoch: 1
+    step 00004, e: 0.494144, epoch: 1
+    step 00005, e: 0.541110, epoch: 1
+    step 00006, e: 0.499454, epoch: 2
+    step 00007, e: 0.492319, epoch: 2
     saving data
     loading data
-    INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/CSPOT/cspotModel/ECAD/model.ckpt
+    INFO:tensorflow:Restoring parameters from /Users/aj/Downloads/cspotExampleData/CSPOT/cspotModel/ECAD/model.ckpt
     Model restored.
-    CSPOT Models have been generated, head over to "/Users/aj/Documents/cspotExampleData/CSPOT/cspotModel" to view results
+    CSPOT Models have been generated, head over to "/Users/aj/Downloads/cspotExampleData/CSPOT/cspotModel" to view results
 
 
 ## Step-4: Predict on a new image
@@ -248,15 +243,15 @@ segmentationPath = projectDir + '/segmentation/exampleSegmentationMask.tif'
 ```python
 # Run the pipeline (For function specific parameters, check the documentation)
 cs.csPipeline(   
-                    # parameters for gatorPredict function
+                    # parameters for cspotPredict function
                     imagePath=imagePath,
                     csModelPath=csModelPath,
                     markerChannelMapPath=markerChannelMapPath,
 
-                    # parameters for generateGatorScore function
+                    # parameters for cspotCScore function
                     segmentationMaskPath=segmentationPath,
 
-                    # parameters for gatorObject function
+                    # parameters for cspotObject function
                     spatialTablePath=spatialTablePath,
 
                     # common parameters
@@ -266,12 +261,9 @@ cs.csPipeline(
 ```
 
     loading data
-    WARNING:tensorflow:From /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/keras/src/layers/normalization/batch_normalization.py:883: _colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    Colocations handled automatically by placer.
     loading data
     loading data
-    INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/manuscriptModels/ECAD/model.ckpt
+    INFO:tensorflow:Restoring parameters from /Users/aj/Downloads/cspotExampleData/manuscriptModels/ECAD/model.ckpt
     Model restored.
 
 
@@ -291,12 +283,14 @@ cs.csPipeline(
     loading data
     loading data
     loading data
-    INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/manuscriptModels/CD3D/model.ckpt
+    INFO:tensorflow:Restoring parameters from /Users/aj/Downloads/cspotExampleData/manuscriptModels/CD3D/model.ckpt
     Model restored.
     Inference...
 
 
-    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/cspot.py:383: RuntimeWarning: invalid value encountered in divide
+    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/cspot.py:386: RuntimeWarning: divide by zero encountered in divide
+      below_midpoint = (below_midpoint - min_below) / range_below
+    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/cspot.py:386: RuntimeWarning: invalid value encountered in divide
       below_midpoint = (below_midpoint - min_below) / range_below
 
 
@@ -323,13 +317,9 @@ cs.scatterPlot(csObject,
             outputFileName='cspotplot.png')
 ```
 
-    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/anndata/_core/anndata.py:121: ImplicitModificationWarning: Transforming to str index.
-      warnings.warn("Transforming to str index.", ImplicitModificationWarning)
-
-
 
     
-![png](Quick%20Start%20Guide_files/Quick%20Start%20Guide_27_1.png)
+![png](Quick%20Start%20Guide_files/Quick%20Start%20Guide_27_0.png)
     
 
 
@@ -363,91 +353,94 @@ phenotype.style.format(na_rep='')
 ```
 
 
+
+
 <style type="text/css">
 </style>
-<table id="T_fb8d4">
+<table id="T_bccea">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_fb8d4_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
-      <th id="T_fb8d4_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
-      <th id="T_fb8d4_level0_col2" class="col_heading level0 col2" >ECAD</th>
-      <th id="T_fb8d4_level0_col3" class="col_heading level0 col3" >CD45</th>
-      <th id="T_fb8d4_level0_col4" class="col_heading level0 col4" >CD4</th>
-      <th id="T_fb8d4_level0_col5" class="col_heading level0 col5" >CD3D</th>
-      <th id="T_fb8d4_level0_col6" class="col_heading level0 col6" >CD8A</th>
-      <th id="T_fb8d4_level0_col7" class="col_heading level0 col7" >KI67</th>
+      <th id="T_bccea_level0_col0" class="col_heading level0 col0" >Unnamed: 0</th>
+      <th id="T_bccea_level0_col1" class="col_heading level0 col1" >Unnamed: 1</th>
+      <th id="T_bccea_level0_col2" class="col_heading level0 col2" >ECAD</th>
+      <th id="T_bccea_level0_col3" class="col_heading level0 col3" >CD45</th>
+      <th id="T_bccea_level0_col4" class="col_heading level0 col4" >CD4</th>
+      <th id="T_bccea_level0_col5" class="col_heading level0 col5" >CD3D</th>
+      <th id="T_bccea_level0_col6" class="col_heading level0 col6" >CD8A</th>
+      <th id="T_bccea_level0_col7" class="col_heading level0 col7" >KI67</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_fb8d4_level0_row0" class="row_heading level0 row0" >0</th>
-      <td id="T_fb8d4_row0_col0" class="data row0 col0" >all</td>
-      <td id="T_fb8d4_row0_col1" class="data row0 col1" >Immune</td>
-      <td id="T_fb8d4_row0_col2" class="data row0 col2" ></td>
-      <td id="T_fb8d4_row0_col3" class="data row0 col3" >anypos</td>
-      <td id="T_fb8d4_row0_col4" class="data row0 col4" >anypos</td>
-      <td id="T_fb8d4_row0_col5" class="data row0 col5" >anypos</td>
-      <td id="T_fb8d4_row0_col6" class="data row0 col6" >anypos</td>
-      <td id="T_fb8d4_row0_col7" class="data row0 col7" ></td>
+      <th id="T_bccea_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_bccea_row0_col0" class="data row0 col0" >all</td>
+      <td id="T_bccea_row0_col1" class="data row0 col1" >Immune</td>
+      <td id="T_bccea_row0_col2" class="data row0 col2" ></td>
+      <td id="T_bccea_row0_col3" class="data row0 col3" >anypos</td>
+      <td id="T_bccea_row0_col4" class="data row0 col4" >anypos</td>
+      <td id="T_bccea_row0_col5" class="data row0 col5" >anypos</td>
+      <td id="T_bccea_row0_col6" class="data row0 col6" >anypos</td>
+      <td id="T_bccea_row0_col7" class="data row0 col7" ></td>
     </tr>
     <tr>
-      <th id="T_fb8d4_level0_row1" class="row_heading level0 row1" >1</th>
-      <td id="T_fb8d4_row1_col0" class="data row1 col0" >all</td>
-      <td id="T_fb8d4_row1_col1" class="data row1 col1" >ECAD+</td>
-      <td id="T_fb8d4_row1_col2" class="data row1 col2" >pos</td>
-      <td id="T_fb8d4_row1_col3" class="data row1 col3" ></td>
-      <td id="T_fb8d4_row1_col4" class="data row1 col4" ></td>
-      <td id="T_fb8d4_row1_col5" class="data row1 col5" ></td>
-      <td id="T_fb8d4_row1_col6" class="data row1 col6" ></td>
-      <td id="T_fb8d4_row1_col7" class="data row1 col7" ></td>
+      <th id="T_bccea_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_bccea_row1_col0" class="data row1 col0" >all</td>
+      <td id="T_bccea_row1_col1" class="data row1 col1" >ECAD+</td>
+      <td id="T_bccea_row1_col2" class="data row1 col2" >pos</td>
+      <td id="T_bccea_row1_col3" class="data row1 col3" ></td>
+      <td id="T_bccea_row1_col4" class="data row1 col4" ></td>
+      <td id="T_bccea_row1_col5" class="data row1 col5" ></td>
+      <td id="T_bccea_row1_col6" class="data row1 col6" ></td>
+      <td id="T_bccea_row1_col7" class="data row1 col7" ></td>
     </tr>
     <tr>
-      <th id="T_fb8d4_level0_row2" class="row_heading level0 row2" >2</th>
-      <td id="T_fb8d4_row2_col0" class="data row2 col0" >ECAD+</td>
-      <td id="T_fb8d4_row2_col1" class="data row2 col1" >KI67+ ECAD+</td>
-      <td id="T_fb8d4_row2_col2" class="data row2 col2" ></td>
-      <td id="T_fb8d4_row2_col3" class="data row2 col3" ></td>
-      <td id="T_fb8d4_row2_col4" class="data row2 col4" ></td>
-      <td id="T_fb8d4_row2_col5" class="data row2 col5" ></td>
-      <td id="T_fb8d4_row2_col6" class="data row2 col6" ></td>
-      <td id="T_fb8d4_row2_col7" class="data row2 col7" >pos</td>
+      <th id="T_bccea_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_bccea_row2_col0" class="data row2 col0" >ECAD+</td>
+      <td id="T_bccea_row2_col1" class="data row2 col1" >KI67+ ECAD+</td>
+      <td id="T_bccea_row2_col2" class="data row2 col2" ></td>
+      <td id="T_bccea_row2_col3" class="data row2 col3" ></td>
+      <td id="T_bccea_row2_col4" class="data row2 col4" ></td>
+      <td id="T_bccea_row2_col5" class="data row2 col5" ></td>
+      <td id="T_bccea_row2_col6" class="data row2 col6" ></td>
+      <td id="T_bccea_row2_col7" class="data row2 col7" >pos</td>
     </tr>
     <tr>
-      <th id="T_fb8d4_level0_row3" class="row_heading level0 row3" >3</th>
-      <td id="T_fb8d4_row3_col0" class="data row3 col0" >Immune</td>
-      <td id="T_fb8d4_row3_col1" class="data row3 col1" >CD4+ T</td>
-      <td id="T_fb8d4_row3_col2" class="data row3 col2" ></td>
-      <td id="T_fb8d4_row3_col3" class="data row3 col3" ></td>
-      <td id="T_fb8d4_row3_col4" class="data row3 col4" >allpos</td>
-      <td id="T_fb8d4_row3_col5" class="data row3 col5" >allpos</td>
-      <td id="T_fb8d4_row3_col6" class="data row3 col6" ></td>
-      <td id="T_fb8d4_row3_col7" class="data row3 col7" ></td>
+      <th id="T_bccea_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_bccea_row3_col0" class="data row3 col0" >Immune</td>
+      <td id="T_bccea_row3_col1" class="data row3 col1" >CD4+ T</td>
+      <td id="T_bccea_row3_col2" class="data row3 col2" ></td>
+      <td id="T_bccea_row3_col3" class="data row3 col3" ></td>
+      <td id="T_bccea_row3_col4" class="data row3 col4" >allpos</td>
+      <td id="T_bccea_row3_col5" class="data row3 col5" >allpos</td>
+      <td id="T_bccea_row3_col6" class="data row3 col6" ></td>
+      <td id="T_bccea_row3_col7" class="data row3 col7" ></td>
     </tr>
     <tr>
-      <th id="T_fb8d4_level0_row4" class="row_heading level0 row4" >4</th>
-      <td id="T_fb8d4_row4_col0" class="data row4 col0" >Immune</td>
-      <td id="T_fb8d4_row4_col1" class="data row4 col1" >CD8+ T</td>
-      <td id="T_fb8d4_row4_col2" class="data row4 col2" ></td>
-      <td id="T_fb8d4_row4_col3" class="data row4 col3" ></td>
-      <td id="T_fb8d4_row4_col4" class="data row4 col4" ></td>
-      <td id="T_fb8d4_row4_col5" class="data row4 col5" >allpos</td>
-      <td id="T_fb8d4_row4_col6" class="data row4 col6" >allpos</td>
-      <td id="T_fb8d4_row4_col7" class="data row4 col7" ></td>
+      <th id="T_bccea_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_bccea_row4_col0" class="data row4 col0" >Immune</td>
+      <td id="T_bccea_row4_col1" class="data row4 col1" >CD8+ T</td>
+      <td id="T_bccea_row4_col2" class="data row4 col2" ></td>
+      <td id="T_bccea_row4_col3" class="data row4 col3" ></td>
+      <td id="T_bccea_row4_col4" class="data row4 col4" ></td>
+      <td id="T_bccea_row4_col5" class="data row4 col5" >allpos</td>
+      <td id="T_bccea_row4_col6" class="data row4 col6" >allpos</td>
+      <td id="T_bccea_row4_col7" class="data row4 col7" ></td>
     </tr>
     <tr>
-      <th id="T_fb8d4_level0_row5" class="row_heading level0 row5" >5</th>
-      <td id="T_fb8d4_row5_col0" class="data row5 col0" >Immune</td>
-      <td id="T_fb8d4_row5_col1" class="data row5 col1" >Non T CD4+ cells</td>
-      <td id="T_fb8d4_row5_col2" class="data row5 col2" ></td>
-      <td id="T_fb8d4_row5_col3" class="data row5 col3" ></td>
-      <td id="T_fb8d4_row5_col4" class="data row5 col4" >pos</td>
-      <td id="T_fb8d4_row5_col5" class="data row5 col5" >neg</td>
-      <td id="T_fb8d4_row5_col6" class="data row5 col6" ></td>
-      <td id="T_fb8d4_row5_col7" class="data row5 col7" ></td>
+      <th id="T_bccea_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_bccea_row5_col0" class="data row5 col0" >Immune</td>
+      <td id="T_bccea_row5_col1" class="data row5 col1" >Non T CD4+ cells</td>
+      <td id="T_bccea_row5_col2" class="data row5 col2" ></td>
+      <td id="T_bccea_row5_col3" class="data row5 col3" ></td>
+      <td id="T_bccea_row5_col4" class="data row5 col4" >pos</td>
+      <td id="T_bccea_row5_col5" class="data row5 col5" >neg</td>
+      <td id="T_bccea_row5_col6" class="data row5 col6" ></td>
+      <td id="T_bccea_row5_col7" class="data row5 col7" ></td>
     </tr>
   </tbody>
 </table>
+
 
 
 
@@ -500,16 +493,16 @@ adata = cs.csPhenotype ( csObject=csObject,
     Phenotyping CD8+ T
     Phenotyping Non T CD4+ cells
     Consolidating the phenotypes across all groups
-    Modified csObject is stored at "/Users/aj/Documents/cspotExampleData/CSPOT/csPhenotype
+    Modified csObject is stored at "/Users/aj/Downloads/cspotExampleData/CSPOT/csPhenotype
 
 
-    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/csPhenotype.py:259: SettingWithCopyWarning: 
+    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/csPhenotype.py:262: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
     See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
       allpos_score['score'] = allpos_score.max(axis=1)
-    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/csPhenotype.py:259: SettingWithCopyWarning: 
+    /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/csPhenotype.py:262: SettingWithCopyWarning: 
     A value is trying to be set on a copy of a slice from a DataFrame.
     Try using .loc[row_indexer,col_indexer] = value instead
     
@@ -526,8 +519,16 @@ adata.obs['phenotype'].value_counts()
 ```
 
 
+
+
     KI67+ ECAD+    6159
     CD4+ T         5785
     CD8+ T          816
     Name: phenotype, dtype: int64
 
+
+
+
+```python
+
+```
