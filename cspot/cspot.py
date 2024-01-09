@@ -160,6 +160,12 @@ Example:
         ```
 
     """
+    
+    # testing
+    #csObject= '/Users/aj/Dropbox (Partners HealthCare)/nirmal lab/resources/exemplarData/cspotExampleData/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad'
+    #csScore='csScore'; minAbundance=0.005; percentiles=[1, 20, 80, 99]; dropMarkers = None
+    #RobustScale=False; log=True; stringentThreshold=False; x_coordinate='X_centroid'; y_coordinate='Y_centroid'
+    #imageid='imageid'; random_state=0; rescaleMethod='minmax'; label='cspotOutput'; verbose=True; projectDir=None
 
     # Load the andata object
     if isinstance(csObject, str):
@@ -328,6 +334,8 @@ Example:
       # Convert data and labels to NumPy arrays
       data = np.array(data)
       labels = np.array(labels)
+      # Calculating the mean of 'neg' instances  (used to replace wrongly assigned pos instances)
+      neg_mean = np.mean(data[labels == 'neg'])
       # Get the indices that would sort the data and labels arrays
       sort_indices = np.argsort(data)
       # Sort the data and labels arrays using the sort indices
@@ -338,7 +346,7 @@ Example:
       # Find all the elements in the sorted labels array with a value of 'neg' after the midpoint index
       neg_mask = np.logical_and(sorted_labels == 'neg', np.arange(len(sorted_data)) >= midpoint_index)
       # Modify the value of the elements to be equal to the midpoint value
-      sorted_data[neg_mask] = midpoint
+      sorted_data[neg_mask] = neg_mean
       # Find all the elements in the sorted labels array with a value of 'pos' before the midpoint index
       pos_mask = np.logical_and(sorted_labels == 'pos', np.arange(len(sorted_data)) < midpoint_index)
       # Modify the value of the elements to be equal to the midpoint value plus 0.1
@@ -573,7 +581,7 @@ Example:
     # step-5 : Generate training data for the Gradient Boost Classifier
     ###########################################################################
 
-    # bonafide_cells_result = bonafide_cells_result[2]
+    # bonafide_cells_result = bonafide_cells_result[8]
     def trainingData (bonafide_cells_result, pre_processed_data, RobustScale):
         # uravel the data
         marker = bonafide_cells_result[0]
@@ -704,7 +712,7 @@ Example:
     ###########################################################################
 
     # bonafide_cells_result_copy = bonafide_cells_result.copy()
-    # bonafide_cells_result = bonafide_cells_result[0]
+    # bonafide_cells_result = bonafide_cells_result[8]
 
     def anomalyDetector (pre_processed_data, bonafide_cells_result, prediction_results):
         # unravel data
@@ -719,11 +727,39 @@ Example:
         # scale data
         scaler = StandardScaler()
         X_scaled = scaler.fit_transform(X)
+        
         # model data
-        model = LocalOutlierFactor(n_neighbors=20)
-        model.fit(X_scaled)
-        outlier_scores = model.negative_outlier_factor_
-        outliers = pre_processed_data[outlier_scores < -1].index
+        #model = LocalOutlierFactor(n_neighbors=20)
+        #model.fit(X_scaled)
+        #outlier_scores = model.negative_outlier_factor_
+        #outliers = pre_processed_data[outlier_scores < -1].index
+
+        # Initialize LocalOutlierFactor with parallel processing
+        model = LocalOutlierFactor(n_neighbors=20, n_jobs=-1)
+        
+        # Define batch size and prepare for batch processing
+        batch_size = 50000  # Adjust this based on your system's memory capacity
+        n_batches = int(np.ceil(X_scaled.shape[0] / batch_size))
+        
+        outlier_scores = np.array([])
+        
+        # Process in batches
+        for i in range(n_batches):
+            start_index = i * batch_size
+            end_index = start_index + batch_size
+            batch = X_scaled[start_index:end_index]
+        
+            # Fit the model on the batch
+            model.fit(batch)
+            
+            # Append the batch's outlier scores
+            batch_scores = model.negative_outlier_factor_
+            outlier_scores = np.concatenate((outlier_scores, batch_scores))
+        
+        # Identifying outliers
+        threshold = -1 
+        outliers = pre_processed_data[outlier_scores < threshold].index
+                
 
         # common elements betwenn outliers and true neg
         posttoneg = list(set(outliers).intersection(set(neg)))
@@ -731,8 +767,8 @@ Example:
         negtopos = list(set(pos).intersection(set(prediction_results[prediction_results[marker]=='neg'].index)))
 
         # mutate the prediction results
-        prediction_results.loc[posttoneg, marker] = 'neg'
         prediction_results.loc[negtopos, marker] = 'pos'
+        prediction_results.loc[posttoneg, marker] = 'neg'
 
         # results
         results = prediction_results[[marker]]
