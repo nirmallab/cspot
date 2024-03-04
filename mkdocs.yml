@@ -109,9 +109,11 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+copyright: Copyright &copy; 2024 | Nirmal Lab | www.nirmallab.com
+
 extra:
-  copyright: Copyright &copy; 2023 | Nirmal Lab
+  generator: false
   social:
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/ajitjohnson_n
+      link: https://twitter.com/nirmallab
       name: Twitter
