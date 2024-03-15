@@ -6,7 +6,7 @@ hide:
 
 [![Downloads](https://static.pepy.tech/badge/cspot)](https://pepy.tech/project/cspot)
 [![docs](https://github.com/nirmallab/cspot/actions/workflows/docs.yml/badge.svg)](https://github.com/nirmallab/cspot/actions/workflows/docs.yml)
-
+[![build-unix-mac-win](https://github.com/nirmallab/cspot/actions/workflows/build-unix-mac-win.yml/badge.svg)](https://github.com/nirmallab/cspot/actions/workflows/build-unix-mac-win.yml)
 
 ## CELL SPOTTER (CSPOT): A scalable machine learning framework for automated processing of highly multiplexed tissue images  
 

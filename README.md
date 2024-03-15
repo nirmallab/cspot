@@ -2,7 +2,7 @@
 
 [![Downloads](https://static.pepy.tech/badge/cspot)](https://pepy.tech/project/cspot)
 [![docs](https://github.com/nirmallab/cspot/actions/workflows/docs.yml/badge.svg)](https://github.com/nirmallab/cspot/actions/workflows/docs.yml)
-
+[![build-unix-mac-win](https://github.com/nirmallab/cspot/actions/workflows/build-unix-mac-win.yml/badge.svg)](https://github.com/nirmallab/cspot/actions/workflows/build-unix-mac-win.yml)
 
 # 🐊 Getting Started with CSPOT 
 Kindly note that **CSPOT is not a plug-and-play solution**. It's a framework that requires significant upfront investment of time from potential users for training and validating deep learning models, which can then be utilized in a plug-and-play manner for processing large volumes of similar multiplexed imaging data.
@@ -16,7 +16,7 @@ Kindly note that **CSPOT is not a plug-and-play solution**. It's a framework tha
 This package is supported for Windows (10, 11), macOS (Sonoma, Ventura) and Linux (Ubuntu 16.04). 
  
 **Dependencies :** 
-The `project.toml` file contains a comprehensive list of dependencies.
+The `pyproject.toml` file contains a comprehensive list of dependencies.
 
 ## Installation Guide:
 
@@ -41,6 +41,7 @@ conda activate cspot
 ```
 pip install cspot
 ```
+The installation time for `cspot` generally falls under 5 minutes, based on internet speed and connectivity.
 
 ## **Interactive Mode**
 Using IDE or Jupyter notebooks
