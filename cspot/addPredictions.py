@@ -92,6 +92,7 @@ Example:
         # Same function if the user wants to run it via Command Line Interface
         python addPredictions.py \
             --csObject Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad    	
+        ```
 
     """
     # Load the adata

@@ -36,6 +36,9 @@ argparse = "^1.4.0"
 scikit-image = "^0.19.3"
 Brotli = "^1.0.9"
 matplotlib = "^3.7.1"
+# Default version for non-Windows platforms
+tensorflow-io-gcs-filesystem = {version = "<=0.31.0", markers = "platform_machine != 'arm64' or platform_system != 'Darwin'"}
+
 
 
 [build-system]
