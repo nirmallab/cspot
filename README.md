@@ -6,7 +6,20 @@
 
 # 🐊 Getting Started with CSPOT 
 Kindly note that **CSPOT is not a plug-and-play solution**. It's a framework that requires significant upfront investment of time from potential users for training and validating deep learning models, which can then be utilized in a plug-and-play manner for processing large volumes of similar multiplexed imaging data.
-  
+
+## System Requirements:
+
+**Hardware :**  
+`CSPOT` comprises two modules: training and prediction. Training can be efficiently executed on a standard laptop without the need for a GPU. However, for predictions, leveraging a GPU significantly enhances processing speed (particularly for large images).
+
+**Software :**  
+This package is supported for Windows (10, 11), macOS (Sonoma, Ventura) and Linux (Ubuntu 16.04). 
+ 
+**Dependencies :** 
+The `project.toml` file contains a comprehensive list of dependencies.
+
+## Installation Guide:
+
 **There are two ways to set it up based on how you would like to run the program**  
 - Using an interactive environment like Jupyter Notebooks  
 - Using Command Line Interface  

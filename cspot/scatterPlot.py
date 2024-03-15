@@ -98,7 +98,6 @@ Returns:
         provided outputDir.
 
 Example:
-
         ```python
         
         # Prohect directory

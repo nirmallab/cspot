@@ -31,7 +31,6 @@ def cloneFolder (copyFolder,
                  verbose=True):
     """
 Parameters:
-
     copyFolder (list):
         List of folders from which the user wants to replicate the file structure.
 
@@ -57,10 +56,10 @@ Parameters:
         If True, print detailed information about the process to the console.  
 
 Returns:
-    The file structure of the source Folder is replicated in the destination Folder.
+    folder (cloned folders):  
+        The file structure of the source Folder is replicated in the destination Folder.
 
 Example:
-
         ```python
         
         # High level working directory

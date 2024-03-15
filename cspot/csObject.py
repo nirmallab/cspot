@@ -85,7 +85,6 @@ Returns:
         `.h5ad` file in the provided directory.
 
 Example:
-
         ```python
         
         # set the working directory & set paths to the example data

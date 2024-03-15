@@ -126,7 +126,6 @@ Returns:
         provided, it will be saved in the defined directory.
 
 Example:
-
         ```python
         
         # set the Project directory

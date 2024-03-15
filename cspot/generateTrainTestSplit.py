@@ -71,7 +71,6 @@ Returns:
         Test and Validation cohorts.
 
 Example:
-
         ```python
         
         # High level working directory

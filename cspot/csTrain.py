@@ -96,13 +96,11 @@ Parameters:
         If True, print detailed information about the process to the console.  
 
 Returns:
-    
     Model (images and model):  
         The result will be located at `projectDir/CSPOT/cspotModel/`.
     
 
 Example:
-    
     ```python
     
     # High level working directory

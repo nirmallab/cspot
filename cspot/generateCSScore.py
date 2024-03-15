@@ -60,7 +60,6 @@ Returns:
         The `.csv` file containing the `csScore` is stored in the provided projectDir.
 
 Example:
-
         ```python
         
         # global path

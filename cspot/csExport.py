@@ -50,7 +50,6 @@ Returns:
         The `.csv` files can be found under `projectDir/CSPOT/csExport/`
 
 Example:
-
         ```python
         # path to files needed for csExport
         projectDir = '/Users/aj/Documents/cspotExampleData'

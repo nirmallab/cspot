@@ -88,7 +88,6 @@ Returns:
         The result will be located at `projectDir/CSPOT/csPredict/`.
 
 Example:
-
     	```python    
         # Path to all the files that are necessary files for running csPredict
         projectDir = '/Users/aj/Documents/cspotExampleData'

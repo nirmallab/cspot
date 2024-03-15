@@ -52,7 +52,6 @@ def generateThumbnails (spatialTablePath,
                         projectDir=None):
     """
 Parameters:
-
     spatialTablePath (str):
         Path to the single-cell spatial feature matrix.
 
@@ -141,7 +140,6 @@ Returns:
         designated output directory.
 
 Example:
-        
         ```python
         
         # set the working directory & set paths to the example data

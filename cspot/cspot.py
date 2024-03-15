@@ -126,7 +126,6 @@ Returns:
         provided projectDir.
 
 Example:
-
         ```python
         
         # set the working directory & set paths to the example data

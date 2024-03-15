@@ -40,7 +40,6 @@ def addPredictions (csObject,
                     outputDir=None):
     """
 Parameters:
-
     csObject (anndata):  
         Single or combined CSPOT object.
         
@@ -69,7 +68,6 @@ Parameters:
         be returned to memory.
 
 Returns:
-
     csObject (anndata):  
         If output directory is provided the `csObject` will 
         be stored else it will be returned to memory. The results are stored in 
@@ -77,7 +75,6 @@ Returns:
         like to vizulaize `CD3`, the column that you are looking for is `p_CD3`.
         
 Example:
-
     	```python    
         
         # Path to projectDir

@@ -66,9 +66,6 @@ Parameters:
     verbose (bool, optional):
         If True, print detailed information about the process to the console.  
         
-
-
-
     markerColumnName (str, optional):  
         The name of the column in the marker panel list that contains the marker names. The default value is 'marker'.
      
@@ -81,10 +78,6 @@ Parameters:
     GPU (int, optional):  
         An optional argument to explicitly select the GPU to use. The default value is -1, meaning that the GPU will be selected automatically.
 
-
-
-        
-
     feature (str, optional):
         Calculates the `mean` or `median` CSPOT Score for each cell.
 
@@ -93,10 +86,6 @@ Parameters:
         of the tiff files created by `csPredict` by default. If the meta data
         is lost due to user modifications, provide the marker names for each
         channel/layer in the `probabilityMaskPath` here.
-
-
-    
-
 
     CellId (str, optional):
         Specify the column name that holds the cell ID (a unique name given to each cell).
@@ -182,7 +171,6 @@ Returns:
         Returns a csObject with predictions of all positve and negative cells. 
 
 Example:
-
         ```python
         
         # Path to all the files that are necessary files for running the 
