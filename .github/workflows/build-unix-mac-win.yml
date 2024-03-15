@@ -5,9 +5,9 @@ name: build-unix-mac-win
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     
 env:
   # To fix an error when running Poetry on Windows
