@@ -53,7 +53,7 @@ nav:
             - scatterPlot: 'Functions/scatterPlot.md'
             - addPredictions: 'Functions/addPredictions.md'
     - Tutorials:
-        - Review Quick Start Guide: 'Tutorials/md/ReviewQuickStartGuide.md'
+        - Reviewer Quick Start Guide: 'Tutorials/md/ReviewQuickStartGuide.md'
         - Download Tutorial Data: 'Tutorials/md/DownloadTutorialData.md'
         - Installation and Set Up: 'Tutorials/md/InstallationandSetUp.md'
         - Build CSPOT Model: 'Tutorials/md/BuildCSPOTModel.md'

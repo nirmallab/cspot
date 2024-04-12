@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cspot"
-version = "1.0.11"
+version = "1.0.12"
 description = "CELL SPOTTER (CSPOT): A scalable framework for automated processing of highly multiplexed tissue images"
 authors = ["Ajit Johnson Nirmal <ajitjohnson.n@gmail.com>"]
 readme = "README.md"

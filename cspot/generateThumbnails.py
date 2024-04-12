@@ -339,11 +339,14 @@ Example:
                 fullN = ((crop/npercentile)*255).clip(0, 255).astype('uint8')
             else:
                 fullN = ((crop/maxpercentile)*255).clip(0, 255).astype('uint8')
+            
+            # construct image filename with marker name prefix
+            prefixed_imname = f"{m}_{imname}_{rowIndex}.tif"
             # save the cropped image
             if imgType == 'pos':
-                path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
+                path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TruePos/' + prefixed_imname)
             elif imgType == 'neg':
-                path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')                      
+                path = pathlib.Path(projectDir + '/CSPOT/Thumbnails/' + str(m) + '/TrueNeg/' + prefixed_imname)                      
             # write file
             tifffile.imwrite(path,fullN)
             # local normalization if requested
@@ -351,9 +354,9 @@ Example:
                 localN = ((crop/(np.percentile(crop, 99.99)))*255).clip(0, 255).astype('uint8') #.compute()
                 # save image
                 if imgType == 'pos':
-                    Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TruePos/' + str(rowIndex) + "_" + str(imname) + '.tif')
+                    Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TruePos/' + prefixed_imname)
                 elif imgType == 'neg':
-                    Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TrueNeg/' + str(rowIndex) + "_" + str(imname) + '.tif')     
+                    Lpath = pathlib.Path(projectDir + '/CSPOT/Thumbnails/localNorm/' + str(m) + '/TrueNeg/' + prefixed_imname)     
                 # write file
                 tifffile.imwrite(Lpath,localN)
 
