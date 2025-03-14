@@ -323,12 +323,19 @@ Example:
       # Sort the data and labels arrays using the sort indices
       sorted_data = data[sort_indices]
       sorted_labels = labels[sort_indices]
+      # Convert labels to binary values (0 for 'neg', 1 for 'pos')
+      binary_labels = np.where(sorted_labels == 'pos', 1, 0)
+      # Compute cumulative sums
+      cumulative_pos = np.cumsum(binary_labels)
+      cumulative_neg = np.arange(1, len(sorted_labels) + 1) - cumulative_pos
+      # Compute the difference and find the index where the absolute difference is maximized
+      midpoint_index = np.argmax(np.abs(cumulative_pos - cumulative_neg))
       # Find the index where the 'neg' and 'pos' labels meet
-      midpoint_index = np.argmax(sorted_labels == 'pos')
+      # midpoint_index = np.argmax(sorted_labels == 'pos') # old method
       # Return the value at the midpoint index
       return sorted_data[midpoint_index]
 
-    # Used for reassigning some of the wrong 'nes' and 'pos' within data given a midpoint
+    # Used for reassigning some of the wrong 'neg' and 'pos' within data given a midpoint
     def modify_negatives_vectorized(data, labels, midpoint):
       # Convert data and labels to NumPy arrays
       data = np.array(data)
@@ -814,7 +821,7 @@ Example:
     # step-10 : Rescale data
     ###########################################################################
 
-    # marker = 'ECAD'
+    # marker = 'CD31'
     def rescaleData (marker, pre_processed_data, prediction_results, midpoints_dict):
         if verbose is True:
             print("Processing: " + str(marker))

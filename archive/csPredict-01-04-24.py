@@ -117,9 +117,7 @@ Example:
      
      """
     
-    #fileName = pathlib.Path(imagePath).stem
-    fileName = os.path.basename(imagePath)
-    fileName = fileName.split(os.extsep, 1)[0]
+    fileName = pathlib.Path(imagePath).stem
 
     # read the markers.csv
     maper = pd.read_csv(pathlib.Path(markerChannelMapPath))

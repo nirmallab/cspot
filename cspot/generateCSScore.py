@@ -83,6 +83,44 @@ Example:
         ```
 
     """
+    
+    # ERROS before parsing the entire image
+    
+    # Ensure feature is valid
+    if feature not in ['median', 'mean']:
+        raise ValueError("Error: Invalid feature selection. Please choose feature='median' or 'mean'.")
+    
+    # check for marker names
+    # read the channel names from the tiffile
+    tiff = tifffile.TiffFile(probabilityMaskPath)
+    try:
+        root = ET.fromstring(tiff.pages[0].description)
+        # parse the ome XML
+        namespace = None
+        for elem in root.iter():
+            if "Channel" in elem.tag:
+                namespace = {"ome": elem.tag.split("}")[0][1:]}
+                break
+        channel_names = [channel.get("Name") for channel in root.findall(".//ome:Channel", namespace)]
+        #omexml_string = ast.literal_eval(tiff.pages[0].description)
+        #channel_names = omexml_string['Channel']['Name']
+    except:
+        pass
+    
+    # check if channel_names has been defined
+    if markerNames is not None:
+        channel_names = markerNames
+    else:
+        #quantTable.columns = channel_names
+        channel_names = list(channel_names)
+        # Check if channel_names is empty or contains NaN/None values
+        if not channel_names or any(x is None or (isinstance(x, float) and np.isnan(x)) for x in channel_names):
+            raise ValueError(
+                "Error: Unable to identify marker names from the image. "
+                "Please manually pass markerNames.")
+
+
+    # NOW PARSE ENTIRE IMAGE
 
     # read the seg mask
     segM = tifffile.imread(pathlib.Path(segmentationMaskPath))
@@ -98,6 +136,7 @@ Example:
 
     def median_intensity(mask, img):
         return np.median(img[mask])
+    
 
     # quantify
     if verbose is True:
@@ -112,26 +151,6 @@ Example:
     if feature == 'mean':
         quantTable = quantTable.filter(regex='mean')
 
-    # read the channel names from the tiffile
-    tiff = tifffile.TiffFile(probabilityMaskPath)
-    try:
-        root = ET.fromstring(tiff.pages[0].description)
-        # parse the ome XML
-        namespace = None
-        for elem in root.iter():
-            if "Channel" in elem.tag:
-                namespace = {"ome": elem.tag.split("}")[0][1:]}
-                break
-        channel_names = [channel.get("Name") for channel in root.findall(".//ome:Channel", namespace)]
-        quantTable.columns = channel_names
-        #omexml_string = ast.literal_eval(tiff.pages[0].description)
-        #channel_names = omexml_string['Channel']['Name']
-    except:
-        pass
-    if markerNames is not None:
-        channel_names = markerNames
-    else:
-        channel_names = list(quantTable.columns)
 
     # assign channel names
     quantTable.columns = channel_names
