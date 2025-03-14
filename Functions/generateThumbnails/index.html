@@ -1,0 +1,2754 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A scalable framework for automated processing of highly multiplexed tissue images">
+      
+      
+        <meta name="author" content="Ajit Johnson Nirmal">
+      
+      
+      
+        <link rel="prev" href="../../Getting%20Started/">
+      
+      
+        <link rel="next" href="../cloneFolder/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
+    
+    
+      
+        <title>generateThumbnails - CELL SPOTTER (CSPOT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cspot.generateThumbnails" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CELL SPOTTER (CSPOT)" class="md-header__button md-logo" aria-label="CELL SPOTTER (CSPOT)" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CELL SPOTTER (CSPOT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              generateThumbnails
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nirmalLab/cspot/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Getting%20Started/" class="md-tabs__link">
+        
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  CSPOT Functions
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tutorials/md/ReviewQuickStartGuide/" class="md-tabs__link">
+          
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CELL SPOTTER (CSPOT)" class="md-nav__button md-logo" aria-label="CELL SPOTTER (CSPOT)" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    CELL SPOTTER (CSPOT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nirmalLab/cspot/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Getting%20Started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CSPOT Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            CSPOT Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Build CSPOT Model
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Build CSPOT Model
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    generateThumbnails
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    generateThumbnails
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.generateThumbnails" class="md-nav__link">
+    <span class="md-ellipsis">
+      generateThumbnails
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generateThumbnails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cspot.generateThumbnails--function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.generateThumbnails.generateThumbnails" class="md-nav__link">
+    <span class="md-ellipsis">
+      generateThumbnails
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloneFolder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cloneFolder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generateTrainTestSplit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateTrainTestSplit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csTrain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csTrain
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Run CSPOT Algorithm
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Run CSPOT Algorithm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csPipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csPredict/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPredict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generateCSScore/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateCSScore
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csObject/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csObject
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cspot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cspot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mergecsObject/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mergecsObject
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Phenotype cells
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phenotype cells
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csPhenotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPhenotype
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Helper Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Helper Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csExport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csExport
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scatterPlot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scatterPlot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addPredictions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    addPredictions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/ReviewQuickStartGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewer Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/DownloadTutorialData/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Download Tutorial Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/InstallationandSetUp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation and Set Up
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/BuildCSPOTModel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build CSPOT Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/RunCSPOTAlgorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run CSPOT Algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/PhenotypeCells/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phenotype Cells
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/HelperFunctions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helper Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/RunCSPOTwithDocker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run CSPOT with Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.generateThumbnails" class="md-nav__link">
+    <span class="md-ellipsis">
+      generateThumbnails
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="generateThumbnails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cspot.generateThumbnails--function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.generateThumbnails.generateThumbnails" class="md-nav__link">
+    <span class="md-ellipsis">
+      generateThumbnails
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+  
+  
+
+
+  <h1>generateThumbnails</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="cspot.generateThumbnails"></a>
+    <div class="doc doc-contents first">
+
+        <div class="admonition abstract">
+<p class="admonition-title">Short Description</p>
+<p>The <code>generateThumbnails</code> function generates Thumbnails of positive and 
+negative cells for a specified marker. The Thumbnails will be used to train a deep learning model. Make sure to have 
+the raw image, computed single-cell spatial table, and markers.csv file 
+ready for input.</p>
+</div>
+<h5 id="cspot.generateThumbnails--function">Function<a class="headerlink" href="#cspot.generateThumbnails--function" title="Permanent link">&para;</a></h5>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="cspot.generateThumbnails.generateThumbnails" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">generateThumbnails</span><span class="p">(</span><span class="n">spatialTablePath</span><span class="p">,</span> <span class="n">imagePath</span><span class="p">,</span> <span class="n">markerChannelMapPath</span><span class="p">,</span> <span class="n">markers</span><span class="p">,</span> <span class="n">markerColumnName</span><span class="o">=</span><span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="n">channelColumnName</span><span class="o">=</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span> <span class="n">transformation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">maxThumbnails</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">localNorm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">globalNorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">x_coordinate</span><span class="o">=</span><span class="s1">&#39;X_centroid&#39;</span><span class="p">,</span> <span class="n">y_coordinate</span><span class="o">=</span><span class="s1">&#39;Y_centroid&#39;</span><span class="p">,</span> <span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">98</span><span class="p">],</span> <span class="n">windowSize</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">restrictDensity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">restrictDensityNumber</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">projectDir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#cspot.generateThumbnails.generateThumbnails" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>spatialTablePath</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the single-cell spatial feature matrix.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>imagePath</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the image file. Recognizes <code>.ome.tif</code> image file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>markerChannelMapPath</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to a <code>markers.csv</code> file that maps the channel number with the marker information. 
+Create a .csv file with at least two columns named 'channel' and 'marker' that 
+map the channel numbers to their corresponding markers. The channel number 
+should use 1-based indexing.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>markers</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Markers for which <code>Thumbnails</code> need to be generated. The function looks for
+these listed names in the <code>single-cell spatial Table</code>.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>markerColumnName</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the column in the <code>markers.csv</code> file that holds the marker information. </p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;marker&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>channelColumnName</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the column in the <code>markers.csv</code> file that holds the channel information.  </p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;channel&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>transformation</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Performs <code>arcsinh</code> transformation on the data. If the <code>single-cell spatial table</code>
+is already transformed (like log transformation), set this to <code>False</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>maxThumbnails</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Maximum number of Thumbnails to generate. </p>
+              </div>
+            </td>
+            <td>
+                  <code>2000</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Seed used by the random number generator.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>localNorm</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>It creates a duplicate folder of the Thumbnails, with local normalization
+performed on the images. Local normalization is the process of dividing
+each pixel in a thumbnail by the maximum value across the entire thumbnail.
+This is helpful for visual supervised sorting of the Thumbnails.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>globalNorm</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>It creates a duplicate folder of the Thumbnails, with global normalization
+performed on the images. Global normalization is the process of dividing
+each pixel in a thumbnail by the maximum value of the given marker across
+the entire image.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>x_coordinate</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The column name in <code>single-cell spatial table</code> that records the
+X coordinates for each cell.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;X_centroid&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>y_coordinate</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The column name in <code>single-cell spatial table</code> that records the
+Y coordinates for each cell.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;Y_centroid&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>percentiles</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Specify the interval of percentile levels of the expression utilized to intialize
+the GMM. The cells falling within these percentiles are utilized to distinguish
+between negative cells (first two values) and positive cells (last two values).</p>
+              </div>
+            </td>
+            <td>
+                  <code>[2, 12, 88, 98]</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>windowSize</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Size of the Thumbnails.</p>
+              </div>
+            </td>
+            <td>
+                  <code>64</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>restrictDensity</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>This parameter is utilized to regulate the number of positive cells 
+observed in a given field of view. In the case of markers that do not 
+exhibit a distinct spatial pattern, such as immune cells, it is 
+recommended to train the model using sparse cells in the field of view.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>restrictDensityNumber</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>This parameter is employed in conjunction with <code>restrictDensity</code>. 
+By default, the program attempts to automatically identify less dense 
+regions when restrictDensity is set to <code>True</code> using a GMM approach. 
+However, <code>restrictDensityNumber</code> can be utilized to exert greater 
+control over the process, allowing the user to limit the number of 
+positive cells they wish to observe within the field of view. 
+This parameter requires integers.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>verbose</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, print detailed information about the process to the console.  </p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>projectDir</code>
+            </td>
+            <td>
+                  <code><span title="string">string</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to output directory. The result will be located at
+<code>projectDir/CSPOT/Thumbnails/</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>Thumbnails</code></td>            <td>
+                  <code><span title="image">image</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Saves Thumbnails of auto identified postive and negative cells the
+designated output directory.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="c1"># set the working directory &amp; set paths to the example data</span>
+<span class="n">projectDir</span> <span class="o">=</span> <span class="s1">&#39;/Users/aj/Documents/cspotExampleData&#39;</span>
+<span class="n">imagePath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/image/exampleImage.tif&#39;</span>
+<span class="n">spatialTablePath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/quantification/exampleSpatialTable.csv&#39;</span>
+<span class="n">markerChannelMapPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/markers.csv&#39;</span>
+
+<span class="c1"># Run the function</span>
+<span class="n">cs</span><span class="o">.</span><span class="n">generateThumbnails</span> <span class="p">(</span> <span class="n">spatialTablePath</span><span class="o">=</span><span class="n">spatialTablePath</span><span class="p">,</span> 
+                <span class="n">imagePath</span><span class="o">=</span><span class="n">imagePath</span><span class="p">,</span> 
+                <span class="n">markerChannelMapPath</span><span class="o">=</span><span class="n">markerChannelMapPath</span><span class="p">,</span>
+                <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ECAD&quot;</span><span class="p">,</span> <span class="s2">&quot;CD3D&quot;</span><span class="p">],</span> 
+                <span class="n">markerColumnName</span><span class="o">=</span><span class="s1">&#39;marker&#39;</span><span class="p">,</span>
+                <span class="n">channelColumnName</span><span class="o">=</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span>
+                <span class="n">transformation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                <span class="n">maxThumbnails</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+                <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="n">localNorm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                <span class="n">globalNorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">x_coordinate</span><span class="o">=</span><span class="s1">&#39;X_centroid&#39;</span><span class="p">,</span> 
+                <span class="n">y_coordinate</span><span class="o">=</span><span class="s1">&#39;Y_centroid&#39;</span><span class="p">,</span>
+                <span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">98</span><span class="p">],</span> 
+                <span class="n">windowSize</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+                <span class="n">restrictDensity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">restrictDensityNumber</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">projectDir</span><span class="o">=</span><span class="n">cwd</span><span class="p">)</span>
+
+<span class="c1"># Same function if the user wants to run it via Command Line Interface</span>
+<span class="n">python</span> <span class="n">generateThumbnails</span><span class="o">.</span><span class="n">py</span>             <span class="o">--</span><span class="n">spatialTablePath</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">aj</span><span class="o">/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">cspotExampleData</span><span class="o">/</span><span class="n">quantification</span><span class="o">/</span><span class="n">exampleSpatialTable</span><span class="o">.</span><span class="n">csv</span>             <span class="o">--</span><span class="n">imagePath</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">aj</span><span class="o">/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">cspotExampleData</span><span class="o">/</span><span class="n">image</span><span class="o">/</span><span class="n">exampleImage</span><span class="o">.</span><span class="n">tif</span>             <span class="o">--</span><span class="n">markerChannelMapPath</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">aj</span><span class="o">/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">cspotExampleData</span><span class="o">/</span><span class="n">markers</span><span class="o">.</span><span class="n">csv</span>             <span class="o">--</span><span class="n">markers</span> <span class="n">ECAD</span> <span class="n">CD3D</span>             <span class="o">--</span><span class="n">maxThumbnails</span> <span class="mi">100</span>             <span class="o">--</span><span class="n">projectDir</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">aj</span><span class="o">/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">cspotExampleData</span><span class="o">/</span>
+</code></pre></div>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>cspot/generateThumbnails.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
+<span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span>
+<span class="normal">452</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span>
+<span class="normal">460</span>
+<span class="normal">461</span>
+<span class="normal">462</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span>
+<span class="normal">481</span>
+<span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generateThumbnails</span> <span class="p">(</span><span class="n">spatialTablePath</span><span class="p">,</span> 
+                        <span class="n">imagePath</span><span class="p">,</span> 
+                        <span class="n">markerChannelMapPath</span><span class="p">,</span>
+                        <span class="n">markers</span><span class="p">,</span> 
+                        <span class="n">markerColumnName</span><span class="o">=</span><span class="s1">&#39;marker&#39;</span><span class="p">,</span>
+                        <span class="n">channelColumnName</span><span class="o">=</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span>
+                        <span class="n">transformation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">maxThumbnails</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> 
+                        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                        <span class="n">localNorm</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">globalNorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">x_coordinate</span><span class="o">=</span><span class="s1">&#39;X_centroid&#39;</span><span class="p">,</span> 
+                        <span class="n">y_coordinate</span><span class="o">=</span><span class="s1">&#39;Y_centroid&#39;</span><span class="p">,</span>
+                        <span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="mi">98</span><span class="p">],</span> 
+                        <span class="n">windowSize</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+                        <span class="n">restrictDensity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">restrictDensityNumber</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">projectDir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Parameters:</span>
+<span class="sd">    spatialTablePath (str):</span>
+<span class="sd">        Path to the single-cell spatial feature matrix.</span>
+
+<span class="sd">    imagePath (str):</span>
+<span class="sd">        Path to the image file. Recognizes `.ome.tif` image file.</span>
+
+<span class="sd">    markerChannelMapPath (str):</span>
+<span class="sd">        Path to a `markers.csv` file that maps the channel number with the marker information. </span>
+<span class="sd">        Create a .csv file with at least two columns named &#39;channel&#39; and &#39;marker&#39; that </span>
+<span class="sd">        map the channel numbers to their corresponding markers. The channel number </span>
+<span class="sd">        should use 1-based indexing.</span>
+
+<span class="sd">    markers (list):</span>
+<span class="sd">        Markers for which `Thumbnails` need to be generated. The function looks for</span>
+<span class="sd">        these listed names in the `single-cell spatial Table`.</span>
+
+<span class="sd">    markerColumnName (str):</span>
+<span class="sd">        The name of the column in the `markers.csv` file that holds the marker information. </span>
+
+<span class="sd">    channelColumnName (str):</span>
+<span class="sd">        The name of the column in the `markers.csv` file that holds the channel information.  </span>
+
+<span class="sd">    transformation (bool, optional):</span>
+<span class="sd">        Performs `arcsinh` transformation on the data. If the `single-cell spatial table`</span>
+<span class="sd">        is already transformed (like log transformation), set this to `False`.</span>
+
+<span class="sd">    maxThumbnails (int, optional):</span>
+<span class="sd">        Maximum number of Thumbnails to generate. </span>
+
+<span class="sd">    random_state (int, optional):</span>
+<span class="sd">        Seed used by the random number generator.</span>
+
+<span class="sd">    localNorm (bool, optional):</span>
+<span class="sd">        It creates a duplicate folder of the Thumbnails, with local normalization</span>
+<span class="sd">        performed on the images. Local normalization is the process of dividing</span>
+<span class="sd">        each pixel in a thumbnail by the maximum value across the entire thumbnail.</span>
+<span class="sd">        This is helpful for visual supervised sorting of the Thumbnails.</span>
+
+<span class="sd">    globalNorm (bool, optional):</span>
+<span class="sd">        It creates a duplicate folder of the Thumbnails, with global normalization</span>
+<span class="sd">        performed on the images. Global normalization is the process of dividing</span>
+<span class="sd">        each pixel in a thumbnail by the maximum value of the given marker across</span>
+<span class="sd">        the entire image.</span>
+
+<span class="sd">    x_coordinate (str, optional):</span>
+<span class="sd">        The column name in `single-cell spatial table` that records the</span>
+<span class="sd">        X coordinates for each cell.</span>
+
+<span class="sd">    y_coordinate (str, optional):</span>
+<span class="sd">        The column name in `single-cell spatial table` that records the</span>
+<span class="sd">        Y coordinates for each cell.</span>
+
+<span class="sd">    percentiles (list, optional):</span>
+<span class="sd">        Specify the interval of percentile levels of the expression utilized to intialize</span>
+<span class="sd">        the GMM. The cells falling within these percentiles are utilized to distinguish</span>
+<span class="sd">        between negative cells (first two values) and positive cells (last two values).</span>
+
+<span class="sd">    windowSize (int, optional):</span>
+<span class="sd">        Size of the Thumbnails.</span>
+
+<span class="sd">    restrictDensity (bool, optional):</span>
+<span class="sd">        This parameter is utilized to regulate the number of positive cells </span>
+<span class="sd">        observed in a given field of view. In the case of markers that do not </span>
+<span class="sd">        exhibit a distinct spatial pattern, such as immune cells, it is </span>
+<span class="sd">        recommended to train the model using sparse cells in the field of view.</span>
+
+<span class="sd">    restrictDensityNumber (int, optional):</span>
+<span class="sd">        This parameter is employed in conjunction with `restrictDensity`. </span>
+<span class="sd">        By default, the program attempts to automatically identify less dense </span>
+<span class="sd">        regions when restrictDensity is set to `True` using a GMM approach. </span>
+<span class="sd">        However, `restrictDensityNumber` can be utilized to exert greater </span>
+<span class="sd">        control over the process, allowing the user to limit the number of </span>
+<span class="sd">        positive cells they wish to observe within the field of view. </span>
+<span class="sd">        This parameter requires integers.</span>
+
+<span class="sd">    verbose (bool, optional):</span>
+<span class="sd">        If True, print detailed information about the process to the console.  </span>
+
+<span class="sd">    projectDir (string, optional):</span>
+<span class="sd">        Path to output directory. The result will be located at</span>
+<span class="sd">        `projectDir/CSPOT/Thumbnails/`.</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">    Thumbnails (image):</span>
+<span class="sd">        Saves Thumbnails of auto identified postive and negative cells the</span>
+<span class="sd">        designated output directory.</span>
+
+<span class="sd">Example:</span>
+<span class="sd">        ```python</span>
+
+<span class="sd">        # set the working directory &amp; set paths to the example data</span>
+<span class="sd">        projectDir = &#39;/Users/aj/Documents/cspotExampleData&#39;</span>
+<span class="sd">        imagePath = projectDir + &#39;/image/exampleImage.tif&#39;</span>
+<span class="sd">        spatialTablePath = projectDir + &#39;/quantification/exampleSpatialTable.csv&#39;</span>
+<span class="sd">        markerChannelMapPath = projectDir + &#39;/markers.csv&#39;</span>
+
+<span class="sd">        # Run the function</span>
+<span class="sd">        cs.generateThumbnails ( spatialTablePath=spatialTablePath, </span>
+<span class="sd">                        imagePath=imagePath, </span>
+<span class="sd">                        markerChannelMapPath=markerChannelMapPath,</span>
+<span class="sd">                        markers=[&quot;ECAD&quot;, &quot;CD3D&quot;], </span>
+<span class="sd">                        markerColumnName=&#39;marker&#39;,</span>
+<span class="sd">                        channelColumnName=&#39;channel&#39;,</span>
+<span class="sd">                        transformation=True, </span>
+<span class="sd">                        maxThumbnails=100, </span>
+<span class="sd">                        random_state=0,</span>
+<span class="sd">                        localNorm=True, </span>
+<span class="sd">                        globalNorm=False,</span>
+<span class="sd">                        x_coordinate=&#39;X_centroid&#39;, </span>
+<span class="sd">                        y_coordinate=&#39;Y_centroid&#39;,</span>
+<span class="sd">                        percentiles=[2, 12, 88, 98], </span>
+<span class="sd">                        windowSize=64,</span>
+<span class="sd">                        restrictDensity=True,</span>
+<span class="sd">                        restrictDensityNumber=None,</span>
+<span class="sd">                        verbose=True,</span>
+<span class="sd">                        projectDir=cwd)</span>
+
+<span class="sd">        # Same function if the user wants to run it via Command Line Interface</span>
+<span class="sd">        python generateThumbnails.py \</span>
+<span class="sd">            --spatialTablePath /Users/aj/Desktop/cspotExampleData/quantification/exampleSpatialTable.csv \</span>
+<span class="sd">            --imagePath /Users/aj/Desktop/cspotExampleData/image/exampleImage.tif \</span>
+<span class="sd">            --markerChannelMapPath /Users/aj/Desktop/cspotExampleData/markers.csv \</span>
+<span class="sd">            --markers ECAD CD3D \</span>
+<span class="sd">            --maxThumbnails 100 \</span>
+<span class="sd">            --projectDir /Users/aj/Desktop/cspotExampleData/</span>
+
+<span class="sd">        ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># read the markers.csv</span>
+    <span class="n">maper</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">markerChannelMapPath</span><span class="p">))</span>
+    <span class="n">columnnames</span> <span class="o">=</span>  <span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">maper</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">maper</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columnnames</span>
+
+    <span class="c1"># identify the marker column name (doing this to make it easier for people who confuse between marker and markers)</span>
+    <span class="k">if</span> <span class="n">markerColumnName</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">columnnames</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">markerColumnName</span> <span class="o">!=</span> <span class="s1">&#39;marker&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;markerColumnName not found in markerChannelMap, please check&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;markers&#39;</span> <span class="ow">in</span> <span class="n">columnnames</span><span class="p">:</span>
+            <span class="n">markerCol</span> <span class="o">=</span> <span class="s1">&#39;markers&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;markerColumnName not found in markerChannelMap, please check&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">markerCol</span> <span class="o">=</span> <span class="n">markerColumnName</span>
+
+    <span class="c1"># identify the channel column name (doing this to make it easier for people who confuse between channel and channels)</span>
+    <span class="k">if</span> <span class="n">channelColumnName</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">columnnames</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">channelColumnName</span> <span class="o">!=</span> <span class="s1">&#39;channel&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;channelColumnName not found in markerChannelMap, please check&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;channels&#39;</span> <span class="ow">in</span> <span class="n">columnnames</span><span class="p">:</span>
+            <span class="n">channelCol</span> <span class="o">=</span> <span class="s1">&#39;channels&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;channelColumnName not found in markerChannelMap, please check&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">channelCol</span> <span class="o">=</span> <span class="n">channelColumnName</span>
+
+    <span class="c1"># map the marker and channels</span>
+    <span class="n">chmamap</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">maper</span><span class="p">[</span><span class="n">markerCol</span><span class="p">],</span> <span class="n">maper</span><span class="p">[</span><span class="n">channelCol</span><span class="p">]))</span>
+
+    <span class="c1"># load the CSV to identify potential thumbnails</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">spatialTablePath</span><span class="p">))</span>
+    <span class="c1">#data.index = data.index.astype(str)</span>
+
+    <span class="c1"># subset the markers of interest</span>
+    <span class="k">if</span> <span class="nb">isinstance</span> <span class="p">(</span><span class="n">markers</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="n">markers</span><span class="p">]</span>
+
+    <span class="c1"># find the corresponding channel names</span>
+    <span class="n">markerChannels</span> <span class="o">=</span> <span class="p">[</span><span class="n">chmamap</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">markers</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">chmamap</span><span class="p">]</span>
+    <span class="c1"># convert markerChannels to zero indexing</span>
+    <span class="n">markerChannels</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">markerChannels</span><span class="p">]</span>
+
+    <span class="c1"># creat a dict of marker and corresponding marker channel</span>
+    <span class="n">marker_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">markers</span><span class="p">,</span><span class="n">markerChannels</span><span class="p">))</span>
+
+    <span class="c1"># create folders if it does not exist</span>
+    <span class="k">if</span> <span class="n">projectDir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">projectDir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+    <span class="c1"># TruePos folders</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">markers</span><span class="p">:</span>
+        <span class="n">pos_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TruePos&#39;</span><span class="p">)</span>
+        <span class="n">neg_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TrueNeg&#39;</span><span class="p">)</span>
+        <span class="n">pos2neg_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/PosToNeg&#39;</span><span class="p">)</span>
+        <span class="n">neg2pos_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/NegToPos&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pos_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">pos_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">neg_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">neg_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pos2neg_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">pos2neg_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">neg2pos_path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">neg2pos_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">localNorm</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">local_pos_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/localNorm/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TruePos&#39;</span><span class="p">)</span>
+            <span class="n">local_neg_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/localNorm/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TrueNeg&#39;</span><span class="p">)</span>
+            <span class="n">local_pos2neg_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/localNorm/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/PosToNeg&#39;</span><span class="p">)</span>
+            <span class="n">local_neg2pos_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/localNorm/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/NegToPos&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_pos_path</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">local_pos_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_neg_path</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">local_neg_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_pos2neg_path</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">local_pos2neg_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_neg2pos_path</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">local_neg2pos_path</span><span class="p">)</span>
+
+    <span class="n">marker_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">markers</span><span class="p">]</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="n">x_coordinate</span><span class="p">,</span><span class="n">y_coordinate</span><span class="p">]]</span>
+
+    <span class="c1"># clip the data to drop outliers</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clipping</span> <span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">clip</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">lower</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">upper</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mf">99.99</span><span class="p">))</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">clip</span>
+
+    <span class="c1"># return the mean between two percentiles</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">meanPercentile</span> <span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">lowPercentile</span><span class="p">,</span> <span class="n">highPercentile</span><span class="p">):</span>
+        <span class="c1"># Calculate the 1st percentile value</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">lowPercentile</span><span class="p">)</span>
+        <span class="c1"># Calculate the 20th percentile value</span>
+        <span class="n">p20</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">highPercentile</span><span class="p">)</span>
+        <span class="c1"># Select the values between the 1st and 20th percentile using numpy.where()</span>
+        <span class="n">filtered_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">values</span> <span class="o">&gt;=</span> <span class="n">p1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">values</span> <span class="o">&lt;=</span> <span class="n">p20</span><span class="p">))</span>
+        <span class="c1"># Calculate the mean of the filtered values</span>
+        <span class="n">meanVal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">filtered_values</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">meanVal</span>
+
+    <span class="c1"># Function for GMM</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">simpleGMM</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_components</span><span class="p">,</span> <span class="n">means_init</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
+        <span class="n">gmm</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_components</span><span class="p">,</span> <span class="n">means_init</span><span class="o">=</span><span class="n">means_init</span><span class="p">,</span>  <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="n">gmm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># Predict the class labels for each sample</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># Get the mean of each Gaussian component</span>
+        <span class="n">means</span> <span class="o">=</span> <span class="n">gmm</span><span class="o">.</span><span class="n">means_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="c1"># Sort the mean values in ascending order</span>
+        <span class="n">sorted_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+        <span class="c1"># Assign &#39;pos&#39; to rows with higher mean distribution and &#39;neg&#39; to rows with lower mean distribution</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">means</span><span class="p">),</span> <span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="s1">&#39;neg&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">labels</span>
+
+    <span class="c1"># match two arrays and return seperate lists</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">array_match</span> <span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+        <span class="c1"># Create a defaultdict with an empty list as the default value</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="c1"># Iterate over the labels and names arrays</span>
+        <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+            <span class="c1"># Add the name to the list for the corresponding label</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+
+
+    <span class="c1"># clip data</span>
+    <span class="n">marker_data</span> <span class="o">=</span> <span class="n">marker_data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">clipping</span><span class="p">)</span>
+
+    <span class="c1"># apply transformation if requested</span>
+    <span class="k">if</span> <span class="n">transformation</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">marker_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsinh</span><span class="p">(</span><span class="n">marker_data</span><span class="p">)</span>
+        <span class="c1">#marker_data = np.log1p(marker_data)</span>
+
+    <span class="c1"># combine data</span>
+    <span class="n">combined_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">marker_data</span><span class="p">,</span> <span class="n">location</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># intialize the percentiles values</span>
+    <span class="n">percentiles</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="c1"># function to identify the corner of the thumbnails</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cornerFinder</span> <span class="p">(</span><span class="n">centroid</span><span class="p">):</span>
+        <span class="n">row_start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">centroid</span> <span class="o">-</span> <span class="n">windowSize</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">row_end</span> <span class="o">=</span> <span class="n">row_start</span> <span class="o">+</span> <span class="n">windowSize</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">row_start</span><span class="p">,</span> <span class="n">row_end</span><span class="p">]</span>
+
+    <span class="c1"># function to crop the image and save the image</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cropImage</span> <span class="p">(</span><span class="n">rowIndex</span><span class="p">,</span> <span class="n">corners</span><span class="p">,</span> <span class="n">imgType</span><span class="p">,</span> <span class="n">zimg</span><span class="p">,</span> <span class="n">npercentile</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">maxpercentile</span><span class="p">,</span> <span class="n">imname</span><span class="p">):</span>
+        <span class="c1">#print(str(rowIndex))</span>
+        <span class="n">x_start</span> <span class="o">=</span> <span class="n">corners</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rowIndex</span><span class="p">][</span><span class="s1">&#39;x_start&#39;</span><span class="p">];</span> <span class="n">x_end</span> <span class="o">=</span> <span class="n">corners</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rowIndex</span><span class="p">][</span><span class="s1">&#39;x_end&#39;</span><span class="p">]</span>
+        <span class="n">y_start</span> <span class="o">=</span> <span class="n">corners</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rowIndex</span><span class="p">][</span><span class="s1">&#39;y_start&#39;</span><span class="p">];</span> <span class="n">y_end</span> <span class="o">=</span> <span class="n">corners</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rowIndex</span><span class="p">][</span><span class="s1">&#39;y_end&#39;</span><span class="p">]</span>
+        <span class="c1"># cropping image</span>
+        <span class="n">crop</span> <span class="o">=</span> <span class="n">zimg</span><span class="p">[</span><span class="n">y_start</span><span class="p">:</span><span class="n">y_end</span><span class="p">,</span> <span class="n">x_start</span><span class="p">:</span><span class="n">x_end</span><span class="p">]</span>
+        <span class="c1"># check if image is the right size</span>
+        <span class="k">if</span> <span class="n">crop</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">windowSize</span><span class="p">,</span><span class="n">windowSize</span><span class="p">):</span>
+            <span class="c1"># convert the image to unit8</span>
+            <span class="k">if</span> <span class="n">globalNorm</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">fullN</span> <span class="o">=</span> <span class="p">((</span><span class="n">crop</span><span class="o">/</span><span class="n">npercentile</span><span class="p">)</span><span class="o">*</span><span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fullN</span> <span class="o">=</span> <span class="p">((</span><span class="n">crop</span><span class="o">/</span><span class="n">maxpercentile</span><span class="p">)</span><span class="o">*</span><span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+
+            <span class="c1"># construct image filename with marker name prefix</span>
+            <span class="n">prefixed_imname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">imname</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">rowIndex</span><span class="si">}</span><span class="s2">.tif&quot;</span>
+            <span class="c1"># save the cropped image</span>
+            <span class="k">if</span> <span class="n">imgType</span> <span class="o">==</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TruePos/&#39;</span> <span class="o">+</span> <span class="n">prefixed_imname</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">imgType</span> <span class="o">==</span> <span class="s1">&#39;neg&#39;</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TrueNeg/&#39;</span> <span class="o">+</span> <span class="n">prefixed_imname</span><span class="p">)</span>                      
+            <span class="c1"># write file</span>
+            <span class="n">tifffile</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">fullN</span><span class="p">)</span>
+            <span class="c1"># local normalization if requested</span>
+            <span class="k">if</span> <span class="n">localNorm</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">localN</span> <span class="o">=</span> <span class="p">((</span><span class="n">crop</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="mf">99.99</span><span class="p">)))</span><span class="o">*</span><span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span> <span class="c1">#.compute()</span>
+                <span class="c1"># save image</span>
+                <span class="k">if</span> <span class="n">imgType</span> <span class="o">==</span> <span class="s1">&#39;pos&#39;</span><span class="p">:</span>
+                    <span class="n">Lpath</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/localNorm/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TruePos/&#39;</span> <span class="o">+</span> <span class="n">prefixed_imname</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">imgType</span> <span class="o">==</span> <span class="s1">&#39;neg&#39;</span><span class="p">:</span>
+                    <span class="n">Lpath</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails/localNorm/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/TrueNeg/&#39;</span> <span class="o">+</span> <span class="n">prefixed_imname</span><span class="p">)</span>     
+                <span class="c1"># write file</span>
+                <span class="n">tifffile</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">Lpath</span><span class="p">,</span><span class="n">localN</span><span class="p">)</span>
+
+    <span class="c1"># identify the cells of interest</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">processMarker</span> <span class="p">(</span><span class="n">marker</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Processing Marker: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">marker</span><span class="p">))</span>
+
+        <span class="n">moi</span> <span class="o">=</span> <span class="n">combined_data</span><span class="p">[</span><span class="n">marker</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="c1"># figure out marker index or channel in image</span>
+        <span class="n">markerIndex</span> <span class="o">=</span> <span class="n">marker_map</span><span class="p">[</span><span class="n">marker</span><span class="p">]</span>
+
+        <span class="c1"># mean of cells within defined threshold</span>
+        <span class="n">lowerPercent</span> <span class="o">=</span> <span class="n">meanPercentile</span> <span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">moi</span><span class="p">,</span> <span class="n">lowPercentile</span><span class="o">=</span><span class="n">percentiles</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">highPercentile</span><span class="o">=</span><span class="n">percentiles</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">higherPercent</span> <span class="o">=</span> <span class="n">meanPercentile</span> <span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">moi</span><span class="p">,</span> <span class="n">lowPercentile</span><span class="o">=</span><span class="n">percentiles</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">highPercentile</span><span class="o">=</span><span class="n">percentiles</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="c1"># Format mean to pass into next GMM</span>
+        <span class="n">Pmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">lowerPercent</span><span class="p">],</span> <span class="p">[</span><span class="n">higherPercent</span><span class="p">]])</span>
+
+        <span class="c1"># perform GMM</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">simpleGMM</span> <span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">moi</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">means_init</span><span class="o">=</span><span class="n">Pmean</span><span class="p">,</span>  <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="c1"># Match the labels and index names to identify which cells are pos and neg</span>
+        <span class="n">expCells</span> <span class="o">=</span> <span class="n">array_match</span> <span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="c1"># split it</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">expCells</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="p">[])</span> <span class="p">;</span> <span class="n">neg</span> <span class="o">=</span> <span class="n">expCells</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;neg&#39;</span><span class="p">,</span> <span class="p">[])</span>
+
+
+        <span class="c1"># determine the percentiles value for the marker of interest</span>
+        <span class="c1">#low_a = np.percentile(moi, percentiles[0]); low_b = np.percentile(moi, percentiles[1])</span>
+        <span class="c1">#high_a = np.percentile(moi, percentiles[2]); high_b = np.percentile(moi, percentiles[3])</span>
+
+        <span class="c1"># identify the cells that fall within the determined range</span>
+        <span class="c1">#neg = np.where(moi.between(low_a, low_b))[0]</span>
+        <span class="c1">#pos = np.where(moi.between(high_a, high_b))[0]</span>
+
+        <span class="c1"># shuffle the cells</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">neg</span><span class="p">);</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+
+        <span class="c1"># identify the location of pos and neg cells</span>
+        <span class="n">neg_location_i</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">neg</span><span class="p">]</span>
+        <span class="n">pos_location_i</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+
+        <span class="c1"># divide the pos cells into two bins based on the number of neighbours</span>
+        <span class="c1"># assumption is that we will find cells that are dense and sparse</span>
+        <span class="k">if</span> <span class="n">restrictDensity</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="c1"># identify postive cells that are densly packed if user requests</span>
+            <span class="n">kdt</span> <span class="o">=</span> <span class="n">BallTree</span><span class="p">(</span><span class="n">pos_location_i</span><span class="p">[[</span><span class="n">x_coordinate</span><span class="p">,</span><span class="n">y_coordinate</span><span class="p">]],</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span> 
+            <span class="n">ind</span> <span class="o">=</span> <span class="n">kdt</span><span class="o">.</span><span class="n">query_radius</span><span class="p">(</span><span class="n">pos_location_i</span><span class="p">[[</span><span class="n">x_coordinate</span><span class="p">,</span><span class="n">y_coordinate</span><span class="p">]],</span> <span class="n">r</span><span class="o">=</span><span class="n">windowSize</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ind</span><span class="p">)):</span> <span class="n">ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">ind</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">ind</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">))</span><span class="c1">#remove self</span>
+            <span class="n">neigh_length</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">subarray</span><span class="p">)</span> <span class="k">for</span> <span class="n">subarray</span> <span class="ow">in</span> <span class="n">ind</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">restrictDensityNumber</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># GMM for auto detection</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">neigh_length</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">gmm_neigh</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">gmm_neigh</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+                <span class="n">means</span> <span class="o">=</span> <span class="n">gmm_neigh</span><span class="o">.</span><span class="n">means_</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+                <span class="n">labels_neigh</span> <span class="o">=</span> <span class="n">gmm_neigh</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+                <span class="n">lower_mean_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">labels_neigh</span> <span class="o">==</span> <span class="n">index</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># subset the postive cells based on the index</span>
+                <span class="n">pos_location_i</span> <span class="o">=</span> <span class="n">pos_location_i</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">lower_mean_indices</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lower_mean_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">neigh_length</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">restrictDensityNumber</span><span class="p">]</span>
+                <span class="n">pos_location_i</span> <span class="o">=</span> <span class="n">pos_location_i</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">lower_mean_indices</span><span class="p">]</span>
+
+        <span class="c1"># Find corner</span>
+        <span class="c1"># Negative cells</span>
+        <span class="n">r_cornerFinder</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cornerFinder</span> <span class="p">(</span><span class="n">centroid</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">neg_x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_cornerFinder</span><span class="p">,</span> <span class="n">neg_location_i</span><span class="p">[</span><span class="n">x_coordinate</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)))</span> <span class="c1"># x direction</span>
+        <span class="n">neg_y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_cornerFinder</span><span class="p">,</span> <span class="n">neg_location_i</span><span class="p">[</span><span class="n">y_coordinate</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)))</span> <span class="c1"># y direction</span>
+        <span class="n">neg_x</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x_start&quot;</span><span class="p">,</span> <span class="s2">&quot;x_end&quot;</span><span class="p">];</span> <span class="n">neg_y</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;y_start&quot;</span><span class="p">,</span> <span class="s2">&quot;y_end&quot;</span><span class="p">]</span>
+        <span class="n">neg_location</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">neg_x</span><span class="p">,</span> <span class="n">neg_y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">neg_location</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">neg_location_i</span><span class="o">.</span><span class="n">index</span>
+
+        <span class="c1"># Positive cells</span>
+        <span class="n">r_cornerFinder</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cornerFinder</span> <span class="p">(</span><span class="n">centroid</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">pos_x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_cornerFinder</span><span class="p">,</span> <span class="n">pos_location_i</span><span class="p">[</span><span class="n">x_coordinate</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)))</span> <span class="c1"># x direction</span>
+        <span class="n">pos_y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_cornerFinder</span><span class="p">,</span> <span class="n">pos_location_i</span><span class="p">[</span><span class="n">y_coordinate</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)))</span> <span class="c1"># y direction</span>
+        <span class="n">pos_x</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x_start&quot;</span><span class="p">,</span> <span class="s2">&quot;x_end&quot;</span><span class="p">];</span> <span class="n">pos_y</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;y_start&quot;</span><span class="p">,</span> <span class="s2">&quot;y_end&quot;</span><span class="p">]</span>
+        <span class="n">pos_location</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pos_location</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pos_location_i</span><span class="o">.</span><span class="n">index</span>
+
+        <span class="c1"># drop all coordinates with neg values (essentially edges of slide)</span>
+        <span class="n">neg_location</span> <span class="o">=</span> <span class="n">neg_location</span><span class="p">[(</span><span class="n">neg_location</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="n">pos_location</span> <span class="o">=</span> <span class="n">pos_location</span><span class="p">[(</span><span class="n">pos_location</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
+
+        <span class="c1"># subset max number of cells</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg_location</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">maxThumbnails</span><span class="p">:</span>
+            <span class="n">neg_location</span> <span class="o">=</span> <span class="n">neg_location</span><span class="p">[:</span><span class="n">maxThumbnails</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos_location</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">maxThumbnails</span><span class="p">:</span>
+            <span class="n">pos_location</span> <span class="o">=</span> <span class="n">pos_location</span><span class="p">[:</span><span class="n">maxThumbnails</span><span class="p">]</span>
+
+        <span class="c1"># identify image name</span>
+        <span class="n">imname</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span>
+
+        <span class="c1"># load the image</span>
+        <span class="n">zimg</span> <span class="o">=</span> <span class="n">tifffile</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)),</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">markerIndex</span><span class="p">)</span>
+        <span class="n">npercentile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">zimg</span><span class="p">,</span> <span class="mf">99.99</span><span class="p">)</span>
+        <span class="n">maxpercentile</span> <span class="o">=</span> <span class="n">zimg</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+        <span class="c1"># load the image (dask has issues)</span>
+        <span class="c1">#zimg = da.from_zarr(tifffile.imread(pathlib.Path(imagePath), aszarr=True, level=0, key=markerIndex))</span>
+        <span class="c1">#npercentile = np.percentile(zimg.compute(), 99.99)</span>
+        <span class="c1">#maxpercentile = zimg.max().compute()</span>
+
+
+        <span class="c1"># for older version f tifffile</span>
+        <span class="c1">#zimg = zarr.open(tifffile.imread(pathlib.Path(imagePath), aszarr=True, level=0, key=markerIndex))</span>
+        <span class="c1"># = np.percentile(zimg,  99.99)</span>
+
+        <span class="c1"># Cut images and write it out</span>
+        <span class="c1"># neg</span>
+        <span class="n">r_cropImage</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cropImage</span> <span class="p">(</span><span class="n">rowIndex</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">corners</span><span class="o">=</span><span class="n">neg_location</span><span class="p">,</span> <span class="n">imgType</span><span class="o">=</span><span class="s1">&#39;neg&#39;</span><span class="p">,</span> <span class="n">zimg</span><span class="o">=</span><span class="n">zimg</span><span class="p">,</span> <span class="n">npercentile</span><span class="o">=</span><span class="n">npercentile</span><span class="p">,</span> <span class="n">maxpercentile</span><span class="o">=</span><span class="n">maxpercentile</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">imname</span><span class="o">=</span><span class="n">imname</span><span class="p">)</span>
+        <span class="n">process_neg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_cropImage</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">neg_location</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+        <span class="c1"># pos</span>
+        <span class="n">r_cropImage</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cropImage</span> <span class="p">(</span><span class="n">rowIndex</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">corners</span><span class="o">=</span><span class="n">pos_location</span><span class="p">,</span> <span class="n">imgType</span><span class="o">=</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span> <span class="n">zimg</span><span class="o">=</span><span class="n">zimg</span><span class="p">,</span> <span class="n">npercentile</span><span class="o">=</span><span class="n">npercentile</span><span class="p">,</span> <span class="n">maxpercentile</span><span class="o">=</span><span class="n">maxpercentile</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">imname</span><span class="o">=</span><span class="n">imname</span><span class="p">)</span>
+        <span class="n">process_neg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_cropImage</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">pos_location</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+
+
+    <span class="c1"># Run the function for each marker</span>
+    <span class="n">r_processMarker</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">processMarker</span> <span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">final</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_processMarker</span><span class="p">,</span> <span class="n">markers</span><span class="p">))</span>
+
+    <span class="c1"># Finish Job</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Thumbnails have been generated, head over to &quot;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">projectDir</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/Thumbnails&quot; to view results&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 | Nirmal Lab | www.nirmallab.com
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/nirmallab" target="_blank" rel="noopener" title="Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

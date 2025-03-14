@@ -1,0 +1,1740 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A scalable framework for automated processing of highly multiplexed tissue images">
+      
+      
+        <meta name="author" content="Ajit Johnson Nirmal">
+      
+      
+      
+        <link rel="prev" href="../BuildCSPOTModel/">
+      
+      
+        <link rel="next" href="../PhenotypeCells/">
+      
+      
+      <link rel="icon" href="../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
+    
+    
+      
+        <title>Run CSPOT Algorithm - CELL SPOTTER (CSPOT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#run-the-cspot-prediction-algorithm-on-new-images" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="CELL SPOTTER (CSPOT)" class="md-header__button md-logo" aria-label="CELL SPOTTER (CSPOT)" data-md-component="logo">
+      
+  <img src="../../../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CELL SPOTTER (CSPOT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Run CSPOT Algorithm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nirmalLab/cspot/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Getting%20Started/" class="md-tabs__link">
+        
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Functions/generateThumbnails/" class="md-tabs__link">
+          
+  
+  CSPOT Functions
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ReviewQuickStartGuide/" class="md-tabs__link">
+          
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="CELL SPOTTER (CSPOT)" class="md-nav__button md-logo" aria-label="CELL SPOTTER (CSPOT)" data-md-component="logo">
+      
+  <img src="../../../assets/favicon.png" alt="logo">
+
+    </a>
+    CELL SPOTTER (CSPOT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nirmalLab/cspot/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Getting%20Started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CSPOT Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            CSPOT Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Build CSPOT Model
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Build CSPOT Model
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/generateThumbnails/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateThumbnails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/cloneFolder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cloneFolder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/generateTrainTestSplit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateTrainTestSplit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/csTrain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csTrain
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Run CSPOT Algorithm
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Run CSPOT Algorithm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/csPipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/csPredict/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPredict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/generateCSScore/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateCSScore
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/csObject/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csObject
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/cspot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cspot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/mergecsObject/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mergecsObject
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Phenotype cells
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phenotype cells
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/csPhenotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPhenotype
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Helper Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Helper Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/csExport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csExport
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/scatterPlot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scatterPlot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Functions/addPredictions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    addPredictions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ReviewQuickStartGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewer Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DownloadTutorialData/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Download Tutorial Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../InstallationandSetUp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation and Set Up
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BuildCSPOTModel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build CSPOT Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Run CSPOT Algorithm
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Run CSPOT Algorithm
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#single-command-execution-of-the-entire-cspot-prediction-algorithm-using-the-cspipeline-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single command execution of the entire CSPOT Prediction Algorithm using the csPipeline function
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualize-the-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualize the results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-execution-of-the-cspot-prediction-algorithm-in-contrast-to-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step by step execution of the CSPOT Prediction Algorithm (in contrast to pipeline)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-apply-the-generated-models-on-the-image-of-interest-pixel-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-1: Apply the generated Models on the Image of interest (Pixel Level)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-calculate-the-cspotscore-single-cell-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-2: Calculate the cspotScore (Single-cell Level)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-create-a-cspot-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-3: Create a CSPOT object
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-run-the-final-cspot-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-4: Run the final CSPOT Algorithm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-merge-multiple-cspot-objects-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-5: Merge multiple CSPOT objects (optional)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PhenotypeCells/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phenotype Cells
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../HelperFunctions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helper Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RunCSPOTwithDocker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run CSPOT with Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#single-command-execution-of-the-entire-cspot-prediction-algorithm-using-the-cspipeline-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single command execution of the entire CSPOT Prediction Algorithm using the csPipeline function
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualize-the-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualize the results
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-execution-of-the-cspot-prediction-algorithm-in-contrast-to-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step by step execution of the CSPOT Prediction Algorithm (in contrast to pipeline)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-apply-the-generated-models-on-the-image-of-interest-pixel-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-1: Apply the generated Models on the Image of interest (Pixel Level)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-calculate-the-cspotscore-single-cell-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-2: Calculate the cspotScore (Single-cell Level)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-create-a-cspot-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-3: Create a CSPOT object
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-run-the-final-cspot-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-4: Run the final CSPOT Algorithm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-merge-multiple-cspot-objects-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-5: Merge multiple CSPOT objects (optional)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="run-the-cspot-prediction-algorithm-on-new-images">🎯 Run the CSPOT Prediction Algorithm on new images<a class="headerlink" href="#run-the-cspot-prediction-algorithm-on-new-images" title="Permanent link">&para;</a></h1>
+<p><strong>Download the <a href="https://github.com/nirmallab/cspot/blob/main/docs/Tutorials/notebooks/RunCSPOTAlgorithm.ipynb">executable notebook</a> and <a href="https://doi.org/10.7910/DVN/C45JWT">trained models</a>.</strong>  </p>
+<p>For the purpose of this tutorial, we will use the <code>manuscriptModels</code> as opposed to the models that you trained in the previous tutorial.</p>
+<p>Please keep in mind that the sample data is used for demonstration purposes only and has been simplified and reduced in size. It is solely intended for educational purposes on how to execute <code>cspot</code> and will not yeild any meaningful results.</p>
+<p><strong>Running the CSPOT Prediction Algorithm involves the following steps:</strong>
+- Run the <code>csPredict</code> function on a new image. It will produce an image with probability masks
+- Run the <code>generateCSScore</code> function on the probability masks to generate the <code>cspotScores</code>
+- Run the <code>csObject</code> to create an anndata object with the <code>cspotScores</code> and pre-computed <code>single-cell table</code>
+- Lastly, run <code>cspot</code>  on the csObject</p>
+<p><strong>Note: To make things easy, all of the above steps can be run with a single command <code>csPipeline</code>.</strong><br />
+Typically, in production settings, <code>csPipeline</code> would be utilized, whereas step-by-step analysis would be employed for troubleshooting, model validation, and similar tasks that necessitate greater granularity or control.</p>
+<hr>
+
+<h2 id="single-command-execution-of-the-entire-cspot-prediction-algorithm-using-the-cspipeline-function">Single command execution of the entire CSPOT Prediction Algorithm using the <code>csPipeline</code> function<a class="headerlink" href="#single-command-execution-of-the-entire-cspot-prediction-algorithm-using-the-cspipeline-function" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># import packages in jupyter notebook (not needed for command line interface users)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cspot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cs</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Path to all the files that are necessary files for running the CSPOT Prediction Algorithm (broken down based on sub functions)</span>
+<span class="n">projectDir</span> <span class="o">=</span> <span class="s1">&#39;/Users/aj/Documents/cspotExampleData&#39;</span>
+
+<span class="c1"># cspotPredict related paths</span>
+<span class="n">imagePath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/image/exampleImage.tif&#39;</span>
+<span class="n">markerChannelMapPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/markers.csv&#39;</span>
+<span class="n">csModelPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/manuscriptModels/&#39;</span>
+
+<span class="c1"># Generate generatecspotScore related paths</span>
+<span class="n">segmentationPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/segmentation/exampleSegmentationMask.tif&#39;</span>
+
+<span class="c1"># cspotObject related paths</span>
+<span class="n">spatialTablePath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/quantification/exampleSpatialTable.csv&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run the pipeline (For function specific parameters, check the documentation)</span>
+<span class="n">cs</span><span class="o">.</span><span class="n">csPipeline</span><span class="p">(</span>   
+                    <span class="c1"># parameters for cspotPredict function</span>
+                    <span class="n">imagePath</span><span class="o">=</span><span class="n">imagePath</span><span class="p">,</span>
+                    <span class="n">csModelPath</span><span class="o">=</span><span class="n">csModelPath</span><span class="p">,</span>
+                    <span class="n">markerChannelMapPath</span><span class="o">=</span><span class="n">markerChannelMapPath</span><span class="p">,</span>
+
+                    <span class="c1"># parameters for generatecspotScore function</span>
+                    <span class="n">segmentationMaskPath</span><span class="o">=</span><span class="n">segmentationPath</span><span class="p">,</span>
+
+                    <span class="c1"># parameters for cspotObject function</span>
+                    <span class="n">spatialTablePath</span><span class="o">=</span><span class="n">spatialTablePath</span><span class="p">,</span>
+
+                    <span class="c1"># parameters to run cspot function</span>
+                    <span class="c1"># ..</span>
+
+                    <span class="c1"># common parameters</span>
+                    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">projectDir</span><span class="o">=</span><span class="n">projectDir</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>loading data
+WARNING:tensorflow:From /Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/keras/src/layers/normalization/batch_normalization.py:883: _colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+loading data
+loading data
+INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/manuscriptModels/ECAD/model.ckpt
+Model restored.
+
+
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:137: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  bn = tf.nn.leaky_relu(tf.layers.batch_normalization(c00+shortcut, training=UNet2D.tfTraining))
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:159: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  lbn = tf.nn.leaky_relu(tf.layers.batch_normalization(
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:162: UserWarning: `tf.layers.dropout` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dropout` instead.
+  return tf.layers.dropout(lbn, 0.15, training=UNet2D.tfTraining)
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:224: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  tf.layers.batch_normalization(tf.nn.conv2d(cc, luXWeights2, strides=[1, 1, 1, 1], padding=&#39;SAME&#39;),
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:245: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  return tf.layers.batch_normalization(
+
+
+Inference...
+loading data
+loading data
+loading data
+INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/manuscriptModels/CD3D/model.ckpt
+Model restored.
+Inference...
+
+
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/cspot.py:383: RuntimeWarning: invalid value encountered in divide
+  below_midpoint = (below_midpoint - min_below) / range_below
+</code></pre></div>
+<p><strong>Same function if the user wants to run it via Command Line Interface</strong>
+<div class="highlight"><pre><span></span><code>python csPipeline.py \
+                --imagePath /Users/aj/Documents/cspotExampleData/image/exampleImage.tif \
+                --csModelPath /Users/aj/Documents/cspotExampleData/CSPOT/cspotModel/ \
+                --markerChannelMapPath /Users/aj/Documents/cspotExampleData/markers.csv \
+                --segmentationMaskPath /Users/aj/Documents/cspotExampleData/segmentation/exampleSegmentationMask.tif \
+                --spatialTablePath /Users/aj/Documents/cspotExampleData/quantification/exampleSpatialTable.csv \
+                --projectDir /Users/aj/Documents/cspotExampleData
+</code></pre></div></p>
+<p>Head over to <code>CSPOT/cspotOutput</code> to view results</p>
+<h2 id="visualize-the-results">Visualize the results<a class="headerlink" href="#visualize-the-results" title="Permanent link">&para;</a></h2>
+<p>Let us visualize the marker postivity of three markers using a helper plotting function provided within CSPOT.</p>
+<div class="highlight"><pre><span></span><code><span class="n">csObject</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad&#39;</span>
+
+<span class="c1"># Plot image to console</span>
+<span class="n">cs</span><span class="o">.</span><span class="n">scatterPlot</span><span class="p">(</span><span class="n">csObject</span><span class="p">,</span>
+            <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ECAD&#39;</span><span class="p">,</span> <span class="s1">&#39;CD8A&#39;</span><span class="p">,</span> <span class="s1">&#39;CD45&#39;</span><span class="p">],</span>
+            <span class="n">poscellsColor</span><span class="o">=</span><span class="s1">&#39;#78290f&#39;</span><span class="p">,</span>
+            <span class="n">negcellsColor</span><span class="o">=</span><span class="s1">&#39;#e5e5e5&#39;</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="n">dpi</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+            <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">outputDir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">outputFileName</span><span class="o">=</span><span class="s1">&#39;cspotplot.png&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/anndata/_core/anndata.py:121: ImplicitModificationWarning: Transforming to str index.
+  warnings.warn(&quot;Transforming to str index.&quot;, ImplicitModificationWarning)
+</code></pre></div>
+<p><img alt="png" src="../RunCSPOTAlgorithm_files/RunCSPOTAlgorithm_12_1.png" /></p>
+<hr>
+
+<h2 id="step-by-step-execution-of-the-cspot-prediction-algorithm-in-contrast-to-pipeline">Step by step execution of the CSPOT Prediction Algorithm (in contrast to pipeline)<a class="headerlink" href="#step-by-step-execution-of-the-cspot-prediction-algorithm-in-contrast-to-pipeline" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Path to all the files that are necessary files for running csPredict</span>
+<span class="n">projectDir</span> <span class="o">=</span> <span class="s1">&#39;/Users/aj/Documents/cspotExampleData&#39;</span>
+
+<span class="c1"># csPredict related paths</span>
+<span class="n">imagePath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/image/exampleImage.tif&#39;</span>
+<span class="n">markerChannelMapPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/markers.csv&#39;</span>
+<span class="n">csModelPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/manuscriptModels/&#39;</span>
+</code></pre></div>
+<h2 id="step-1-apply-the-generated-models-on-the-image-of-interest-pixel-level">Step-1: Apply the generated Models on the Image of interest (Pixel Level)<a class="headerlink" href="#step-1-apply-the-generated-models-on-the-image-of-interest-pixel-level" title="Permanent link">&para;</a></h2>
+<p>The function <code>csPredict</code> is employed to make predictions about the expression of a specified marker on cells in new images using the models generated by <code>csTrain</code>. This calculation is done at the pixel level, resulting in an output image where the number of channels corresponds to the number of models applied to the input image. The parameter <code>markerChannelMapPath</code> is used to associate the image channel number with the relevant model to be applied.</p>
+<div class="highlight"><pre><span></span><code><span class="n">cs</span><span class="o">.</span><span class="n">csPredict</span><span class="p">(</span> <span class="n">imagePath</span><span class="o">=</span><span class="n">imagePath</span><span class="p">,</span>
+                 <span class="n">csModelPath</span><span class="o">=</span><span class="n">csModelPath</span><span class="p">,</span>
+                 <span class="n">projectDir</span><span class="o">=</span><span class="n">projectDir</span><span class="p">,</span>
+                 <span class="n">markerChannelMapPath</span><span class="o">=</span><span class="n">markerChannelMapPath</span><span class="p">,</span> 
+                 <span class="n">markerColumnName</span><span class="o">=</span><span class="s1">&#39;marker&#39;</span><span class="p">,</span> 
+                 <span class="n">channelColumnName</span><span class="o">=</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span> 
+                 <span class="n">modelColumnName</span><span class="o">=</span><span class="s1">&#39;cspotmodel&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Running CSPOT model ECAD on channel 2 corresponding to marker ECAD
+loading data
+loading data
+loading data
+INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/manuscriptModels/ECAD/model.ckpt
+Model restored.
+
+
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:137: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  bn = tf.nn.leaky_relu(tf.layers.batch_normalization(c00+shortcut, training=UNet2D.tfTraining))
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:159: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  lbn = tf.nn.leaky_relu(tf.layers.batch_normalization(
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:162: UserWarning: `tf.layers.dropout` is deprecated and will be removed in a future version. Please use `tf.keras.layers.Dropout` instead.
+  return tf.layers.dropout(lbn, 0.15, training=UNet2D.tfTraining)
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:224: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  tf.layers.batch_normalization(tf.nn.conv2d(cc, luXWeights2, strides=[1, 1, 1, 1], padding=&#39;SAME&#39;),
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/cspot/UNet.py:245: UserWarning: `tf.layers.batch_normalization` is deprecated and will be removed in a future version. Please use `tf.keras.layers.BatchNormalization` instead. In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.BatchNormalization` documentation).
+  return tf.layers.batch_normalization(
+
+
+Inference...
+Running CSPOT model CD3D on channel 5 corresponding to marker CD3D
+loading data
+loading data
+loading data
+INFO:tensorflow:Restoring parameters from /Users/aj/Documents/cspotExampleData/manuscriptModels/CD3D/model.ckpt
+Model restored.
+Inference...
+</code></pre></div>
+<p><strong>Same function if the user wants to run it via Command Line Interface</strong>
+<div class="highlight"><pre><span></span><code>python csPredict.py \
+            --imagePath /Users/aj/Documents/cspotExampleData/image/exampleImage.tif \
+            --csModelPath /Users/aj/Documents/cspotExampleData/manuscriptModels \
+            --projectDir /Users/aj/Documents/cspotExampleData \
+            --markerChannelMapPath /Users/aj/Documents/cspotExampleData/markers.csv
+</code></pre></div></p>
+<h2 id="step-2-calculate-the-cspotscore-single-cell-level">Step-2: Calculate the cspotScore (Single-cell Level)<a class="headerlink" href="#step-2-calculate-the-cspotscore-single-cell-level" title="Permanent link">&para;</a></h2>
+<p>After calculating pixel-level probability scores, the next step is to aggregate them to the single-cell level. This can be done by computing the mean or median probability scores using pre-computed segmentation masks. The marker names, if available, should already be included in the probabilityMask image. If the marker names are lost due to file manipulation, the user can provide them through the markerNames parameter.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Path to all the files that are necessary files for running generateCSScore</span>
+<span class="n">segmentationPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/segmentation/exampleSegmentationMask.tif&#39;</span>
+<span class="n">probabilityMaskPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/csPredict/exampleImage_cspotPredict.ome.tif&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">cs</span><span class="o">.</span><span class="n">generateCSScore</span><span class="p">(</span><span class="n">probabilityMaskPath</span><span class="o">=</span><span class="n">probabilityMaskPath</span><span class="p">,</span>
+                      <span class="n">segmentationMaskPath</span><span class="o">=</span><span class="n">segmentationPath</span><span class="p">,</span>
+                      <span class="n">feature</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span>
+                      <span class="n">projectDir</span><span class="o">=</span><span class="n">projectDir</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Quantifying the probability masks
+csScore is ready, head over to/Users/aj/Documents/cspotExampleData/CSPOT/csScore&quot; to view results
+</code></pre></div>
+<p><strong>Same function if the user wants to run it via Command Line Interface</strong>
+<div class="highlight"><pre><span></span><code>python generateCSScore.py \
+            --probabilityMaskPath /Users/aj/Documents/cspotExampleData/CSPOT/csPredict/exampleImage_cspotPredict.ome.tif \
+            --segmentationMaskPath /Users/aj/Documents/cspotExampleData/segmentation/exampleSegmentationMask.tif \
+            --projectDir /Users/aj/Documents/cspotExampleData
+</code></pre></div></p>
+<p>If you head over to <code>CSPOT/csScore/</code>, you will find the <code>.csv</code> file with the csScores for every cell.</p>
+<h2 id="step-3-create-a-cspot-object">Step-3: Create a CSPOT object<a class="headerlink" href="#step-3-create-a-cspot-object" title="Permanent link">&para;</a></h2>
+<p>We'll use the anndata framework to create a cspot object to store all information in one file, making it easier to keep track of intermediate files generated in subsequent steps.  This helps streamline the data analysis process and reduces the risk of losing or misplacing information.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Path to all the files that are necessary files for running csObject function</span>
+<span class="n">segmentationPath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/segmentation/exampleSegmentationMask.tif&#39;</span>
+<span class="n">csScorePath</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/csScore/exampleImage_cspotPredict.ome.csv&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># please note that there are a number of defaults in the below function that assumes certain structure within the spatialTable.</span>
+<span class="c1"># Please confirm it is similar with user data or modifiy the parameters accordingly</span>
+<span class="c1"># check out the documentation for further details</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">csObject</span> <span class="p">(</span><span class="n">spatialTablePath</span><span class="o">=</span><span class="n">spatialTablePath</span><span class="p">,</span>
+                        <span class="n">csScorePath</span><span class="o">=</span><span class="n">csScorePath</span><span class="p">,</span>
+                        <span class="n">CellId</span><span class="o">=</span><span class="s1">&#39;CellID&#39;</span><span class="p">,</span>
+                        <span class="n">uniqueCellId</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">split</span><span class="o">=</span><span class="s1">&#39;X_centroid&#39;</span><span class="p">,</span>
+                        <span class="n">removeDNA</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">remove_string_from_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">dropMarkers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">projectDir</span><span class="o">=</span><span class="n">projectDir</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Loading exampleSpatialTable.csv
+CSPOT Object has been created, head over to/Users/aj/Documents/cspotExampleData/CSPOT/csObject&quot; to view results
+</code></pre></div>
+<p><strong>Same function if the user wants to run it via Command Line Interface</strong>
+<div class="highlight"><pre><span></span><code>python csObject.py \
+            --spatialTablePath /Users/aj/Documents/cspotExampleData/quantification/exampleSpatialTable.csv \
+            --csScorePath /Users/aj/Documents/cspotExampleData/CSPOT/csScore/exampleImage_cspotPredict.ome.csv \
+            --projectDir /Users/aj/Documents/cspotExampleData
+</code></pre></div></p>
+<p>If you had provided <code>projectDir</code> the object would be stored in <code>CSPOT/csObject/</code>, else, the object will be returned to memory</p>
+<h2 id="step-4-run-the-final-cspot-algorithm">Step-4: Run the final CSPOT Algorithm<a class="headerlink" href="#step-4-run-the-final-cspot-algorithm" title="Permanent link">&para;</a></h2>
+<p>The <code>cspot</code> algorithm is ready to run after pre-processing. To get optimal results, consider adjusting the following parameters:</p>
+<ol>
+<li>The <code>minAbundance</code> parameter determines the minimum percentage of a marker's abundance to consider it a failure.</li>
+<li>It is suggested to drop background markers with the <code>dropMarkers</code> option as they can interfere with classifiers.</li>
+<li><code>RobustScale</code>: Scaling the data before training the classifier model has been shown to improve results. However, in our experience a simple log transformation was found to be work best. </li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1"># Path to all the files that are necessary files for running cspot function</span>
+<span class="n">csObject</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">adata</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">cspot</span> <span class="p">(</span> <span class="n">csObject</span><span class="o">=</span><span class="n">csObject</span><span class="p">,</span>
+                    <span class="n">csScore</span><span class="o">=</span><span class="s1">&#39;csScore&#39;</span><span class="p">,</span>
+                    <span class="n">minAbundance</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
+                    <span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">99</span><span class="p">],</span>
+                    <span class="n">dropMarkers</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">RobustScale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">x_coordinate</span><span class="o">=</span><span class="s1">&#39;X_centroid&#39;</span><span class="p">,</span>
+                    <span class="n">y_coordinate</span><span class="o">=</span><span class="s1">&#39;Y_centroid&#39;</span><span class="p">,</span>
+                    <span class="n">imageid</span><span class="o">=</span><span class="s1">&#39;imageid&#39;</span><span class="p">,</span>
+                    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                    <span class="n">rescaleMethod</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cspotOutput&#39;</span><span class="p">,</span>
+                    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                   <span class="n">projectDir</span><span class="o">=</span><span class="n">projectDir</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Same function if the user wants to run it via Command Line Interface</strong>
+<div class="highlight"><pre><span></span><code>python cspot.py \
+            --csObject /Users/aj/Documents/cspotExampleData/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad \
+            --projectDir /Users/aj/Documents/cspotExampleData
+</code></pre></div></p>
+<p>If <code>projectDir</code> is provided, modified anndata object with results (stored in <code>adata.uns['cspotOutput']</code>) will be saved in <code>CSPOT/cspotOutput/</code>. The cspot-scaled data (stored in <code>adata.X</code>) considers cells above 0.5 as positive and below 0.5 as negative for the marker.</p>
+<h2 id="step-5-merge-multiple-cspot-objects-optional">Step-5: Merge multiple CSPOT objects (optional)<a class="headerlink" href="#step-5-merge-multiple-cspot-objects-optional" title="Permanent link">&para;</a></h2>
+<p>Use <code>mergecspotObject</code> to combine multiple csObjects into a dataset for analysis when multiple images need to be analyzed.</p>
+<p>Note that merging csObjects requires merging multiple sections, not simple concatenation. Use parameters to specify which parts of the csObjects to merge.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># set the working directory &amp; set paths to the example data</span>
+<span class="n">csObjects</span> <span class="o">=</span> <span class="p">[</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad&#39;</span><span class="p">,</span>
+            <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad&#39;</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># For this tutorial, supply the same cspotObject twice for merging, but multiple cspotObjects can be merged in ideal conditions.</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">mergecsObject</span> <span class="p">(</span> <span class="n">csObjects</span><span class="o">=</span><span class="n">csObjects</span><span class="p">,</span>
+                              <span class="n">fileName</span><span class="o">=</span><span class="s1">&#39;mergedcspotObject&#39;</span><span class="p">,</span>
+                              <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;preProcessed&#39;</span><span class="p">],</span>
+                              <span class="n">uns</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cspotOutput&#39;</span><span class="p">,</span><span class="s1">&#39;csScore&#39;</span><span class="p">],</span>
+                              <span class="n">projectDir</span><span class="o">=</span><span class="n">projectDir</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Extracting data
+Extracting data from: exampleSpatialTable
+Extracting data from: exampleSpatialTable
+Given csObjects have been merged, head over to &quot;/Users/aj/Documents/cspotExampleData/CSPOT/mergedcsObject&quot; to view results
+
+
+/Users/aj/miniconda3/envs/cspot/lib/python3.9/site-packages/anndata/_core/anndata.py:1828: UserWarning: Observation names are not unique. To make them unique, call `.obs_names_make_unique`.
+  utils.warn_names_duplicates(&quot;obs&quot;)
+</code></pre></div>
+<p><strong>Same function if the user wants to run it via Command Line Interface</strong>
+<div class="highlight"><pre><span></span><code>python mergecsObject.py \
+            --csObjects /Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad /Users/aj/Documents/cspotExampleData/CSPOT/cspotOutput/exampleImage_cspotPredict.ome.h5ad \
+            --projectDir /Users/aj/Documents/cspotExampleData
+</code></pre></div></p>
+<p>If <code>projectDir</code> is provided, modified anndata object with results will be saved in <code>CSPOT/mergedcsObject/</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># this tutorial ends here. Move to the Phenotyping cells Tutorial</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 | Nirmal Lab | www.nirmallab.com
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/nirmallab" target="_blank" rel="noopener" title="Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.top", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

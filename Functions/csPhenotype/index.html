@@ -1,0 +1,2453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A scalable framework for automated processing of highly multiplexed tissue images">
+      
+      
+        <meta name="author" content="Ajit Johnson Nirmal">
+      
+      
+      
+        <link rel="prev" href="../mergecsObject/">
+      
+      
+        <link rel="next" href="../csExport/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
+    
+    
+      
+        <title>csPhenotype - CELL SPOTTER (CSPOT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cspot.csPhenotype" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CELL SPOTTER (CSPOT)" class="md-header__button md-logo" aria-label="CELL SPOTTER (CSPOT)" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CELL SPOTTER (CSPOT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              csPhenotype
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nirmalLab/cspot/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Getting%20Started/" class="md-tabs__link">
+        
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../generateThumbnails/" class="md-tabs__link">
+          
+  
+  CSPOT Functions
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tutorials/md/ReviewQuickStartGuide/" class="md-tabs__link">
+          
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CELL SPOTTER (CSPOT)" class="md-nav__button md-logo" aria-label="CELL SPOTTER (CSPOT)" data-md-component="logo">
+      
+  <img src="../../assets/favicon.png" alt="logo">
+
+    </a>
+    CELL SPOTTER (CSPOT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nirmalLab/cspot/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Getting%20Started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    CSPOT Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            CSPOT Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Build CSPOT Model
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Build CSPOT Model
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generateThumbnails/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateThumbnails
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloneFolder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cloneFolder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generateTrainTestSplit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateTrainTestSplit
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csTrain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csTrain
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Run CSPOT Algorithm
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Run CSPOT Algorithm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csPipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csPredict/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csPredict
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generateCSScore/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    generateCSScore
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csObject/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csObject
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cspot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cspot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mergecsObject/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mergecsObject
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Phenotype cells
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Phenotype cells
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    csPhenotype
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    csPhenotype
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.csPhenotype" class="md-nav__link">
+    <span class="md-ellipsis">
+      csPhenotype
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="csPhenotype">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cspot.csPhenotype--function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.csPhenotype.csPhenotype" class="md-nav__link">
+    <span class="md-ellipsis">
+      csPhenotype
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Helper Functions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Helper Functions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csExport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    csExport
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scatterPlot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scatterPlot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addPredictions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    addPredictions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/ReviewQuickStartGuide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewer Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/DownloadTutorialData/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Download Tutorial Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/InstallationandSetUp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation and Set Up
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/BuildCSPOTModel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build CSPOT Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/RunCSPOTAlgorithm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run CSPOT Algorithm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/PhenotypeCells/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phenotype Cells
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/HelperFunctions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helper Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tutorials/md/RunCSPOTwithDocker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run CSPOT with Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.csPhenotype" class="md-nav__link">
+    <span class="md-ellipsis">
+      csPhenotype
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="csPhenotype">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cspot.csPhenotype--function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cspot.csPhenotype.csPhenotype" class="md-nav__link">
+    <span class="md-ellipsis">
+      csPhenotype
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+  
+  
+
+
+  <h1>csPhenotype</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="cspot.csPhenotype"></a>
+    <div class="doc doc-contents first">
+
+        <div class="admonition abstract">
+<p class="admonition-title">Short Description</p>
+<p>The csPhenotype function requires a phenotype workflow document to guide 
+the algorithm in performing classification.  </p>
+<p>The phenotype workflow document is imported as a <code>dataframe</code> and passed to the 
+<code>phenotype</code> argument. It should follow the following structure:  </p>
+<p>(1) The <code>first column</code> has to contain the cell that are to be classified.<br />
+(2) The <code>second column</code> indicates the phenotype a particular cell will be assigned 
+if it satifies the conditions in the row.<br />
+(3) <code>Column three</code> and onward represent protein markers. If the protein marker 
+is known to be expressed for that cell type, then it is denoted by either <code>pos</code>, 
+<code>allpos</code>. If the protein marker is known to not express for a cell type it 
+can be denoted by <code>neg</code>, <code>allneg</code>. If the protein marker is irrelevant or 
+uncertain to express for a cell type, then it is left empty. <code>anypos</code> and 
+<code>anyneg</code> are options for using a set of markers and if any of the marker is 
+positive or negative, the cell type is denoted accordingly.  </p>
+<p>To give users maximum flexibility in identifying desired cell types, 
+we have implemented various classification arguments as described above 
+for strategical classification. They include  </p>
+<ul>
+<li>allpos</li>
+<li>allneg</li>
+<li>anypos</li>
+<li>anyneg</li>
+<li>pos</li>
+<li>neg</li>
+</ul>
+<p><code>pos</code> : "Pos" looks for cells positive for a given marker. If multiple 
+markers are annotated as <code>pos</code>, all must be positive to denote the cell type. 
+For example, a Regulatory T cell can be defined as <code>CD3+CD4+FOXP3+</code> by passing 
+<code>pos</code> to each marker. If one or more markers don't meet the criteria (e.g. CD4-), 
+the program will classify it as <code>Likely-Regulatory-T cell</code>, pending user 
+confirmation. This is useful in cases of technical artifacts or when cell 
+types (such as cancer cells) are defined by marker loss (e.g. T-cell Lymphomas).  </p>
+<p><code>neg</code> : Same as <code>pos</code> but looks for negativity of the defined markers.  </p>
+<p><code>allpos</code> : "Allpos" requires all defined markers to be positive. Unlike 
+<code>pos</code>, it doesn't classify cells as <code>Likely-cellType</code>, but strictly annotates 
+cells positive for all defined markers.  </p>
+<p><code>allneg</code> : Same as <code>allpos</code> but looks for negativity of the defined markers.  </p>
+<p><code>anypos</code> : "Anypos" requires only one of the defined markers to be positive. 
+For example, to define macrophages, a cell could be designated as such if 
+any of <code>CD68</code>, <code>CD163</code>, or <code>CD206</code> is positive.  </p>
+<p><code>anyneg</code> : Same as <code>anyneg</code> but looks for negativity of the defined markers. </p>
+</div>
+<h5 id="cspot.csPhenotype--function">Function<a class="headerlink" href="#cspot.csPhenotype--function" title="Permanent link">&para;</a></h5>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="cspot.csPhenotype.csPhenotype" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">csPhenotype</span><span class="p">(</span><span class="n">csObject</span><span class="p">,</span> <span class="n">phenotype</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;phenotype&#39;</span><span class="p">,</span> <span class="n">imageid</span><span class="o">=</span><span class="s1">&#39;imageid&#39;</span><span class="p">,</span> <span class="n">pheno_threshold_percent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pheno_threshold_abs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fileName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">projectDir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#cspot.csPhenotype.csPhenotype" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>csObject</code>
+            </td>
+            <td>
+                  <code><span title="anndata">anndata</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Single or combined CSPOT object.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>phenotype</code>
+            </td>
+            <td>
+                  <code>(<span title="dataframe">dataframe</span>, <span title="str">str</span>)</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A phenotyping workflow strategy either as a <code>dataframe</code> loaded into memory or 
+a path to the <code>.csv</code> file. </p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>midpoint</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>By default, CSPOT normalizes the data in a way that cells with a value
+above 0.5 are considered positive. However, if you desire more selective
+threshold, the parameter can be adjusted accordingly. </p>
+              </div>
+            </td>
+            <td>
+                  <code>0.5</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>label</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Specify the column name under which the final phenotype classification
+will be saved. </p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;phenotype&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>imageid</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the column that holds the unique image ID. </p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;imageid&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pheno_threshold_percent</code>
+            </td>
+            <td>
+                  <code><span title="float">float</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The user-defined threshold, which can be set between 0-100, is used to
+recategorize any phenotype that falls below it as 'unknown'.
+This function is commonly used to address low background false positives.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pheno_threshold_abs</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>This function serves a similar purpose as the <code>pheno_threshold_percent</code>,
+but it accepts an absolute number as input. For example, if the user
+inputs 10, any phenotype that contains less than 10 cells will be
+recategorized as 'unknown'. </p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>fileName</code>
+            </td>
+            <td>
+                  <code><span title="string">string</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>File Name to be used while saving the CSPOT object.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>verbose</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If True, print detailed information about the process to the console.  </p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>projectDir</code>
+            </td>
+            <td>
+                  <code><span title="string">string</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Provide the path to the output directory.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>csObject</code></td>            <td>
+                  <code><span title="anndata">anndata</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Modified CSPOT object with the Phenotypes is returned. If <code>projectDir</code> is 
+provided, it will be saved in the defined directory.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="example" open>
+  <summary>Example</summary>
+  <div class="highlight"><pre><span></span><code><span class="c1"># set the Project directory</span>
+<span class="n">projectDir</span> <span class="o">=</span> <span class="s1">&#39;/Users/aj/Documents/cspotExampleData&#39;</span>
+<span class="c1"># Path to the CSPOT Object</span>
+<span class="n">csObject</span> <span class="o">=</span> <span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad&#39;</span>
+
+<span class="c1"># load the phenotyping workflow</span>
+<span class="n">phenotype</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">projectDir</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/phenotype_workflow.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Run Function</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">cs</span><span class="o">.</span><span class="n">csPhenotype</span> <span class="p">(</span> <span class="n">csObject</span><span class="o">=</span><span class="n">csObject</span><span class="p">,</span>
+                    <span class="n">phenotype</span><span class="o">=</span><span class="n">phenotype</span><span class="p">,</span>
+                    <span class="n">midpoint</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;phenotype&quot;</span><span class="p">,</span>
+                    <span class="n">imageid</span><span class="o">=</span><span class="s1">&#39;imageid&#39;</span><span class="p">,</span>
+                    <span class="n">pheno_threshold_percent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">pheno_threshold_abs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">fileName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">projectDir</span><span class="o">=</span><span class="n">projectDir</span><span class="p">)</span>
+
+<span class="c1"># Same function if the user wants to run it via Command Line Interface</span>
+<span class="n">python</span> <span class="n">csPhenotype</span><span class="o">.</span><span class="n">py</span>             <span class="o">--</span><span class="n">csObject</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">aj</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">cspotExampleData</span><span class="o">/</span><span class="n">CSPOT</span><span class="o">/</span><span class="n">csObject</span><span class="o">/</span><span class="n">exampleImage_cspotPredict</span><span class="o">.</span><span class="n">ome</span><span class="o">.</span><span class="n">h5ad</span>             <span class="o">--</span><span class="n">phenotype</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">aj</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">cspotExampleData</span><span class="o">/</span><span class="n">phenotype_workflow</span><span class="o">.</span><span class="n">csv</span>             <span class="o">--</span><span class="n">projectDir</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">aj</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">cspotExampleData</span>
+</code></pre></div>
+</details>
+
+            <details class="quote">
+              <summary>Source code in <code>cspot/csPhenotype.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">csPhenotype</span> <span class="p">(</span><span class="n">csObject</span><span class="p">,</span>
+                    <span class="n">phenotype</span><span class="p">,</span>
+                    <span class="n">midpoint</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;phenotype&quot;</span><span class="p">,</span>
+                    <span class="n">imageid</span><span class="o">=</span><span class="s1">&#39;imageid&#39;</span><span class="p">,</span>
+                    <span class="n">pheno_threshold_percent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">pheno_threshold_abs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">fileName</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">projectDir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Parameters:</span>
+<span class="sd">    csObject (anndata):</span>
+<span class="sd">        Single or combined CSPOT object.</span>
+
+<span class="sd">    phenotype (dataframe, str):</span>
+<span class="sd">        A phenotyping workflow strategy either as a `dataframe` loaded into memory or </span>
+<span class="sd">        a path to the `.csv` file. </span>
+
+<span class="sd">    midpoint (float, optional):</span>
+<span class="sd">        By default, CSPOT normalizes the data in a way that cells with a value</span>
+<span class="sd">        above 0.5 are considered positive. However, if you desire more selective</span>
+<span class="sd">        threshold, the parameter can be adjusted accordingly. </span>
+
+<span class="sd">    label (str, optional):</span>
+<span class="sd">        Specify the column name under which the final phenotype classification</span>
+<span class="sd">        will be saved. </span>
+
+<span class="sd">    imageid (str, optional):</span>
+<span class="sd">        The name of the column that holds the unique image ID. </span>
+
+<span class="sd">    pheno_threshold_percent (float, optional):</span>
+<span class="sd">        The user-defined threshold, which can be set between 0-100, is used to</span>
+<span class="sd">        recategorize any phenotype that falls below it as &#39;unknown&#39;.</span>
+<span class="sd">        This function is commonly used to address low background false positives.</span>
+
+<span class="sd">    pheno_threshold_abs (int, optional):</span>
+<span class="sd">        This function serves a similar purpose as the `pheno_threshold_percent`,</span>
+<span class="sd">        but it accepts an absolute number as input. For example, if the user</span>
+<span class="sd">        inputs 10, any phenotype that contains less than 10 cells will be</span>
+<span class="sd">        recategorized as &#39;unknown&#39;. </span>
+
+<span class="sd">    fileName (string, optional):</span>
+<span class="sd">        File Name to be used while saving the CSPOT object.</span>
+
+<span class="sd">    verbose (bool, optional):</span>
+<span class="sd">        If True, print detailed information about the process to the console.  </span>
+
+<span class="sd">    projectDir (string, optional):</span>
+<span class="sd">        Provide the path to the output directory.</span>
+
+<span class="sd">Returns:</span>
+<span class="sd">    csObject (anndata):</span>
+<span class="sd">        Modified CSPOT object with the Phenotypes is returned. If `projectDir` is </span>
+<span class="sd">        provided, it will be saved in the defined directory.</span>
+
+<span class="sd">Example:</span>
+<span class="sd">        ```python</span>
+
+<span class="sd">        # set the Project directory</span>
+<span class="sd">        projectDir = &#39;/Users/aj/Documents/cspotExampleData&#39;</span>
+<span class="sd">        # Path to the CSPOT Object</span>
+<span class="sd">        csObject = projectDir + &#39;/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad&#39;</span>
+
+<span class="sd">        # load the phenotyping workflow</span>
+<span class="sd">        phenotype = pd.read_csv(str(projectDir) + &#39;/phenotype_workflow.csv&#39;)</span>
+
+<span class="sd">        # Run Function</span>
+<span class="sd">        adata = cs.csPhenotype ( csObject=csObject,</span>
+<span class="sd">                            phenotype=phenotype,</span>
+<span class="sd">                            midpoint = 0.5,</span>
+<span class="sd">                            label=&quot;phenotype&quot;,</span>
+<span class="sd">                            imageid=&#39;imageid&#39;,</span>
+<span class="sd">                            pheno_threshold_percent=None,</span>
+<span class="sd">                            pheno_threshold_abs=None,</span>
+<span class="sd">                            fileName=None,</span>
+<span class="sd">                            projectDir=projectDir)</span>
+
+<span class="sd">        # Same function if the user wants to run it via Command Line Interface</span>
+<span class="sd">        python csPhenotype.py \</span>
+<span class="sd">            --csObject /Users/aj/Documents/cspotExampleData/CSPOT/csObject/exampleImage_cspotPredict.ome.h5ad \</span>
+<span class="sd">            --phenotype /Users/aj/Documents/cspotExampleData/phenotype_workflow.csv \</span>
+<span class="sd">            --projectDir /Users/aj/Documents/cspotExampleData</span>
+
+
+<span class="sd">        ```</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Load data</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">csObject</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">csObject</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">adata</span> <span class="o">=</span> <span class="n">csObject</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># load phenotype</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">phenotype</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="n">phenotype</span> <span class="o">=</span> <span class="n">phenotype</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">phenotype</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">phenotype</span><span class="p">))</span>
+
+    <span class="c1"># Create a dataframe from the adata object</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="c1"># Function to calculate the phenotype scores</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">phenotype_cells</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">phenotype</span><span class="p">,</span><span class="n">midpoint</span><span class="p">,</span><span class="n">group</span><span class="p">):</span>
+
+        <span class="c1"># Subset the phenotype based on the group</span>
+        <span class="n">phenotype</span> <span class="o">=</span> <span class="n">phenotype</span><span class="p">[</span><span class="n">phenotype</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">group</span><span class="p">]</span>
+
+        <span class="c1"># Parser to parse the CSV file into four categories</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">phenotype_parser</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+            <span class="c1"># Get the index and subset the phenotype row being passed in</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">cell</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">location</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">phenotype</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">,:]</span>
+            <span class="c1"># Calculate</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">phenotype</span><span class="p">[</span><span class="n">phenotype</span> <span class="o">==</span> <span class="s1">&#39;pos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">neg</span> <span class="o">=</span> <span class="n">phenotype</span><span class="p">[</span><span class="n">phenotype</span> <span class="o">==</span> <span class="s1">&#39;neg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">anypos</span> <span class="o">=</span> <span class="n">phenotype</span><span class="p">[</span><span class="n">phenotype</span> <span class="o">==</span> <span class="s1">&#39;anypos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">anyneg</span> <span class="o">=</span> <span class="n">phenotype</span><span class="p">[</span><span class="n">phenotype</span> <span class="o">==</span> <span class="s1">&#39;anyneg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">allpos</span> <span class="o">=</span> <span class="n">phenotype</span><span class="p">[</span><span class="n">phenotype</span> <span class="o">==</span> <span class="s1">&#39;allpos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">allneg</span> <span class="o">=</span> <span class="n">phenotype</span><span class="p">[</span><span class="n">phenotype</span> <span class="o">==</span> <span class="s1">&#39;allneg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;pos&#39;</span><span class="p">:</span> <span class="n">pos</span><span class="p">,</span> <span class="s1">&#39;neg&#39;</span><span class="p">:</span> <span class="n">neg</span> <span class="p">,</span><span class="s1">&#39;anypos&#39;</span><span class="p">:</span> <span class="n">anypos</span><span class="p">,</span> <span class="s1">&#39;anyneg&#39;</span><span class="p">:</span> <span class="n">anyneg</span><span class="p">,</span> <span class="s1">&#39;allpos&#39;</span><span class="p">:</span> <span class="n">allpos</span><span class="p">,</span> <span class="s1">&#39;allneg&#39;</span><span class="p">:</span> <span class="n">allneg</span><span class="p">}</span>
+            <span class="c1">#return pos, neg, anypos, anyneg</span>
+
+        <span class="c1"># Run the phenotype_parser function on all rows</span>
+        <span class="n">p_list</span> <span class="o">=</span> <span class="n">phenotype</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">r_phenotype</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">phenotype_parser</span><span class="p">(</span><span class="n">cell</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">phenotype</span><span class="p">)</span> <span class="c1"># Create lamda function</span>
+        <span class="n">all_phenotype</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_phenotype</span><span class="p">,</span> <span class="n">p_list</span><span class="p">))</span> <span class="c1"># Apply function</span>
+        <span class="n">all_phenotype</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">p_list</span><span class="p">,</span> <span class="n">all_phenotype</span><span class="p">))</span> <span class="c1"># Name the lists</span>
+
+        <span class="c1"># Define function to check if there is any marker that does not satisfy the midpoint</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">gate_satisfation_lessthan</span> <span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">midpoint</span><span class="p">):</span>
+            <span class="n">fail</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">marker</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">midpoint</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># 1 is fail</span>
+            <span class="k">return</span> <span class="n">fail</span>
+        <span class="c1"># Corresponding lamda function</span>
+        <span class="n">r_gate_satisfation_lessthan</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">gate_satisfation_lessthan</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="n">midpoint</span><span class="p">)</span>
+
+        <span class="c1"># Define function to check if there is any marker that does not satisfy the midpoint</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">gate_satisfation_morethan</span> <span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">midpoint</span><span class="p">):</span>
+            <span class="n">fail</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">marker</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">midpoint</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">fail</span>
+        <span class="c1"># Corresponding lamda function</span>
+        <span class="n">r_gate_satisfation_morethan</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">gate_satisfation_morethan</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="n">midpoint</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">prob_mapper</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">all_phenotype</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">midpoint</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Phenotyping &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
+
+            <span class="c1"># Get the appropriate dict from all_phenotype</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">all_phenotype</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span>
+
+            <span class="c1"># Identiy the marker used in each category</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pos&#39;</span><span class="p">)</span>
+            <span class="n">neg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;neg&#39;</span><span class="p">)</span>
+            <span class="n">anypos</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;anypos&#39;</span><span class="p">)</span>
+            <span class="n">anyneg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;anyneg&#39;</span><span class="p">)</span>
+            <span class="n">allpos</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;allpos&#39;</span><span class="p">)</span>
+            <span class="n">allneg</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;allneg&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Perform computation for each group independently</span>
+            <span class="c1"># Positive marker score</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">pos_score</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+                <span class="n">pos_fail</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_gate_satisfation_lessthan</span><span class="p">,</span> <span class="n">pos</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[]</span>
+                <span class="n">pos_fail</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">pos_fail</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pos_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+                <span class="n">pos_fail</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># Negative marker score</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">neg_score</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">data</span><span class="p">[</span><span class="n">neg</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+                <span class="n">neg_fail</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_gate_satisfation_morethan</span><span class="p">,</span> <span class="n">neg</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[]</span>
+                <span class="n">neg_fail</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">neg_fail</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">neg_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+                <span class="n">neg_fail</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># Any positive score</span>
+            <span class="n">anypos_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">anypos</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">data</span><span class="p">[</span><span class="n">anypos</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+            <span class="c1"># Any negative score</span>
+            <span class="n">anyneg_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">anyneg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">data</span><span class="p">[</span><span class="n">anyneg</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+            <span class="c1"># All positive score</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">allpos</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">allpos_score</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">allpos</span><span class="p">]</span>
+                <span class="n">allpos_score</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allpos_score</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">allpos_score</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">allpos_score</span> <span class="o">&lt;</span> <span class="n">midpoint</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">allpos_score</span> <span class="o">=</span> <span class="n">allpos_score</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="c1"># A small value is added to give an edge over the matching positive cell</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">allpos_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+
+            <span class="c1"># All negative score</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">allneg</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">allneg_score</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="n">allneg</span><span class="p">]</span>
+                <span class="n">allneg_score</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allneg_score</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">allneg_score</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">allneg_score</span> <span class="o">&lt;</span> <span class="n">midpoint</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">allneg_score</span> <span class="o">=</span> <span class="n">allneg_score</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="mf">0.01</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">allneg_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+
+            <span class="c1"># Total score calculation</span>
+            <span class="c1"># Account for differences in the number of categories used for calculation of the final score</span>
+            <span class="n">number_of_non_empty_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nb">len</span><span class="p">(</span><span class="n">neg</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nb">len</span><span class="p">(</span><span class="n">anypos</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nb">len</span><span class="p">(</span><span class="n">anyneg</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nb">len</span><span class="p">(</span><span class="n">allpos</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
+                                                <span class="nb">len</span><span class="p">(</span><span class="n">allneg</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span>
+
+            <span class="n">total_score</span> <span class="o">=</span> <span class="p">(</span><span class="n">pos_score</span> <span class="o">+</span> <span class="n">neg_score</span> <span class="o">+</span> <span class="n">anypos_score</span> <span class="o">+</span> <span class="n">anyneg_score</span> <span class="o">+</span> <span class="n">allpos_score</span> <span class="o">+</span> <span class="n">allneg_score</span><span class="p">)</span> <span class="o">/</span> <span class="n">number_of_non_empty_features</span>
+
+            <span class="k">return</span> <span class="p">{</span><span class="n">cell</span><span class="p">:</span> <span class="n">total_score</span><span class="p">,</span> <span class="s1">&#39;pos_fail&#39;</span><span class="p">:</span> <span class="n">pos_fail</span> <span class="p">,</span><span class="s1">&#39;neg_fail&#39;</span><span class="p">:</span> <span class="n">neg_fail</span><span class="p">}</span>
+            <span class="c1">#return total_score, pos_fail, neg_fail</span>
+
+
+        <span class="c1"># Apply the fuction to get the total score for all cell types</span>
+        <span class="n">r_prob_mapper</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">prob_mapper</span> <span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">all_phenotype</span><span class="o">=</span><span class="n">all_phenotype</span><span class="p">,</span> <span class="n">cell</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="n">midpoint</span><span class="p">)</span> <span class="c1"># Create lamda function</span>
+        <span class="n">final_scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_prob_mapper</span><span class="p">,</span> <span class="p">[</span><span class="o">*</span><span class="n">all_phenotype</span><span class="p">]))</span> <span class="c1"># Apply function</span>
+        <span class="n">final_scores</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="o">*</span><span class="n">all_phenotype</span><span class="p">],</span> <span class="n">final_scores</span><span class="p">))</span> <span class="c1"># Name the lists</span>
+
+        <span class="c1"># Combine the final score to annotate the cells with a label</span>
+        <span class="n">final_score_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="o">*</span><span class="n">final_scores</span><span class="p">]:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">final_scores</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">final_score_df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">final_score_df</span><span class="p">,</span> <span class="n">df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Name the columns</span>
+        <span class="n">final_score_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">final_scores</span><span class="p">]</span>
+        <span class="n">final_score_df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span>
+        <span class="c1"># Add a column called unknown if all markers have a value less than the midpoint (0.5)</span>
+        <span class="n">unknown</span> <span class="o">=</span> <span class="n">group</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;-rest&#39;</span><span class="p">)</span>
+        <span class="n">final_score_df</span><span class="p">[</span><span class="n">unknown</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">final_score_df</span> <span class="o">&lt;</span> <span class="n">midpoint</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="c1"># Name each cell</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">final_score_df</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Group all failed instances (i.e. when multiple markers were given</span>
+        <span class="c1"># any one of the marker fell into neg or pos zones of the midpoint)</span>
+        <span class="n">pos_fail_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="o">*</span><span class="n">final_scores</span><span class="p">]:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">final_scores</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;pos_fail&#39;</span><span class="p">])</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="n">pos_fail_all</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pos_fail_all</span><span class="p">,</span> <span class="n">df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">pos_fail_all</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos_fail_all</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="c1"># Same for Neg</span>
+        <span class="n">neg_fail_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="o">*</span><span class="n">final_scores</span><span class="p">]:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">final_scores</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;neg_fail&#39;</span><span class="p">])</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span>
+            <span class="n">neg_fail_all</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">neg_fail_all</span><span class="p">,</span> <span class="n">df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">neg_fail_all</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg_fail_all</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span>
+
+
+        <span class="c1"># Modify the labels with the failed annotations</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos_fail_all</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pos_fail_all</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">pos_fail_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;likely-&#39;</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="c1"># Do the same for negative</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg_fail_all</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">neg_fail_all</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="n">labels</span><span class="p">[(</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">neg_fail_all</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="s1">&#39;likely-&#39;</span> <span class="o">+</span> <span class="n">i</span>
+
+        <span class="c1"># Retun the labels</span>
+        <span class="k">return</span> <span class="n">labels</span>
+
+    <span class="c1"># Create an empty dataframe to hold the labeles from each group</span>
+    <span class="n">phenotype_labels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="c1"># Loop through the groups to apply the phenotype_cells function</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">phenotype</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+
+        <span class="k">if</span> <span class="n">phenotype_labels</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">phenotype_labels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">phenotype_cells</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">phenotype</span><span class="o">=</span><span class="n">phenotype</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="n">midpoint</span><span class="p">))</span>
+            <span class="n">phenotype_labels</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Find the column with the cell-type of interest</span>
+            <span class="n">column_of_interest</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># Empty list to hold the column name</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">column_of_interest</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">phenotype_labels</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()]</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="c1"># If the cell-type of interest was not found just add NA</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">column_of_interest</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">phenotype_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#cells_of_interest = phenotype_labels[phenotype_labels[column_of_interest] == i].index</span>
+                <span class="n">cells_of_interest</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="p">[</span><span class="n">phenotype_labels</span><span class="p">[</span><span class="n">column_of_interest</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cells_of_interest</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-- Subsetting &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+                <span class="n">phenotype_l</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">phenotype_cells</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">phenotype</span><span class="o">=</span><span class="n">phenotype</span><span class="p">,</span> <span class="n">midpoint</span><span class="o">=</span><span class="n">midpoint</span><span class="p">),</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">phenotype_labels</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">phenotype_l</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Rearrange the rows back to original</span>
+    <span class="n">phenotype_labels</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">phenotype_labels</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-rest&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Consolidating the phenotypes across all groups&quot;</span><span class="p">)</span>
+        <span class="n">phenotype_labels_Consolidated</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">phenotype_labels</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">phenotype_labels_Consolidated</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># replace nan to &#39;other cells&#39;</span>
+    <span class="n">phenotype_labels</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;Unknown&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Apply the phenotype threshold if given</span>
+    <span class="k">if</span> <span class="n">pheno_threshold_percent</span> <span class="ow">or</span> <span class="n">pheno_threshold_abs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">phenotype_labels</span><span class="p">[</span><span class="n">label</span><span class="p">])</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">imageid</span><span class="p">])</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Function to remove phenotypes that are less than the given threshold</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">remove_phenotype</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">pheno_threshold_percent</span><span class="p">,</span> <span class="n">pheno_threshold_abs</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">imageid</span><span class="p">]</span> <span class="o">==</span> <span class="n">ID</span><span class="p">]</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">label</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+            <span class="n">x</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span>
+            <span class="c1"># FInd the phenotypes that are less than the given threshold</span>
+            <span class="k">if</span> <span class="n">pheno_threshold_percent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">fail</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="n">pheno_threshold_percent</span><span class="o">/</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pheno_threshold_abs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">fail</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pheno_threshold_abs</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+            <span class="n">d</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fail</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s1">&#39;Unknown&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">fail</span><span class="p">)))))</span>
+            <span class="c1"># Return</span>
+            <span class="k">return</span> <span class="n">d</span>
+
+        <span class="c1"># Apply function to all images</span>
+        <span class="n">r_remove_phenotype</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">remove_phenotype</span> <span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">ID</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                                                         <span class="n">pheno_threshold_percent</span><span class="o">=</span><span class="n">pheno_threshold_percent</span><span class="p">,</span>
+                                                         <span class="n">pheno_threshold_abs</span><span class="o">=</span><span class="n">pheno_threshold_abs</span><span class="p">)</span> <span class="c1"># Create lamda function</span>
+        <span class="n">final_phrnotypes</span><span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r_remove_phenotype</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">imageid</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())))</span> <span class="c1"># Apply function</span>
+
+        <span class="n">final_phrnotypes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">final_phrnotypes</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+        <span class="n">phenotype_labels</span> <span class="o">=</span> <span class="n">final_phrnotypes</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+
+    <span class="c1"># Return to adata</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">phenotype_labels</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+
+    <span class="c1"># Save data if requested</span>
+    <span class="k">if</span> <span class="n">projectDir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">finalPath</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">projectDir</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/csPhenotype/&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">finalPath</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">finalPath</span><span class="p">)</span>
+        <span class="c1"># determine file name</span>
+        <span class="k">if</span> <span class="n">fileName</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span> <span class="p">(</span><span class="n">csObject</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">imid</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">csObject</span><span class="p">)</span><span class="o">.</span><span class="n">stem</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">imid</span> <span class="o">=</span> <span class="s1">&#39;csPhenotype&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">imid</span> <span class="o">=</span> <span class="n">fileName</span>
+
+        <span class="n">adata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">finalPath</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">imid</span><span class="si">}</span><span class="s1">.h5ad&#39;</span><span class="p">)</span>
+        <span class="c1"># Print</span>
+        <span class="k">if</span> <span class="n">verbose</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Modified csObject is stored at &quot;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">projectDir</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/CSPOT/csPhenotype&#39;</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Return data</span>
+        <span class="k">return</span> <span class="n">adata</span>
+    <span class="k">return</span> <span class="n">adata</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 | Nirmal Lab | www.nirmallab.com
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://twitter.com/nirmallab" target="_blank" rel="noopener" title="Twitter" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
