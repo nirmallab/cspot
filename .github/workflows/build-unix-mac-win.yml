@@ -41,7 +41,7 @@ jobs:
         uses: abatilo/actions-poetry@v2
 #        with:
 #          poetry-version: 1.1.2
-          
+
       - name: Set up the cache
         uses: actions/cache@v3
         with:
@@ -51,5 +51,11 @@ jobs:
 #      - name: Set up Poetry virtual environment
 #        run: poetry env use python${{ matrix.python-version }}
         
+      #- name: Install project dependencies
+      #  run: poetry install -vv || { rm -rf .poetry_cache/virtualenvs/*; poetry install -vv; }
+        
       - name: Install project dependencies
-        run: poetry install -vv || { rm -rf .poetry_cache/virtualenvs/*; poetry install -vv; }
+        run: |
+          poetry lock --no-update  # Ensure poetry.lock is up to date
+          rm -rf .poetry_cache/virtualenvs/*  # Clear cached virtual environments
+          poetry install -vv
